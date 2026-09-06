@@ -181,7 +181,7 @@ function Home() {
                     className="h-full max-w-full object-contain transition-transform duration-200 group-hover:scale-[1.03]"
                   />
                 </div>
-                <h3 className="mt-4 text-sm font-medium leading-5 text-catalog-title">{p.name}</h3>
+                <h3 className="mt-4 text-xl font-semibold leading-7 text-catalog-title">{p.name}</h3>
                 <p className="mt-1 text-xs leading-4 text-catalog-copy">{p.positioning}</p>
                 <p className="mt-4 border-t border-border pt-3 text-sm font-medium text-catalog-title">
                   {formatPrice(p)}

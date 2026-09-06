@@ -95,8 +95,8 @@ function ProductsIndex() {
                   />
                 </div>
                 <div className="mt-4 flex items-baseline gap-2">
-                  <h2 className="text-sm font-medium leading-5 text-catalog-title">{p.name}</h2>
-                  {p.badge && <span className="text-[11px] font-medium text-primary">{p.badge}</span>}
+                  <h2 className="text-xl font-semibold leading-7 text-catalog-title">{p.name}</h2>
+                  {p.badge && <span className="text-xs font-semibold italic text-badge">{p.badge}</span>}
                 </div>
                 <p className="mt-1 min-h-8 text-xs leading-4 text-catalog-copy">{p.positioning}</p>
                 <p className="mt-auto border-t border-border pt-3 text-sm font-medium text-catalog-title">

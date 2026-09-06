@@ -19,13 +19,6 @@ export const Route = createFileRoute("/about")({
   component: About,
 });
 
-const blocks = [
-  { id: "mission", title: "Mission & Vision", body: "Our view is simple: robots should take the repetitive, heavy and unsociable work, so people can do the work that needs people. We build and deploy machines that make that practical for ordinary businesses, not just flagship sites." },
-  { id: "technology", title: "Technology & Innovation", body: "The range combines autonomous navigation, multi-sensor perception, fleet scheduling and multi-robot coordination — engineered for busy commercial spaces, not laboratory floors." },
-  { id: "global", title: "Global Presence", body: "We serve customers through a network of regional partners with UK deployment and support. Detailed market coverage is being finalised and will be published here." },
-  { id: "milestones", title: "Milestones", body: "A timeline of company and product milestones is being prepared and will appear here soon." },
-  { id: "careers", title: "Careers", body: "We hire across robotics engineering, deployment and customer success. Open roles will be listed here as they become available — speculative applications are welcome via the demo form for now." },
-];
 
 function About() {
   const { t } = useI18n();

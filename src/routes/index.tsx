@@ -65,7 +65,7 @@ function Home() {
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border">
         <div className="grid-lines pointer-events-none absolute inset-0 opacity-30" aria-hidden />
-        <div className="relative mx-auto max-w-7xl px-5 py-24 md:py-32">
+        <div className="relative mx-auto max-w-6xl px-5 py-24 md:py-32">
           <p className="label-mono text-primary">Commercial service robotics · United Kingdom</p>
           <h1 className="mt-6 max-w-4xl text-5xl leading-[0.95] font-semibold md:text-7xl">
             Robots that do the shift.
@@ -111,7 +111,7 @@ function Home() {
 
       {/* Event strip — swap the copy when the event changes, delete when there isn't one */}
       <section className="border-b border-border bg-primary text-primary-foreground">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-4">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-4">
           <p className="text-sm font-semibold">
             Live demonstrations run weekly at the Chelsea showroom — see every machine working before you buy.
           </p>
@@ -123,7 +123,7 @@ function Home() {
 
       {/* Categories */}
       <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-5 py-20">
+        <div className="mx-auto max-w-6xl px-5 py-20">
           <p className="label-mono text-muted-foreground">Find by job</p>
           <h2 className="mt-3 text-3xl font-semibold md:text-4xl">Start with the work, not the model number.</h2>
           <div className="mt-10 grid gap-4 md:grid-cols-3">
@@ -132,7 +132,7 @@ function Home() {
                 key={c.id}
                 to="/products"
                 search={{ category: c.id }}
-                className="group card-surface p-7 hover:-translate-y-0.5"
+                className="group card-surface p-8 hover:-translate-y-0.5"
               >
                 <h3 className="text-lg font-bold">{c.label}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{c.blurb}</p>
@@ -147,7 +147,7 @@ function Home() {
 
       {/* Featured products */}
       <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-5 py-20">
+        <div className="mx-auto max-w-6xl px-5 py-20">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="label-mono text-muted-foreground">The range</p>
@@ -164,7 +164,7 @@ function Home() {
                 key={p.slug}
                 to="/products/$slug"
                 params={{ slug: p.slug }}
-                className="group flex flex-col card-surface p-7 hover:-translate-y-0.5"
+                className="group flex flex-col card-surface p-8 hover:-translate-y-0.5"
               >
                 <div className="flex h-40 items-center justify-center">
                   <img
@@ -191,12 +191,12 @@ function Home() {
 
       {/* Capabilities */}
       <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-5 py-20">
+        <div className="mx-auto max-w-6xl px-5 py-20">
           <p className="label-mono text-muted-foreground">What we actually do</p>
           <h2 className="mt-3 text-3xl font-semibold md:text-4xl">Six capabilities. One outcome.</h2>
           <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map((c) => (
-              <div key={c.n} className="card-surface p-7">
+              <div key={c.n} className="card-surface p-8">
                 <span className="label-mono text-primary">{c.n}</span>
                 <h3 className="mt-4 text-lg font-bold">{c.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{c.body}</p>
@@ -208,7 +208,7 @@ function Home() {
 
       {/* CTA */}
       <section>
-        <div className="mx-auto max-w-7xl px-5 py-24 text-center">
+        <div className="mx-auto max-w-6xl px-5 py-24 text-center">
           <h2 className="text-4xl font-semibold md:text-5xl">See one working in your space.</h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
             Bring your floor plan and shift pattern. We'll run the machine and give you the payback numbers for

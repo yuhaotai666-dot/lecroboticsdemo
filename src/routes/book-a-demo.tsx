@@ -30,7 +30,7 @@ function BookDemo() {
 
   return (
     <section>
-      <div className="mx-auto grid max-w-7xl gap-14 px-5 py-16 lg:grid-cols-2">
+      <div className="mx-auto grid max-w-6xl gap-14 px-5 py-16 lg:grid-cols-2">
         <div>
           <p className="label-mono text-primary">Book a demo</p>
           <h1 className="mt-4 text-4xl font-semibold md:text-6xl">See it work before you buy it.</h1>

@@ -61,21 +61,22 @@ export function HeroCarousel() {
   }, []);
 
   return (
-    <div className="relative aspect-[1674/941] w-full overflow-hidden bg-muted">
+    <div className="relative aspect-[1674/941] w-full overflow-hidden bg-white">
       {slides.map((slide, i) =>
         i <= maxLoaded ? (
           <img
             key={slide.url}
             src={slide.url}
             alt={slide.alt}
-            width={1672}
+            width={1916}
             height={941}
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
+            className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-1000 ${
               i === index ? "opacity-100" : "opacity-0"
             }`}
             fetchPriority={i === 0 ? "high" : "low"}
             loading={i === 0 ? "eager" : "lazy"}
             decoding={i === 0 ? "sync" : "async"}
+
             aria-hidden={i !== index}
           />
         ) : null,

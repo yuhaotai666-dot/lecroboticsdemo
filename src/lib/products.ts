@@ -42,8 +42,7 @@ export const products: Product[] = [
     price: 8247,
     finance: "£192 / wk",
     badge: "Popular",
-    image:
-      "https://cdn.prod.website-files.com/6a20051eaff93cc35362905a/6a28ea7b491925eb067ab519_T10.svg",
+    image: "/__l5e/assets-v1/c1078acb-4c35-4b6b-801e-6c18e8f658b3/dinerbot-t10.webp",
     brochure:
       "https://cdn.prod.website-files.com/6a20051eaff93cc35362905a/6a229307ac93e535a0880f9e_LEC%20Dinerbot%20T10%20Spec%20Sheet.pdf",
     specs: [
@@ -61,7 +60,7 @@ export const products: Product[] = [
     positioning: "High-capacity service robot",
     price: 5616,
     finance: "£131 / wk",
-    image: "https://cdn.prod.website-files.com/6a20051eaff93cc35362905a/6a28ea65c4595d62c52c633e_T9.svg",
+    image: "/__l5e/assets-v1/75e9e12f-c34f-484c-ac05-19ae49513d5c/dinerbot-t9.webp",
     specs: [
       { label: "Total load capacity", value: "40 kg" },
       { label: "Battery life", value: "Up to 15 h" },
@@ -94,7 +93,7 @@ export const products: Product[] = [
     positioning: "Pro wet & dry separation system",
     price: 11019,
     finance: "£256 / wk",
-    image: "https://cdn.prod.website-files.com/6a20051eaff93cc35362905a/6a28e9a01fa87b7ea052a52e_C40.png",
+    image: "/__l5e/assets-v1/6d2db49e-4294-482f-97a8-3f63147eaf5b/kleenbot-c40.webp",
     specs: [
       { label: "Cleaning modes", value: "Sweep · Scrub · Mop · Vacuum" },
       { label: "Water system", value: "Wet & dry separation" },
@@ -110,7 +109,7 @@ export const products: Product[] = [
     positioning: "Mid-size autonomous scrubber",
     price: 7623,
     finance: "£177 / wk",
-    image: "https://cdn.prod.website-files.com/6a20051eaff93cc35362905a/6a28e9b4c97ea33d6ce2cedd_C30.svg",
+    image: "/__l5e/assets-v1/e4f54dda-4a46-4fcc-a7d6-299e336d0c19/kleenbot-c30.webp",
     specs: [
       { label: "Cleaning modes", value: "Sweep · Scrub · Mop" },
       { label: "Operation", value: "Unattended, scheduled" },
@@ -126,7 +125,7 @@ export const products: Product[] = [
     positioning: "Lift-integrated hotel delivery robot",
     price: 11712,
     finance: "£273 / wk",
-    image: "https://cdn.prod.website-files.com/6a20051eaff93cc35362905a/6a28ea90cdba5cf5306abaf2_W3.svg",
+    image: "/__l5e/assets-v1/7b967c64-211a-4115-8761-4f0b928facc3/butlerbot-w3.webp",
     specs: [
       { label: "Compartment", value: "Lockable, secure" },
       { label: "Lift integration", value: "Yes" },
@@ -142,7 +141,7 @@ export const products: Product[] = [
     positioning: "Heavy-payload industrial courier",
     price: 9633,
     finance: "£224 / wk",
-    image: "https://cdn.prod.website-files.com/6a20051eaff93cc35362905a/6a28ea451fa87b7ea052d593_S100%20(1).png",
+    image: "/__l5e/assets-v1/f56de82e-5025-42f6-9e62-3801b9cf721d/courier-s100.webp",
     specs: [
       { label: "Payload", value: "100 kg" },
       { label: "Environment", value: "Indoor & sheltered outdoor" },
@@ -158,7 +157,7 @@ export const products: Product[] = [
     positioning: "Robotic coffee kiosk",
     price: 85000,
     finance: "£545 / wk (36 months)",
-    image: "https://cdn.prod.website-files.com/6a20051eaff93cc35362905a/6a28e9d3c30c9c5220acf741_Xbot%20S%20Pro.svg",
+    image: "/__l5e/assets-v1/beaa4357-dc95-4ed9-9c55-b48691662a35/xbot-s-pro.webp",
     specs: [
       { label: "Output", value: "Barista-spec espresso menu" },
       { label: "Staffing", value: "Unattended" },
@@ -174,7 +173,7 @@ export const products: Product[] = [
     positioning: "Robotic ice cream kiosk",
     price: 21999,
     finance: "£669 / mo",
-    image: "https://cdn.prod.website-files.com/6a20051eaff93cc35362905a/6a28ea024d244d97033b73dd_Xbot%20IC%20(2).png",
+    image: "/__l5e/assets-v1/03348529-f7dd-4bbc-9acb-56faa8af7874/xbot-ic.webp",
     specs: [
       { label: "Output", value: "Soft serve, made to order" },
       { label: "Staffing", value: "Unattended" },

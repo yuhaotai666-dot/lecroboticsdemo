@@ -75,19 +75,6 @@ function Home() {
           </div>
 
 
-          <dl className="mt-16 grid grid-cols-2 gap-8 border-t border-border pt-8 md:grid-cols-4">
-            {[
-              ["11", t("home.stat.machines")],
-              ["6", t("home.stat.sectors")],
-              ["£5,418", t("home.stat.entry")],
-              ["UKCA/CE", t("home.stat.certified")],
-            ].map(([v, l]) => (
-              <div key={l}>
-                <dt className="font-display text-3xl font-semibold tracking-tight">{v}</dt>
-                <dd className="mt-1 label-mono text-muted-foreground">{l}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </section>
 

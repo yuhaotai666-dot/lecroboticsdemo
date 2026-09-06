@@ -140,7 +140,7 @@ function Home() {
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-20">
           <p className="label-mono text-muted-foreground">Find by job</p>
-          <h2 className="mt-3 text-3xl font-semibold md:text-4xl">Start with the work, not the model number.</h2>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Start with the work, not the model number.</h2>
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {categories.map((c) => (
               <Link
@@ -166,7 +166,7 @@ function Home() {
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="label-mono text-muted-foreground">The range</p>
-              <h2 className="mt-3 text-3xl font-semibold md:text-4xl">Built to perform. Ready to deploy.</h2>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Built to perform. Ready to deploy.</h2>
             </div>
             <Link to="/products" className="label-mono text-primary">
               Compare all 11 →
@@ -205,10 +205,10 @@ function Home() {
       </section>
 
       {/* Capabilities */}
-      <section className="border-b border-border">
+      <section className="border-b border-border bg-muted/40">
         <div className="mx-auto max-w-6xl px-5 py-20">
           <p className="label-mono text-muted-foreground">What we actually do</p>
-          <h2 className="mt-3 text-3xl font-semibold md:text-4xl">Six capabilities. One outcome.</h2>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Six capabilities. One outcome.</h2>
           <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map((c) => (
               <div key={c.n} className="card-surface p-8">

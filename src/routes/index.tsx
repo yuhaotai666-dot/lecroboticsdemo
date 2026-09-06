@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { categories, products, formatPrice } from "@/lib/products";
-import rangeBanner from "@/assets/keenon-range.png.asset.json";
+import { HeroCarousel } from "@/components/hero-carousel";
 
 
 export const Route = createFileRoute("/")({
@@ -66,12 +66,7 @@ function Home() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border">
-        <img
-          src={rangeBanner.url}
-          alt="The full LEC Robotics range: Kleenbot C40 and C30 floor cleaners, Xbot S Pro coffee robot, Xbot IC ice cream kiosk, Dinerbot T10 and T9 service robots, Butlerbot W3 and Courier S100"
-          className="w-full object-cover"
-          fetchPriority="high"
-        />
+        <HeroCarousel />
         <div className="grid-lines pointer-events-none absolute inset-0 opacity-30" aria-hidden />
         <div className="relative mx-auto max-w-6xl px-5 py-20 md:py-24">
           <div className="max-w-3xl">

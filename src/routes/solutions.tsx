@@ -61,7 +61,7 @@ function Solutions() {
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-5 py-16">
           <p className="label-mono text-primary">By industry</p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-extrabold md:text-6xl">
+          <h1 className="mt-4 max-w-3xl text-4xl font-semibold md:text-6xl">
             Same machines. Very different shifts.
           </h1>
           <p className="mt-5 max-w-2xl text-muted-foreground">
@@ -72,10 +72,10 @@ function Solutions() {
 
       <section>
         <div className="mx-auto max-w-7xl px-5 py-14">
-          <div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-2">
             {sectors.map((s) => (
-              <div key={s.name} className="bg-background p-8">
-                <h2 className="text-2xl font-extrabold">{s.name}</h2>
+              <div key={s.name} className="card-surface p-8">
+                <h2 className="text-2xl font-semibold">{s.name}</h2>
                 <p className="mt-3 text-muted-foreground">{s.problem}</p>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {s.slugs.map((slug) => {
@@ -86,7 +86,7 @@ function Solutions() {
                         key={slug}
                         to="/products/$slug"
                         params={{ slug }}
-                        className="rounded-sm border border-border px-3 py-2 label-mono transition-colors hover:border-primary hover:text-primary"
+                        className="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium transition-colors hover:border-primary hover:text-primary"
                       >
                         {p.name}
                       </Link>

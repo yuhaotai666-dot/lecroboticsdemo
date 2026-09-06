@@ -12,9 +12,9 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-5">
-        <Link to="/" className="font-display text-lg font-extrabold tracking-tight">
+        <Link to="/" className="font-display text-lg font-semibold tracking-tight">
           LEC<span className="text-primary">.</span>ROBOTICS
         </Link>
 
@@ -23,7 +23,7 @@ export function SiteHeader() {
             <Link
               key={item.to}
               to={item.to}
-              className="label-mono text-muted-foreground transition-colors hover:text-foreground"
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               activeProps={{ className: "text-foreground" }}
             >
               {item.label}
@@ -34,7 +34,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-3">
           <Link
             to="/book-a-demo"
-            className="hidden rounded-sm bg-primary px-4 py-2 label-mono text-primary-foreground transition-opacity hover:opacity-90 sm:inline-block"
+            className="hidden rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 sm:inline-block"
           >
             Book a demo
           </Link>
@@ -56,12 +56,12 @@ export function SiteHeader() {
               key={item.to}
               to={item.to}
               onClick={() => setOpen(false)}
-              className="block py-3 label-mono text-muted-foreground"
+              className="block py-2.5 text-sm font-medium text-muted-foreground"
             >
               {item.label}
             </Link>
           ))}
-          <Link to="/book-a-demo" onClick={() => setOpen(false)} className="block py-3 label-mono text-primary">
+          <Link to="/book-a-demo" onClick={() => setOpen(false)} className="block py-2.5 text-sm font-semibold text-primary">
             Book a demo
           </Link>
         </nav>

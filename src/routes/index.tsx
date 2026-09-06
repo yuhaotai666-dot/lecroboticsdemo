@@ -67,7 +67,7 @@ function Home() {
         <div className="grid-lines pointer-events-none absolute inset-0 opacity-30" aria-hidden />
         <div className="relative mx-auto max-w-7xl px-5 py-24 md:py-32">
           <p className="label-mono text-primary">Commercial service robotics · United Kingdom</p>
-          <h1 className="mt-6 max-w-4xl text-5xl leading-[0.95] font-extrabold md:text-7xl">
+          <h1 className="mt-6 max-w-4xl text-5xl leading-[0.95] font-semibold md:text-7xl">
             Robots that do the shift.
             <br />
             <span className="text-muted-foreground">Priced, financed and supported here.</span>
@@ -81,13 +81,13 @@ function Home() {
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
               to="/products"
-              className="inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3.5 label-mono text-primary-foreground transition-opacity hover:opacity-90"
+              className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
             >
               See all robots <ArrowRight className="size-4" />
             </Link>
             <Link
               to="/roi"
-              className="inline-flex items-center gap-2 rounded-sm border border-border px-6 py-3.5 label-mono transition-colors hover:border-primary hover:text-primary"
+              className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-sm font-semibold shadow-sm transition-colors hover:border-primary hover:text-primary"
             >
               Work out your payback
             </Link>
@@ -101,7 +101,7 @@ function Home() {
               ["UKCA/CE", "Certified range"],
             ].map(([v, l]) => (
               <div key={l}>
-                <dt className="font-display text-3xl font-extrabold">{v}</dt>
+                <dt className="font-display text-3xl font-semibold">{v}</dt>
                 <dd className="mt-1 label-mono text-muted-foreground">{l}</dd>
               </div>
             ))}
@@ -125,14 +125,14 @@ function Home() {
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-5 py-20">
           <p className="label-mono text-muted-foreground">Find by job</p>
-          <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">Start with the work, not the model number.</h2>
-          <div className="mt-10 grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-3">
+          <h2 className="mt-3 text-3xl font-semibold md:text-4xl">Start with the work, not the model number.</h2>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
             {categories.map((c) => (
               <Link
                 key={c.id}
                 to="/products"
                 search={{ category: c.id }}
-                className="group bg-background p-7 transition-colors hover:bg-card"
+                className="group card-surface p-7 hover:-translate-y-0.5"
               >
                 <h3 className="text-lg font-bold">{c.label}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{c.blurb}</p>
@@ -151,20 +151,20 @@ function Home() {
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="label-mono text-muted-foreground">The range</p>
-              <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">Built to perform. Ready to deploy.</h2>
+              <h2 className="mt-3 text-3xl font-semibold md:text-4xl">Built to perform. Ready to deploy.</h2>
             </div>
             <Link to="/products" className="label-mono text-primary">
               Compare all 11 →
             </Link>
           </div>
 
-          <div className="mt-10 grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((p) => (
               <Link
                 key={p.slug}
                 to="/products/$slug"
                 params={{ slug: p.slug }}
-                className="group flex flex-col bg-background p-7 transition-colors hover:bg-card"
+                className="group flex flex-col card-surface p-7 hover:-translate-y-0.5"
               >
                 <div className="flex h-40 items-center justify-center">
                   <img
@@ -177,7 +177,7 @@ function Home() {
                 <h3 className="mt-6 text-xl font-bold">{p.name}</h3>
                 <p className="mt-1 label-mono text-muted-foreground">{p.positioning}</p>
                 <p className="mt-3 flex-1 text-sm text-muted-foreground">{p.tagline}</p>
-                <p className="mt-5 border-t border-border pt-4 font-display text-lg font-extrabold">
+                <p className="mt-5 border-t border-border pt-4 font-display text-lg font-semibold">
                   {formatPrice(p)}
                   <span className="ml-2 label-mono font-normal text-muted-foreground">
                     {p.finance ? `or ${p.finance}` : "+ VAT"}
@@ -193,10 +193,10 @@ function Home() {
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-5 py-20">
           <p className="label-mono text-muted-foreground">What we actually do</p>
-          <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">Six capabilities. One outcome.</h2>
-          <div className="mt-10 grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
+          <h2 className="mt-3 text-3xl font-semibold md:text-4xl">Six capabilities. One outcome.</h2>
+          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map((c) => (
-              <div key={c.n} className="bg-background p-7">
+              <div key={c.n} className="card-surface p-7">
                 <span className="label-mono text-primary">{c.n}</span>
                 <h3 className="mt-4 text-lg font-bold">{c.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{c.body}</p>
@@ -209,14 +209,14 @@ function Home() {
       {/* CTA */}
       <section>
         <div className="mx-auto max-w-7xl px-5 py-24 text-center">
-          <h2 className="text-4xl font-extrabold md:text-5xl">See one working in your space.</h2>
+          <h2 className="text-4xl font-semibold md:text-5xl">See one working in your space.</h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
             Bring your floor plan and shift pattern. We'll run the machine and give you the payback numbers for
             your own operation.
           </p>
           <Link
             to="/book-a-demo"
-            className="mt-8 inline-flex items-center gap-2 rounded-sm bg-primary px-8 py-4 label-mono text-primary-foreground transition-opacity hover:opacity-90"
+            className="mt-8 inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3.5 text-base font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
           >
             Book a demo <ArrowRight className="size-4" />
           </Link>

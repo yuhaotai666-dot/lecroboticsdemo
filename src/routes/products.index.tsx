@@ -37,7 +37,7 @@ function ProductsIndex() {
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-5 py-16">
           <p className="label-mono text-primary">The range</p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-extrabold md:text-6xl">
+          <h1 className="mt-4 max-w-3xl text-4xl font-semibold md:text-6xl">
             Eleven machines. Every price published.
           </h1>
           <p className="mt-5 max-w-2xl text-muted-foreground">
@@ -49,8 +49,8 @@ function ProductsIndex() {
             <Link
               to="/products"
               search={{}}
-              className={`rounded-sm border px-4 py-2 label-mono transition-colors ${
-                !category ? "border-primary bg-primary text-primary-foreground" : "border-border hover:border-primary"
+              className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                !category ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-muted-foreground hover:border-primary hover:text-foreground"
               }`}
             >
               All ({products.length})
@@ -63,10 +63,10 @@ function ProductsIndex() {
                   key={c.id}
                   to="/products"
                   search={{ category: c.id }}
-                  className={`rounded-sm border px-4 py-2 label-mono transition-colors ${
+                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
                     active
                       ? "border-primary bg-primary text-primary-foreground"
-                      : "border-border hover:border-primary"
+                      : "border-border bg-card text-muted-foreground hover:border-primary hover:text-foreground"
                   }`}
                 >
                   {c.label} ({count})
@@ -79,20 +79,20 @@ function ProductsIndex() {
 
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-5 py-14">
-          <div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {shown.map((p) => (
               <Link
                 key={p.slug}
                 to="/products/$slug"
                 params={{ slug: p.slug }}
-                className="group flex flex-col bg-background p-7 transition-colors hover:bg-card"
+                className="group flex flex-col card-surface p-7 hover:-translate-y-0.5"
               >
                 <div className="flex items-start justify-between">
                   <span className="label-mono text-muted-foreground">
                     {categories.find((c) => c.id === p.category)?.label}
                   </span>
                   {p.badge && (
-                    <span className="rounded-sm bg-primary px-2 py-0.5 label-mono text-primary-foreground">
+                    <span className="rounded-lg bg-primary px-2 py-0.5 label-mono text-primary-foreground">
                       {p.badge}
                     </span>
                   )}
@@ -107,7 +107,7 @@ function ProductsIndex() {
                 </div>
                 <h2 className="mt-6 text-xl font-bold">{p.name}</h2>
                 <p className="mt-1 text-sm text-muted-foreground">{p.tagline}</p>
-                <p className="mt-5 border-t border-border pt-4 font-display text-lg font-extrabold">
+                <p className="mt-5 border-t border-border pt-4 font-display text-lg font-semibold">
                   {formatPrice(p)}
                   <span className="ml-2 label-mono font-normal text-muted-foreground">
                     {p.finance ? `or ${p.finance}` : "+ VAT"}
@@ -121,9 +121,9 @@ function ProductsIndex() {
 
       <section>
         <div className="mx-auto max-w-7xl px-5 py-16">
-          <h2 className="text-3xl font-extrabold">Compare the full range</h2>
+          <h2 className="text-3xl font-semibold">Compare the full range</h2>
           <p className="mt-2 text-sm text-muted-foreground">All prices exclude VAT. Finance shown over 12 months at 7% unless noted.</p>
-          <div className="mt-8 overflow-x-auto rounded-sm border border-border">
+          <div className="mt-8 overflow-x-auto rounded-lg border border-border">
             <table className="w-full min-w-[720px] text-left text-sm">
               <thead className="bg-card">
                 <tr className="label-mono text-muted-foreground">

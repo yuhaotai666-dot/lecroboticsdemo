@@ -165,15 +165,15 @@ function Home() {
             </Link>
           </div>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {featured.map((p) => (
               <Link
                 key={p.slug}
                 to="/products/$slug"
                 params={{ slug: p.slug }}
-                className="group flex min-h-[460px] flex-col bg-card px-8 pb-8 pt-6"
+                className="group flex min-h-[330px] flex-col bg-card px-5 pb-5 pt-4"
               >
-                <div className="flex h-56 items-center justify-center">
+                <div className="flex h-44 items-center justify-center">
                   <img
                     src={p.image}
                     alt={`${p.name} — ${p.positioning}`}
@@ -181,10 +181,9 @@ function Home() {
                     className="h-full max-w-full object-contain transition-transform duration-200 group-hover:scale-[1.03]"
                   />
                 </div>
-                <h3 className="mt-5 text-2xl font-semibold leading-8 text-catalog-title">{p.name}</h3>
-                <p className="mt-2 text-sm leading-5 text-catalog-copy">{p.positioning}</p>
-                <p className="mt-2 flex-1 text-sm leading-5 text-catalog-copy">{p.tagline}</p>
-                <p className="mt-5 border-t border-border pt-5 text-base font-semibold text-catalog-title">
+                <h3 className="mt-4 text-sm font-medium leading-5 text-catalog-title">{p.name}</h3>
+                <p className="mt-1 text-xs leading-4 text-catalog-copy">{p.positioning}</p>
+                <p className="mt-4 border-t border-border pt-3 text-sm font-medium text-catalog-title">
                   {formatPrice(p)}
                   <span className="ml-2 text-xs font-normal text-catalog-copy">
                     {p.finance ? `or ${p.finance}` : "+ VAT"}
@@ -193,6 +192,7 @@ function Home() {
               </Link>
             ))}
           </div>
+
         </div>
       </section>
 

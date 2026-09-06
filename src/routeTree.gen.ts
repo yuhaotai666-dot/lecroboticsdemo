@@ -10,9 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as BookADemoRouteImport } from './routes/book-a-demo'
+import { Route as CaseStudiesRouteImport } from './routes/case-studies'
+import { Route as IndustriesRouteImport } from './routes/industries'
+import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as RoiRouteImport } from './routes/roi'
 import { Route as SolutionsRouteImport } from './routes/solutions'
+import { Route as SupportRouteImport } from './routes/support'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 import { Route as VideosSlugRouteImport } from './routes/videos.$slug'
@@ -22,9 +27,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BookADemoRoute = BookADemoRouteImport.update({
   id: '/book-a-demo',
   path: '/book-a-demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CaseStudiesRoute = CaseStudiesRouteImport.update({
+  id: '/case-studies',
+  path: '/case-studies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndustriesRoute = IndustriesRouteImport.update({
+  id: '/industries',
+  path: '/industries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RoiRoute = RoiRouteImport.update({
@@ -35,6 +60,11 @@ const RoiRoute = RoiRouteImport.update({
 const SolutionsRoute = SolutionsRouteImport.update({
   id: '/solutions',
   path: '/solutions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupportRoute = SupportRouteImport.update({
+  id: '/support',
+  path: '/support',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
@@ -55,18 +85,28 @@ const VideosSlugRoute = VideosSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/book-a-demo': typeof BookADemoRoute
+  '/case-studies': typeof CaseStudiesRoute
+  '/industries': typeof IndustriesRoute
+  '/resources': typeof ResourcesRoute
   '/roi': typeof RoiRoute
   '/solutions': typeof SolutionsRoute
+  '/support': typeof SupportRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/videos/$slug': typeof VideosSlugRoute
   '/products/': typeof ProductsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/book-a-demo': typeof BookADemoRoute
+  '/case-studies': typeof CaseStudiesRoute
+  '/industries': typeof IndustriesRoute
+  '/resources': typeof ResourcesRoute
   '/roi': typeof RoiRoute
   '/solutions': typeof SolutionsRoute
+  '/support': typeof SupportRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/videos/$slug': typeof VideosSlugRoute
   '/products': typeof ProductsIndexRoute
@@ -74,9 +114,14 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/book-a-demo': typeof BookADemoRoute
+  '/case-studies': typeof CaseStudiesRoute
+  '/industries': typeof IndustriesRoute
+  '/resources': typeof ResourcesRoute
   '/roi': typeof RoiRoute
   '/solutions': typeof SolutionsRoute
+  '/support': typeof SupportRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/videos/$slug': typeof VideosSlugRoute
   '/products/': typeof ProductsIndexRoute
@@ -85,27 +130,42 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/book-a-demo'
+    | '/case-studies'
+    | '/industries'
+    | '/resources'
     | '/roi'
     | '/solutions'
+    | '/support'
     | '/products/$slug'
     | '/videos/$slug'
     | '/products/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/book-a-demo'
+    | '/case-studies'
+    | '/industries'
+    | '/resources'
     | '/roi'
     | '/solutions'
+    | '/support'
     | '/products/$slug'
     | '/videos/$slug'
     | '/products'
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/book-a-demo'
+    | '/case-studies'
+    | '/industries'
+    | '/resources'
     | '/roi'
     | '/solutions'
+    | '/support'
     | '/products/$slug'
     | '/videos/$slug'
     | '/products/'
@@ -113,9 +173,14 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   BookADemoRoute: typeof BookADemoRoute
+  CaseStudiesRoute: typeof CaseStudiesRoute
+  IndustriesRoute: typeof IndustriesRoute
+  ResourcesRoute: typeof ResourcesRoute
   RoiRoute: typeof RoiRoute
   SolutionsRoute: typeof SolutionsRoute
+  SupportRoute: typeof SupportRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
   VideosSlugRoute: typeof VideosSlugRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
@@ -130,11 +195,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/book-a-demo': {
       id: '/book-a-demo'
       path: '/book-a-demo'
       fullPath: '/book-a-demo'
       preLoaderRoute: typeof BookADemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/case-studies': {
+      id: '/case-studies'
+      path: '/case-studies'
+      fullPath: '/case-studies'
+      preLoaderRoute: typeof CaseStudiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industries': {
+      id: '/industries'
+      path: '/industries'
+      fullPath: '/industries'
+      preLoaderRoute: typeof IndustriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/roi': {
@@ -149,6 +242,13 @@ declare module '@tanstack/react-router' {
       path: '/solutions'
       fullPath: '/solutions'
       preLoaderRoute: typeof SolutionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/support': {
+      id: '/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof SupportRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/products/': {
@@ -177,9 +277,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   BookADemoRoute: BookADemoRoute,
+  CaseStudiesRoute: CaseStudiesRoute,
+  IndustriesRoute: IndustriesRoute,
+  ResourcesRoute: ResourcesRoute,
   RoiRoute: RoiRoute,
   SolutionsRoute: SolutionsRoute,
+  SupportRoute: SupportRoute,
   ProductsSlugRoute: ProductsSlugRoute,
   VideosSlugRoute: VideosSlugRoute,
   ProductsIndexRoute: ProductsIndexRoute,

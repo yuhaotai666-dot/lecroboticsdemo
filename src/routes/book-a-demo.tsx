@@ -33,7 +33,7 @@ function BookDemo() {
       <div className="mx-auto grid max-w-7xl gap-14 px-5 py-16 lg:grid-cols-2">
         <div>
           <p className="label-mono text-primary">Book a demo</p>
-          <h1 className="mt-4 text-4xl font-extrabold md:text-6xl">See it work before you buy it.</h1>
+          <h1 className="mt-4 text-4xl font-semibold md:text-6xl">See it work before you buy it.</h1>
           <p className="mt-5 text-muted-foreground">
             Our Chelsea showroom runs the full range. Bring a floor plan and a shift pattern and we'll run the
             machine against your actual conditions, then hand you the payback figures.
@@ -45,10 +45,10 @@ function BookDemo() {
           </ul>
         </div>
 
-        <div className="rounded-sm border border-border bg-card p-8">
+        <div className="rounded-lg border border-border bg-card p-8">
           {sent ? (
             <div className="py-16 text-center">
-              <h2 className="text-2xl font-extrabold">Request received.</h2>
+              <h2 className="text-2xl font-semibold">Request received.</h2>
               <p className="mt-3 text-sm text-muted-foreground">
                 This is a demonstration form — connect it to your inbox or CRM before going live.
               </p>
@@ -71,7 +71,7 @@ function BookDemo() {
                 </label>
                 <select
                   id="sector"
-                  className="mt-2 w-full rounded-sm border border-border bg-background px-4 py-3"
+                  className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3"
                   defaultValue={sectors[0]}
                 >
                   {sectors.map((s) => (
@@ -86,7 +86,7 @@ function BookDemo() {
                 </label>
                 <select
                   id="machine"
-                  className="mt-2 w-full rounded-sm border border-border bg-background px-4 py-3"
+                  className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3"
                   defaultValue="not-sure"
                 >
                   <option value="not-sure">Not sure yet — advise me</option>
@@ -105,13 +105,13 @@ function BookDemo() {
                 <textarea
                   id="notes"
                   rows={4}
-                  className="mt-2 w-full rounded-sm border border-border bg-background px-4 py-3"
+                  className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full rounded-sm bg-primary px-6 py-4 label-mono text-primary-foreground transition-opacity hover:opacity-90"
+                className="w-full rounded-lg bg-primary px-6 py-3.5 text-base font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
               >
                 Request a demo
               </button>
@@ -133,7 +133,7 @@ function Field({ id, label, type = "text" }: { id: string; label: string; type?:
         id={id}
         type={type}
         required
-        className="mt-2 w-full rounded-sm border border-border bg-background px-4 py-3"
+        className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3"
       />
     </div>
   );

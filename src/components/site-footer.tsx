@@ -6,7 +6,7 @@ export function SiteFooter() {
     <footer className="border-t border-border bg-card/40">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-4">
         <div>
-          <p className="font-display text-lg font-extrabold tracking-tight">
+          <p className="font-display text-lg font-semibold tracking-tight">
             LEC<span className="text-primary">.</span>ROBOTICS
           </p>
           <p className="mt-3 max-w-xs text-sm text-muted-foreground">

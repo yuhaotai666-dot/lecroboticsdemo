@@ -36,7 +36,7 @@ export const Route = createFileRoute("/videos/$slug")({
 function ClipCard({ clip, poster, alt }: { clip: Clip; poster?: string; alt: string }) {
   return (
     <article className="bg-background p-6">
-      <div className="flex aspect-video items-center justify-center overflow-hidden rounded-sm border border-border bg-card">
+      <div className="flex aspect-video items-center justify-center overflow-hidden rounded-lg border border-border bg-card">
         {clip.src ? (
           <video
             controls
@@ -82,7 +82,7 @@ function VideoPage() {
             </Link>{" "}
             / Videos
           </nav>
-          <h1 className="mt-4 text-4xl font-extrabold md:text-5xl">{p.name} on video</h1>
+          <h1 className="mt-4 text-4xl font-semibold md:text-5xl">{p.name} on video</h1>
           <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
             Filmed operation walkthroughs and real deployments, so you can see the machine working before you book a
             demo. {formatPrice(p)} + VAT{p.finance ? `, or ${p.finance} on finance.` : "."}
@@ -90,14 +90,14 @@ function VideoPage() {
           <div className="mt-7 flex flex-wrap gap-3">
             <Link
               to="/book-a-demo"
-              className="inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3.5 label-mono text-primary-foreground transition-opacity hover:opacity-90"
+              className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
             >
               Book a live demo <ArrowRight className="size-4" />
             </Link>
             <Link
               to="/products/$slug"
               params={{ slug: p.slug }}
-              className="inline-flex items-center gap-2 rounded-sm border border-border px-6 py-3.5 label-mono transition-colors hover:border-primary hover:text-primary"
+              className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-sm font-semibold shadow-sm transition-colors hover:border-primary hover:text-primary"
             >
               Specification & pricing
             </Link>
@@ -107,9 +107,9 @@ function VideoPage() {
 
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-5 py-16">
-          <h2 className="text-3xl font-extrabold">Operation footage</h2>
+          <h2 className="text-3xl font-semibold">Operation footage</h2>
           <p className="mt-2 text-sm text-muted-foreground">How the machine is set up and run on a normal shift.</p>
-          <div className="mt-8 grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-2">
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
             {operation.map((c) => (
               <ClipCard key={c.id} clip={c} poster={p.image} alt={alt} />
             ))}
@@ -119,9 +119,9 @@ function VideoPage() {
 
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-5 py-16">
-          <h2 className="text-3xl font-extrabold">Application scenarios</h2>
+          <h2 className="text-3xl font-semibold">Application scenarios</h2>
           <p className="mt-2 text-sm text-muted-foreground">The same machine working in a live customer site.</p>
-          <div className="mt-8 grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-2">
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
             {scenes.map((c) => (
               <ClipCard key={c.id} clip={c} poster={p.image} alt={alt} />
             ))}
@@ -131,17 +131,17 @@ function VideoPage() {
 
       <section>
         <div className="mx-auto max-w-7xl px-5 py-16">
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-sm border border-border bg-card p-8">
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-lg border border-border bg-card p-8">
             <div>
               <p className="label-mono text-primary">
                 <PlayCircle className="mr-2 inline size-4" aria-hidden />
                 Prefer to see it in person?
               </p>
-              <h2 className="mt-3 text-2xl font-extrabold">Chelsea showroom, or on your own floor.</h2>
+              <h2 className="mt-3 text-2xl font-semibold">Chelsea showroom, or on your own floor.</h2>
             </div>
             <Link
               to="/book-a-demo"
-              className="inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3.5 label-mono text-primary-foreground transition-opacity hover:opacity-90"
+              className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
             >
               Book a demo <ArrowRight className="size-4" />
             </Link>

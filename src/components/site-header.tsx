@@ -14,7 +14,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-5">
-        <Link to="/" className="font-display text-lg font-extrabold tracking-tight">
+        <Link to="/" className="font-display text-lg font-semibold tracking-tight">
           LEC<span className="text-primary">.</span>ROBOTICS
         </Link>
 

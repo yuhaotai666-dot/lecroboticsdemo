@@ -39,7 +39,7 @@ function RoiPage() {
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-5 py-16">
           <p className="label-mono text-primary">ROI calculator</p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-extrabold md:text-6xl">
+          <h1 className="mt-4 max-w-3xl text-4xl font-semibold md:text-6xl">
             How fast does it pay for itself?
           </h1>
           <p className="mt-5 max-w-2xl text-muted-foreground">
@@ -51,7 +51,7 @@ function RoiPage() {
 
       <section>
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 lg:grid-cols-2">
-          <div className="space-y-8 rounded-sm border border-border bg-card p-8">
+          <div className="space-y-8 rounded-lg border border-border bg-card p-8">
             <div>
               <label htmlFor="model" className="label-mono text-muted-foreground">
                 Machine
@@ -60,7 +60,7 @@ function RoiPage() {
                 id="model"
                 value={slug}
                 onChange={(e) => setSlug(e.target.value)}
-                className="mt-3 w-full rounded-sm border border-border bg-background px-4 py-3"
+                className="mt-3 w-full rounded-lg border border-border bg-background px-4 py-3"
               >
                 {priced.map((p) => (
                   <option key={p.slug} value={p.slug}>
@@ -103,7 +103,7 @@ function RoiPage() {
             </div>
           </div>
 
-          <div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2">
             <Result label="Weekly labour saved" value={`£${Math.round(weeklySaving).toLocaleString("en-GB")}`} />
             <Result label="Annual labour saved" value={`£${Math.round(annualSaving).toLocaleString("en-GB")}`} />
             <Result label="Machine cost" value={formatPrice(product)} note="+ VAT" />
@@ -120,7 +120,7 @@ function RoiPage() {
               </p>
               <Link
                 to="/book-a-demo"
-                className="mt-5 inline-block rounded-sm bg-primary px-6 py-3.5 label-mono text-primary-foreground"
+                className="mt-5 inline-block rounded-lg bg-primary px-6 py-3.5 label-mono text-primary-foreground"
               >
                 Get the numbers for your site →
               </Link>
@@ -146,7 +146,7 @@ function Result({
   return (
     <div className={`p-6 ${highlight ? "bg-primary text-primary-foreground" : "bg-background"}`}>
       <p className={`label-mono ${highlight ? "opacity-70" : "text-muted-foreground"}`}>{label}</p>
-      <p className="mt-2 font-display text-3xl font-extrabold">{value}</p>
+      <p className="mt-2 font-display text-3xl font-semibold">{value}</p>
       {note && <p className={`mt-1 text-xs ${highlight ? "opacity-70" : "text-muted-foreground"}`}>{note}</p>}
     </div>
   );

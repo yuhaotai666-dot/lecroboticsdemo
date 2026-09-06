@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import rangeBanner from "@/assets/keenon-range.webp.asset.json";
-import serveBanner from "@/assets/keenon-serve.webp.asset.json";
-import deliverBanner from "@/assets/keenon-deliver.webp.asset.json";
-import cleaningBanner from "@/assets/keenon-cleaning.webp.asset.json";
-import createBanner from "@/assets/keenon-create.webp.asset.json";
+import serveBanner from "@/assets/keenon-serve-scene.webp.asset.json";
+import deliverBanner from "@/assets/keenon-deliver-scene.webp.asset.json";
+import cleaningBanner from "@/assets/keenon-cleaning-scene.webp.asset.json";
+import createBanner from "@/assets/keenon-create-scene.webp.asset.json";
 
 const slides = [
   {
@@ -61,15 +61,15 @@ export function HeroCarousel() {
   }, []);
 
   return (
-    <div className="relative aspect-[1674/941] w-full overflow-hidden bg-white">
+    <div className="relative aspect-[8/3] w-full overflow-hidden bg-white">
       {slides.map((slide, i) =>
         i <= maxLoaded ? (
           <img
             key={slide.url}
             src={slide.url}
             alt={slide.alt}
-            width={1916}
-            height={941}
+            width={1920}
+            height={720}
             className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-1000 ${
               i === index ? "opacity-100" : "opacity-0"
             }`}

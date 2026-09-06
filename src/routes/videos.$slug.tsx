@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, Film, PlayCircle } from "lucide-react";
 import { getProduct, formatPrice, type Product } from "@/lib/products";
 import { getVideos, type Clip } from "@/lib/videos";
+import { useI18n } from "@/lib/i18n/i18n-context";
 
 export const Route = createFileRoute("/videos/$slug")({
   loader: ({ params }) => {
@@ -34,6 +35,7 @@ export const Route = createFileRoute("/videos/$slug")({
 });
 
 function ClipCard({ clip, poster, alt }: { clip: Clip; poster?: string; alt: string }) {
+  const { t } = useI18n();
   return (
     <article className="card-surface p-6">
       <div className="flex aspect-video items-center justify-center overflow-hidden rounded-lg border border-border bg-muted">
@@ -50,12 +52,14 @@ function ClipCard({ clip, poster, alt }: { clip: Clip; poster?: string; alt: str
         ) : (
           <div className="px-6 py-10 text-center">
             <Film className="mx-auto size-7 text-muted-foreground" aria-hidden />
-            <p className="mt-3 label-mono text-muted-foreground">Footage pending</p>
+            <p className="mt-3 label-mono text-muted-foreground">{t("videos.pending")}</p>
             <img src={poster} alt={alt} loading="lazy" className="mx-auto mt-4 h-20 w-auto object-contain opacity-40" />
           </div>
         )}
       </div>
-      <p className="mt-5 label-mono text-primary">{clip.kind === "operation" ? "Operation" : "Application"}</p>
+      <p className="mt-5 label-mono text-primary">
+        {clip.kind === "operation" ? t("videos.operation") : t("videos.application")}
+      </p>
       <h2 className="mt-2 text-lg font-bold">{clip.title}</h2>
       <p className="mt-2 text-sm text-muted-foreground">{clip.summary}</p>
     </article>
@@ -64,9 +68,10 @@ function ClipCard({ clip, poster, alt }: { clip: Clip; poster?: string; alt: str
 
 function VideoPage() {
   const { product: p, clips } = Route.useLoaderData();
+  const { t } = useI18n();
   const operation = clips.filter((c) => c.kind === "operation");
   const scenes = clips.filter((c) => c.kind === "scene");
-  const alt = `${p.name} — ${p.positioning}`;
+  const alt = `${p.name} — ${t(`prod.${p.slug}.positioning`)}`;
 
   return (
     <>
@@ -74,32 +79,32 @@ function VideoPage() {
         <div className="mx-auto max-w-6xl px-5 py-14">
           <nav className="label-mono text-muted-foreground">
             <Link to="/products" className="hover:text-foreground">
-              Products
+              {t("nav.products")}
             </Link>{" "}
             /{" "}
             <Link to="/products/$slug" params={{ slug: p.slug }} className="hover:text-foreground">
               {p.name}
             </Link>{" "}
-            / Videos
+            / {t("videos.breadcrumb")}
           </nav>
-          <h1 className="mt-4 text-4xl font-semibold md:text-5xl">{p.name} on video</h1>
+          <h1 className="mt-4 text-4xl font-semibold md:text-5xl">{t("videos.title", { name: p.name })}</h1>
           <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-            Filmed operation walkthroughs and real deployments, so you can see the machine working before you book a
-            demo. {formatPrice(p)} + VAT{p.finance ? `, or ${p.finance} on finance.` : "."}
+            {t("videos.intro", { price: formatPrice(p) })}
+            {p.finance ? t("videos.introFinance", { finance: p.finance }) : "."}
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Link
               to="/book-a-demo"
               className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
             >
-              Book a live demo <ArrowRight className="size-4" />
+              {t("videos.bookLive")} <ArrowRight className="size-4" />
             </Link>
             <Link
               to="/products/$slug"
               params={{ slug: p.slug }}
               className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-sm font-semibold shadow-sm transition-colors hover:border-primary hover:text-primary"
             >
-              Specification & pricing
+              {t("videos.specPricing")}
             </Link>
           </div>
         </div>
@@ -107,8 +112,8 @@ function VideoPage() {
 
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-16">
-          <h2 className="text-3xl font-semibold">Operation footage</h2>
-          <p className="mt-2 text-sm text-muted-foreground">How the machine is set up and run on a normal shift.</p>
+          <h2 className="text-3xl font-semibold">{t("videos.opTitle")}</h2>
+          <p className="mt-2 text-sm text-muted-foreground">{t("videos.opSub")}</p>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             {operation.map((c) => (
               <ClipCard key={c.id} clip={c} poster={p.image} alt={alt} />
@@ -119,8 +124,8 @@ function VideoPage() {
 
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-16">
-          <h2 className="text-3xl font-semibold">Application scenarios</h2>
-          <p className="mt-2 text-sm text-muted-foreground">The same machine working in a live customer site.</p>
+          <h2 className="text-3xl font-semibold">{t("videos.appTitle")}</h2>
+          <p className="mt-2 text-sm text-muted-foreground">{t("videos.appSub")}</p>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             {scenes.map((c) => (
               <ClipCard key={c.id} clip={c} poster={p.image} alt={alt} />
@@ -135,15 +140,15 @@ function VideoPage() {
             <div>
               <p className="label-mono text-primary">
                 <PlayCircle className="mr-2 inline size-4" aria-hidden />
-                Prefer to see it in person?
+                {t("videos.prefer")}
               </p>
-              <h2 className="mt-3 text-2xl font-semibold">Chelsea showroom, or on your own floor.</h2>
+              <h2 className="mt-3 text-2xl font-semibold">{t("videos.showroom")}</h2>
             </div>
             <Link
               to="/book-a-demo"
               className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
             >
-              Book a demo <ArrowRight className="size-4" />
+              {t("nav.bookDemo")} <ArrowRight className="size-4" />
             </Link>
           </div>
         </div>

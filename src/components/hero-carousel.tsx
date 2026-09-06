@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import rangeBanner from "@/assets/keenon-range.webp.asset.json";
+import rangeBannerUrl from "@/assets/keenon-range-1920.webp";
 import serveBanner from "@/assets/keenon-serve-scene.webp.asset.json";
 import deliverBanner from "@/assets/keenon-deliver-scene.webp.asset.json";
 import cleaningBanner from "@/assets/keenon-cleaning-scene.webp.asset.json";
@@ -7,7 +7,7 @@ import createBanner from "@/assets/keenon-create-scene.webp.asset.json";
 
 const slides = [
   {
-    url: rangeBanner.url,
+    url: rangeBannerUrl,
     alt: "The full LEC Robotics range: Kleenbot floor cleaners, Xbot kiosks, Dinerbot service robots, Butlerbot W3 and Courier S100",
   },
   {

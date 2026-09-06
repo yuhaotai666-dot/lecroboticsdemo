@@ -36,7 +36,7 @@ export const Route = createFileRoute("/videos/$slug")({
 function ClipCard({ clip, poster, alt }: { clip: Clip; poster?: string; alt: string }) {
   return (
     <article className="card-surface p-6">
-      <div className="flex aspect-video items-center justify-center overflow-hidden rounded-lg border border-border bg-card">
+      <div className="flex aspect-video items-center justify-center overflow-hidden rounded-lg border border-border bg-muted">
         {clip.src ? (
           <video
             controls

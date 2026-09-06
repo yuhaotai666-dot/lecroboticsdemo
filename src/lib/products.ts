@@ -191,7 +191,7 @@ export const products: Product[] = [
     priceNote: "Enquire for pricing",
     finance: null,
     badge: "New",
-    image: "https://cdn.prod.website-files.com/6a20051eaff93cc35362905a/6a28e9d3c30c9c5220acf741_Xbot%20S%20Pro.svg",
+    image: "/__l5e/assets-v1/beaa4357-dc95-4ed9-9c55-b48691662a35/xbot-s-pro.webp",
     specs: [
       { label: "Output", value: "Espresso menu" },
       { label: "Staffing", value: "Unattended" },

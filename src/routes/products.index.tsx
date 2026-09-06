@@ -78,15 +78,15 @@ function ProductsIndex() {
               );
             })}
           </div>
-          <div className="grid gap-4 py-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 py-6 sm:grid-cols-2 lg:grid-cols-4">
             {shown.map((p) => (
               <Link
                 key={p.slug}
                 to="/products/$slug"
                 params={{ slug: p.slug }}
-                className="group flex min-h-[500px] flex-col bg-card px-8 pb-8 pt-6"
+                className="group flex min-h-[330px] flex-col bg-card px-5 pb-5 pt-4"
               >
-                <div className="flex h-64 items-center justify-center">
+                <div className="flex h-44 items-center justify-center">
                   <img
                     src={p.image}
                     alt={`${p.name} — ${p.positioning}`}
@@ -94,12 +94,12 @@ function ProductsIndex() {
                     className="h-full max-w-full object-contain transition-transform duration-200 group-hover:scale-[1.03]"
                   />
                 </div>
-                <div className="mt-5 flex items-baseline gap-2">
-                  <h2 className="text-2xl font-semibold leading-8 text-catalog-title">{p.name}</h2>
-                  {p.badge && <span className="text-xs font-semibold italic text-primary">{p.badge}</span>}
+                <div className="mt-4 flex items-baseline gap-2">
+                  <h2 className="text-sm font-medium leading-5 text-catalog-title">{p.name}</h2>
+                  {p.badge && <span className="text-[11px] font-medium text-primary">{p.badge}</span>}
                 </div>
-                <p className="mt-2 min-h-10 text-sm leading-5 text-catalog-copy">{p.positioning}</p>
-                <p className="mt-auto border-t border-border pt-5 text-base font-semibold text-catalog-title">
+                <p className="mt-1 min-h-8 text-xs leading-4 text-catalog-copy">{p.positioning}</p>
+                <p className="mt-auto border-t border-border pt-3 text-sm font-medium text-catalog-title">
                   {formatPrice(p)}
                   <span className="ml-2 text-xs font-normal text-catalog-copy">
                     {p.finance ? `or ${p.finance}` : "+ VAT"}
@@ -108,6 +108,7 @@ function ProductsIndex() {
               </Link>
             ))}
           </div>
+
         </div>
       </section>
 

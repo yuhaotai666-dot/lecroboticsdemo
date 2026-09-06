@@ -100,6 +100,13 @@ function ProductPage() {
               >
                 Book a demo <ArrowRight className="size-4" />
               </Link>
+              <Link
+                to="/videos/$slug"
+                params={{ slug: p.slug }}
+                className="inline-flex items-center gap-2 rounded-sm border border-border px-6 py-3.5 label-mono transition-colors hover:border-primary hover:text-primary"
+              >
+                <PlayCircle className="size-4" /> Watch it work
+              </Link>
               {p.brochure && (
                 <a
                   href={p.brochure}
@@ -111,6 +118,7 @@ function ProductPage() {
                 </a>
               )}
             </div>
+
           </div>
         </div>
       </section>

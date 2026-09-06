@@ -83,7 +83,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
     navigate({
       to: r.to as never,
       params: r.params as never,
-      hash: r.hash,
+      ...(r.hash ? { hash: r.hash } : {}),
     });
   };
 

@@ -120,7 +120,7 @@ function RoiPage() {
               </p>
               <Link
                 to="/book-a-demo"
-                className="mt-5 inline-block rounded-lg bg-primary px-6 py-3.5 label-mono text-primary-foreground"
+                className="mt-5 inline-block rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
               >
                 Get the numbers for your site →
               </Link>
@@ -144,7 +144,11 @@ function Result({
   highlight?: boolean;
 }) {
   return (
-    <div className={`p-6 ${highlight ? "bg-primary text-primary-foreground" : "bg-background"}`}>
+    <div
+      className={`rounded-xl p-6 shadow-[var(--shadow-card)] ${
+        highlight ? "bg-primary text-primary-foreground" : "border border-border bg-card"
+      }`}
+    >
       <p className={`label-mono ${highlight ? "opacity-70" : "text-muted-foreground"}`}>{label}</p>
       <p className="mt-2 font-display text-3xl font-semibold">{value}</p>
       {note && <p className={`mt-1 text-xs ${highlight ? "opacity-70" : "text-muted-foreground"}`}>{note}</p>}

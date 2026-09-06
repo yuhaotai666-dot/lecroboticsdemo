@@ -49,8 +49,8 @@ function ProductsIndex() {
             <Link
               to="/products"
               search={{}}
-              className={`rounded-lg border px-4 py-2 label-mono transition-colors ${
-                !category ? "border-primary bg-primary text-primary-foreground" : "border-border hover:border-primary"
+              className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                !category ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-muted-foreground hover:border-primary hover:text-foreground"
               }`}
             >
               All ({products.length})
@@ -63,10 +63,10 @@ function ProductsIndex() {
                   key={c.id}
                   to="/products"
                   search={{ category: c.id }}
-                  className={`rounded-lg border px-4 py-2 label-mono transition-colors ${
+                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
                     active
                       ? "border-primary bg-primary text-primary-foreground"
-                      : "border-border hover:border-primary"
+                      : "border-border bg-card text-muted-foreground hover:border-primary hover:text-foreground"
                   }`}
                 >
                   {c.label} ({count})

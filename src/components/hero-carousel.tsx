@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import rangeBanner from "@/assets/keenon-range.webp.asset.json";
+import rangeBannerUrl from "@/assets/keenon-range-1920.webp";
 import serveBanner from "@/assets/keenon-serve-scene.webp.asset.json";
 import deliverBanner from "@/assets/keenon-deliver-scene.webp.asset.json";
 import cleaningBanner from "@/assets/keenon-cleaning-scene.webp.asset.json";

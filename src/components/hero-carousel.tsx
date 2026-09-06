@@ -55,8 +55,7 @@ export function HeroCarousel() {
 
     return () => {
       clearInterval(id);
-      const cic = (window as Window & typeof globalThis).cancelIdleCallback;
-      if (typeof ric === "function" && typeof cic === "function") cic(idle);
+      if (usedIdle && typeof w.cancelIdleCallback === "function") w.cancelIdleCallback(idle);
       else clearTimeout(idle);
     };
   }, []);

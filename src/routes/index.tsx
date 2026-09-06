@@ -1,24 +1,227 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
+import { categories, products, formatPrice } from "@/lib/products";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Commercial Service Robots, Deployed in the UK | LEC Robotics" },
+      {
+        name: "description",
+        content:
+          "Eleven commercial service robots for hospitality, cleaning, delivery and logistics — with published pricing, weekly finance and UK deployment support.",
+      },
+      { property: "og:title", content: "Commercial Service Robots, Deployed in the UK | LEC Robotics" },
+      {
+        property: "og:description",
+        content:
+          "Eleven commercial service robots with published pricing, weekly finance and UK deployment support.",
+      },
+      { property: "og:url", content: "/" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+const capabilities = [
+  {
+    n: "01",
+    title: "Commercial distribution",
+    body: "We select, position and deploy the right machine for your operation — not the one that happens to be in stock.",
+  },
+  {
+    n: "02",
+    title: "Software & localisation",
+    body: "UK-governed architecture and Western compliance standards, configured for how your site actually runs.",
+  },
+  {
+    n: "03",
+    title: "Ecosystem design",
+    body: "Your building, workflows and integrations rebuilt around autonomous machines, not bolted on beside them.",
+  },
+  {
+    n: "04",
+    title: "Data & training",
+    body: "Mapping, routing and operational data that make a robot capable on day one rather than month six.",
+  },
+  {
+    n: "05",
+    title: "Intelligence systems",
+    body: "Layered LLM and LAM architecture so your team manages outcomes, not machines.",
+  },
+  {
+    n: "06",
+    title: "Manufacturing",
+    body: "Prototype to commercial scale. UKCA certified, CE marked, proven in live environments.",
+  },
+];
+
+function Home() {
+  const featured = products.filter((p) => p.price !== null).slice(0, 6);
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b border-border">
+        <div className="grid-lines pointer-events-none absolute inset-0 opacity-30" aria-hidden />
+        <div className="relative mx-auto max-w-7xl px-5 py-24 md:py-32">
+          <p className="label-mono text-primary">Commercial service robotics · United Kingdom</p>
+          <h1 className="mt-6 max-w-4xl text-5xl leading-[0.95] font-extrabold md:text-7xl">
+            Robots that do the shift.
+            <br />
+            <span className="text-muted-foreground">Priced, financed and supported here.</span>
+          </h1>
+          <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
+            Eleven machines across food service, floor cleaning, building delivery, automated kiosks and
+            industrial transport. Every price published up front, every deployment run from our Chelsea
+            showroom.
+          </p>
+
+          <div className="mt-10 flex flex-wrap gap-3">
+            <Link
+              to="/products"
+              className="inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3.5 label-mono text-primary-foreground transition-opacity hover:opacity-90"
+            >
+              See all robots <ArrowRight className="size-4" />
+            </Link>
+            <Link
+              to="/roi"
+              className="inline-flex items-center gap-2 rounded-sm border border-border px-6 py-3.5 label-mono transition-colors hover:border-primary hover:text-primary"
+            >
+              Work out your payback
+            </Link>
+          </div>
+
+          <dl className="mt-16 grid max-w-3xl grid-cols-2 gap-8 border-t border-border pt-8 md:grid-cols-4">
+            {[
+              ["11", "Machines in range"],
+              ["6", "Sectors covered"],
+              ["£5,418", "Entry price + VAT"],
+              ["UKCA/CE", "Certified range"],
+            ].map(([v, l]) => (
+              <div key={l}>
+                <dt className="font-display text-3xl font-extrabold">{v}</dt>
+                <dd className="mt-1 label-mono text-muted-foreground">{l}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* Event strip — swap the copy when the event changes, delete when there isn't one */}
+      <section className="border-b border-border bg-primary text-primary-foreground">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-4">
+          <p className="text-sm font-semibold">
+            Live demonstrations run weekly at the Chelsea showroom — see every machine working before you buy.
+          </p>
+          <Link to="/book-a-demo" className="label-mono underline underline-offset-4">
+            Reserve a slot →
+          </Link>
+        </div>
+      </section>
+
+      {/* Categories */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-7xl px-5 py-20">
+          <p className="label-mono text-muted-foreground">Find by job</p>
+          <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">Start with the work, not the model number.</h2>
+          <div className="mt-10 grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-3">
+            {categories.map((c) => (
+              <Link
+                key={c.id}
+                to="/products"
+                search={{ category: c.id }}
+                className="group bg-background p-7 transition-colors hover:bg-card"
+              >
+                <h3 className="text-lg font-bold">{c.label}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{c.blurb}</p>
+                <span className="mt-5 inline-flex items-center gap-2 label-mono text-primary opacity-0 transition-opacity group-hover:opacity-100">
+                  View <ArrowRight className="size-3.5" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured products */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-7xl px-5 py-20">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="label-mono text-muted-foreground">The range</p>
+              <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">Built to perform. Ready to deploy.</h2>
+            </div>
+            <Link to="/products" className="label-mono text-primary">
+              Compare all 11 →
+            </Link>
+          </div>
+
+          <div className="mt-10 grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+            {featured.map((p) => (
+              <Link
+                key={p.slug}
+                to="/products/$slug"
+                params={{ slug: p.slug }}
+                className="group flex flex-col bg-background p-7 transition-colors hover:bg-card"
+              >
+                <div className="flex h-40 items-center justify-center">
+                  <img
+                    src={p.image}
+                    alt={`${p.name} — ${p.positioning}`}
+                    loading="lazy"
+                    className="h-full w-auto object-contain transition-transform group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="mt-6 text-xl font-bold">{p.name}</h3>
+                <p className="mt-1 label-mono text-muted-foreground">{p.positioning}</p>
+                <p className="mt-3 flex-1 text-sm text-muted-foreground">{p.tagline}</p>
+                <p className="mt-5 border-t border-border pt-4 font-display text-lg font-extrabold">
+                  {formatPrice(p)}
+                  <span className="ml-2 label-mono font-normal text-muted-foreground">
+                    {p.finance ? `or ${p.finance}` : "+ VAT"}
+                  </span>
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Capabilities */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-7xl px-5 py-20">
+          <p className="label-mono text-muted-foreground">What we actually do</p>
+          <h2 className="mt-3 text-3xl font-extrabold md:text-4xl">Six capabilities. One outcome.</h2>
+          <div className="mt-10 grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
+            {capabilities.map((c) => (
+              <div key={c.n} className="bg-background p-7">
+                <span className="label-mono text-primary">{c.n}</span>
+                <h3 className="mt-4 text-lg font-bold">{c.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{c.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section>
+        <div className="mx-auto max-w-7xl px-5 py-24 text-center">
+          <h2 className="text-4xl font-extrabold md:text-5xl">See one working in your space.</h2>
+          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
+            Bring your floor plan and shift pattern. We'll run the machine and give you the payback numbers for
+            your own operation.
+          </p>
+          <Link
+            to="/book-a-demo"
+            className="mt-8 inline-flex items-center gap-2 rounded-sm bg-primary px-8 py-4 label-mono text-primary-foreground transition-opacity hover:opacity-90"
+          >
+            Book a demo <ArrowRight className="size-4" />
+          </Link>
+        </div>
+      </section>
+    </>
   );
 }

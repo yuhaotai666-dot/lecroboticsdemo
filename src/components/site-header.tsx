@@ -224,7 +224,7 @@ export function SiteHeader() {
 
       {/* Mega / dropdown panels */}
       {open && (
-        <div className="hidden border-t border-border/60 bg-background/95 backdrop-blur-xl lg:block">
+        <div className="absolute inset-x-0 top-full hidden border-t border-border/60 bg-background/95 shadow-[0_8px_24px_-16px_rgb(0_0_0/0.12)] backdrop-blur-xl lg:block">
           <div className="mx-auto max-w-6xl px-5 py-9">
             {open === "products" && (
               <>

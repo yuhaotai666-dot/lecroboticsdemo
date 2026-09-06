@@ -59,41 +59,55 @@ const capabilities = [
 
 function Home() {
   const featured = products.filter((p) => p.price !== null).slice(0, 6);
+  const heroProduct = products.find((p) => p.slug === "dinerbot-t10") ?? products[0];
+
 
   return (
     <>
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border">
         <div className="grid-lines pointer-events-none absolute inset-0 opacity-30" aria-hidden />
-        <div className="relative mx-auto max-w-6xl px-5 py-24 md:py-32">
-          <p className="label-mono text-primary">Commercial service robotics · United Kingdom</p>
-          <h1 className="mt-6 max-w-4xl text-5xl leading-[0.95] font-semibold md:text-7xl">
-            Robots that do the shift.
-            <br />
-            <span className="text-muted-foreground">Priced, financed and supported here.</span>
-          </h1>
-          <p className="mt-8 max-w-2xl text-lg text-muted-foreground">
-            Eleven machines across food service, floor cleaning, building delivery, automated kiosks and
-            industrial transport. Every price published up front, every deployment run from our Chelsea
-            showroom.
-          </p>
+        <div className="relative mx-auto max-w-6xl px-5 py-24 md:py-28">
+          <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)]">
+            <div>
+              <p className="label-mono text-primary">Commercial service robotics · United Kingdom</p>
+              <h1 className="mt-6 text-5xl leading-[1.02] font-semibold tracking-tight md:text-6xl">
+                Robots that do the shift.
+                <br />
+                <span className="text-muted-foreground">Priced, financed and supported here.</span>
+              </h1>
+              <p className="mt-6 max-w-[60ch] text-base leading-relaxed text-muted-foreground">
+                Eleven machines across food service, floor cleaning, building delivery, automated kiosks and
+                industrial transport. Every price published up front, every deployment run from our Chelsea
+                showroom.
+              </p>
 
-          <div className="mt-10 flex flex-wrap gap-3">
-            <Link
-              to="/products"
-              className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
-            >
-              See all robots <ArrowRight className="size-4" />
-            </Link>
-            <Link
-              to="/roi"
-              className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-sm font-semibold shadow-sm transition-colors hover:border-primary hover:text-primary"
-            >
-              Work out your payback
-            </Link>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  to="/products"
+                  className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
+                >
+                  See all robots <ArrowRight className="size-4" />
+                </Link>
+                <Link
+                  to="/roi"
+                  className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-sm font-semibold shadow-sm transition-colors hover:border-primary hover:text-primary"
+                >
+                  Work out your payback
+                </Link>
+              </div>
+            </div>
+
+            <div className="card-surface flex items-center justify-center p-8">
+              <img
+                src={heroProduct.image}
+                alt={`${heroProduct.name} — ${heroProduct.positioning}`}
+                className="h-72 w-auto object-contain md:h-80"
+              />
+            </div>
           </div>
 
-          <dl className="mt-16 grid max-w-3xl grid-cols-2 gap-8 border-t border-border pt-8 md:grid-cols-4">
+          <dl className="mt-16 grid grid-cols-2 gap-8 border-t border-border pt-8 md:grid-cols-4">
             {[
               ["11", "Machines in range"],
               ["6", "Sectors covered"],
@@ -101,13 +115,14 @@ function Home() {
               ["UKCA/CE", "Certified range"],
             ].map(([v, l]) => (
               <div key={l}>
-                <dt className="font-display text-3xl font-semibold">{v}</dt>
+                <dt className="font-display text-3xl font-semibold tracking-tight">{v}</dt>
                 <dd className="mt-1 label-mono text-muted-foreground">{l}</dd>
               </div>
             ))}
           </dl>
         </div>
       </section>
+
 
       {/* Event strip — swap the copy when the event changes, delete when there isn't one */}
       <section className="border-b border-border bg-primary text-primary-foreground">

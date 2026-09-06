@@ -34,23 +34,27 @@ function ProductsIndex() {
 
   return (
     <>
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-5 py-16">
-          <p className="label-mono text-primary">The range</p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-semibold md:text-6xl">
+      <section className="bg-card">
+        <div className="mx-auto max-w-6xl px-5 pb-12 pt-16">
+          <p className="text-sm font-medium text-primary">The range</p>
+          <h1 className="mt-4 max-w-3xl text-4xl font-semibold leading-tight text-catalog-title md:text-5xl">
             Eleven machines. Every price published.
           </h1>
-          <p className="mt-5 max-w-2xl text-muted-foreground">
+          <p className="mt-5 max-w-2xl text-base leading-6 text-catalog-copy">
             Filter by the job you need doing, then compare the whole range on payload, runtime and cost in one
             table.
           </p>
+        </div>
+      </section>
 
-          <div className="mt-10 flex flex-wrap gap-2">
+      <section className="bg-catalog">
+        <div className="mx-auto max-w-6xl px-5 pt-8">
+          <div className="flex gap-8 overflow-x-auto border-b border-border pb-4">
             <Link
               to="/products"
               search={{}}
-              className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-                !category ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card text-muted-foreground hover:border-primary hover:text-foreground"
+              className={`shrink-0 border-b-2 px-1 pb-3 text-sm transition-colors ${
+                !category ? "border-primary font-semibold text-catalog-title" : "border-transparent font-normal text-catalog-copy hover:text-catalog-title"
               }`}
             >
               All ({products.length})
@@ -63,10 +67,10 @@ function ProductsIndex() {
                   key={c.id}
                   to="/products"
                   search={{ category: c.id }}
-                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                  className={`shrink-0 border-b-2 px-1 pb-3 text-sm transition-colors ${
                     active
-                      ? "border-primary bg-primary text-primary-foreground"
-                      : "border-border bg-card text-muted-foreground hover:border-primary hover:text-foreground"
+                      ? "border-primary font-semibold text-catalog-title"
+                      : "border-transparent font-normal text-catalog-copy hover:text-catalog-title"
                   }`}
                 >
                   {c.label} ({count})
@@ -74,42 +78,30 @@ function ProductsIndex() {
               );
             })}
           </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-5 py-14">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 py-6 sm:grid-cols-2 lg:grid-cols-3">
             {shown.map((p) => (
               <Link
                 key={p.slug}
                 to="/products/$slug"
                 params={{ slug: p.slug }}
-                className="group flex flex-col card-surface p-8 hover:-translate-y-0.5"
+                className="group flex min-h-[500px] flex-col bg-card px-8 pb-8 pt-6"
               >
-                <div className="flex items-start justify-between">
-                  <span className="label-mono text-muted-foreground">
-                    {categories.find((c) => c.id === p.category)?.label}
-                  </span>
-                  {p.badge && (
-                    <span className="rounded-lg bg-primary px-2 py-0.5 label-mono text-primary-foreground">
-                      {p.badge}
-                    </span>
-                  )}
-                </div>
-                <div className="mt-4 flex h-40 items-center justify-center">
+                <div className="flex h-64 items-center justify-center">
                   <img
                     src={p.image}
                     alt={`${p.name} — ${p.positioning}`}
                     loading="lazy"
-                    className="h-full w-auto object-contain transition-transform group-hover:scale-105"
+                    className="h-full max-w-full object-contain transition-transform duration-200 group-hover:scale-[1.03]"
                   />
                 </div>
-                <h2 className="mt-6 text-xl font-bold">{p.name}</h2>
-                <p className="mt-1 text-sm text-muted-foreground">{p.tagline}</p>
-                <p className="mt-5 border-t border-border pt-4 font-display text-lg font-semibold">
+                <div className="mt-5 flex items-baseline gap-2">
+                  <h2 className="text-2xl font-semibold leading-8 text-catalog-title">{p.name}</h2>
+                  {p.badge && <span className="text-xs font-semibold italic text-primary">{p.badge}</span>}
+                </div>
+                <p className="mt-2 min-h-10 text-sm leading-5 text-catalog-copy">{p.positioning}</p>
+                <p className="mt-auto border-t border-border pt-5 text-base font-semibold text-catalog-title">
                   {formatPrice(p)}
-                  <span className="ml-2 label-mono font-normal text-muted-foreground">
+                  <span className="ml-2 text-xs font-normal text-catalog-copy">
                     {p.finance ? `or ${p.finance}` : "+ VAT"}
                   </span>
                 </p>
@@ -119,7 +111,7 @@ function ProductsIndex() {
         </div>
       </section>
 
-      <section>
+      <section className="bg-card">
         <div className="mx-auto max-w-6xl px-5 py-16">
           <h2 className="text-3xl font-semibold">Compare the full range</h2>
           <p className="mt-2 text-sm text-muted-foreground">All prices exclude VAT. Finance shown over 12 months at 7% unless noted.</p>

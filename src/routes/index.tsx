@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { categories, products, formatPrice } from "@/lib/products";
+import rangeBanner from "@/assets/keenon-range.png.asset.json";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -59,53 +61,48 @@ const capabilities = [
 
 function Home() {
   const featured = products.filter((p) => p.price !== null).slice(0, 6);
-  const heroProduct = products.find((p) => p.slug === "dinerbot-t10")!;
-
 
   return (
     <>
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border">
+        <img
+          src={rangeBanner.url}
+          alt="The full LEC Robotics range: Kleenbot C40 and C30 floor cleaners, Xbot S Pro coffee robot, Xbot IC ice cream kiosk, Dinerbot T10 and T9 service robots, Butlerbot W3 and Courier S100"
+          className="w-full object-cover"
+          fetchPriority="high"
+        />
         <div className="grid-lines pointer-events-none absolute inset-0 opacity-30" aria-hidden />
-        <div className="relative mx-auto max-w-6xl px-5 py-24 md:py-28">
-          <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)]">
-            <div>
-              <p className="label-mono text-primary">Commercial service robotics · United Kingdom</p>
-              <h1 className="mt-6 text-5xl leading-[1.02] font-semibold tracking-tight md:text-6xl">
-                Robots that do the shift.
-                <br />
-                <span className="text-muted-foreground">Priced, financed and supported here.</span>
-              </h1>
-              <p className="mt-6 max-w-[60ch] text-base leading-relaxed text-muted-foreground">
-                Eleven machines across food service, floor cleaning, building delivery, automated kiosks and
-                industrial transport. Every price published up front, every deployment run from our Chelsea
-                showroom.
-              </p>
+        <div className="relative mx-auto max-w-6xl px-5 py-20 md:py-24">
+          <div className="max-w-3xl">
+            <p className="label-mono text-primary">Commercial service robotics · United Kingdom</p>
+            <h1 className="mt-6 text-5xl leading-[1.02] font-semibold tracking-tight md:text-6xl">
+              Robots that do the shift.
+              <br />
+              <span className="text-muted-foreground">Priced, financed and supported here.</span>
+            </h1>
+            <p className="mt-6 max-w-[60ch] text-base leading-relaxed text-muted-foreground">
+              Eleven machines across food service, floor cleaning, building delivery, automated kiosks and
+              industrial transport. Every price published up front, every deployment run from our Chelsea
+              showroom.
+            </p>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  to="/products"
-                  className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
-                >
-                  See all robots <ArrowRight className="size-4" />
-                </Link>
-                <Link
-                  to="/roi"
-                  className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-sm font-semibold shadow-sm transition-colors hover:border-primary hover:text-primary"
-                >
-                  Work out your payback
-                </Link>
-              </div>
-            </div>
-
-            <div className="card-surface flex items-center justify-center p-8">
-              <img
-                src={heroProduct.image}
-                alt={`${heroProduct.name} — ${heroProduct.positioning}`}
-                className="h-72 w-auto object-contain md:h-80"
-              />
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                to="/products"
+                className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
+              >
+                See all robots <ArrowRight className="size-4" />
+              </Link>
+              <Link
+                to="/roi"
+                className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-sm font-semibold shadow-sm transition-colors hover:border-primary hover:text-primary"
+              >
+                Work out your payback
+              </Link>
             </div>
           </div>
+
 
           <dl className="mt-16 grid grid-cols-2 gap-8 border-t border-border pt-8 md:grid-cols-4">
             {[

@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { products } from "@/lib/products";
+import { useI18n } from "@/lib/i18n/i18n-context";
 
 export const Route = createFileRoute("/solutions")({
   head: () => ({
@@ -23,49 +24,26 @@ export const Route = createFileRoute("/solutions")({
 });
 
 const sectors = [
-  {
-    name: "Hospitality",
-    problem: "Room service and amenity runs eat the night shift.",
-    slugs: ["butlerbot-w3", "kleenbot-c30"],
-  },
-  {
-    name: "Food & beverage",
-    problem: "Food running and tray return pull staff away from guests.",
-    slugs: ["dinerbot-t10", "dinerbot-t9", "dinerbot-t8"],
-  },
-  {
-    name: "Healthcare",
-    problem: "Clinical staff spend hours moving supplies and linen.",
-    slugs: ["butlerbot-w3", "courier-s100"],
-  },
-  {
-    name: "Retail",
-    problem: "Floor cleaning happens after hours at premium labour rates.",
-    slugs: ["kleenbot-c40", "xbot-s-pro"],
-  },
-  {
-    name: "Warehouse & logistics",
-    problem: "Point-to-point moves of heavy loads across long distances.",
-    slugs: ["courier-s100", "kleenbot-c40"],
-  },
-  {
-    name: "Education",
-    problem: "Robotics teaching needs a platform students can actually reconfigure.",
-    slugs: ["ugot"],
-  },
+  { key: "solutions.s1", slugs: ["butlerbot-w3", "kleenbot-c30"] },
+  { key: "solutions.s2", slugs: ["dinerbot-t10", "dinerbot-t9", "dinerbot-t8"] },
+  { key: "solutions.s3", slugs: ["butlerbot-w3", "courier-s100"] },
+  { key: "solutions.s4", slugs: ["kleenbot-c40", "xbot-s-pro"] },
+  { key: "solutions.s5", slugs: ["courier-s100", "kleenbot-c40"] },
+  { key: "solutions.s6", slugs: ["ugot"] },
 ];
 
 function Solutions() {
+  const { t } = useI18n();
   return (
     <>
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-16">
-          <p className="label-mono text-primary">By industry</p>
+          <p className="label-mono text-primary">{t("solutions.kicker")}</p>
           <h1 className="mt-4 max-w-3xl text-4xl font-semibold md:text-6xl">
-            Same machines. Very different shifts.
+            {t("solutions.title")}
           </h1>
           <p className="mt-5 max-w-2xl text-muted-foreground">
-            Start from the problem you're trying to remove, and we'll point you at the machine that removes it.
+            {t("solutions.sub")}
           </p>
         </div>
       </section>
@@ -74,9 +52,9 @@ function Solutions() {
         <div className="mx-auto max-w-6xl px-5 py-14">
           <div className="grid gap-4 md:grid-cols-2">
             {sectors.map((s) => (
-              <div key={s.name} className="card-surface p-8">
-                <h2 className="text-2xl font-semibold">{s.name}</h2>
-                <p className="mt-3 text-muted-foreground">{s.problem}</p>
+              <div key={s.key} className="card-surface p-8">
+                <h2 className="text-2xl font-semibold">{t(`${s.key}.name`)}</h2>
+                <p className="mt-3 text-muted-foreground">{t(`${s.key}.problem`)}</p>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {s.slugs.map((slug) => {
                     const p = products.find((x) => x.slug === slug);
@@ -94,7 +72,7 @@ function Solutions() {
                   })}
                 </div>
                 <p className="mt-6 border-t border-border pt-4 text-xs text-muted-foreground">
-                  Case study slot — awaiting a real customer name, site and result.
+                  {t("solutions.caseSlot")}
                 </p>
               </div>
             ))}

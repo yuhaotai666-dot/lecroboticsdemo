@@ -1,18 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { products } from "@/lib/products";
+import { useI18n } from "@/lib/i18n/i18n-context";
 
 export const Route = createFileRoute("/case-studies")({
   head: () => ({
     meta: [
-      { title: "Case Studies — Robot Deployments in the Field | LEC Robotics" },
+      { title: "Case Studies — Robots at Work in Real Venues | LEC Robotics" },
       {
         name: "description",
         content:
-          "Deployment stories by industry: the challenge, the robot chosen and the operational result. Filter by hospitality, retail, healthcare, logistics and public spaces.",
+          "How service robots are deployed across hospitality, retail, logistics, health care and public spaces — challenges, solutions and outcomes.",
       },
       { property: "og:title", content: "Case Studies | LEC Robotics" },
-      { property: "og:description", content: "How operators deploy LEC service robots, by industry." },
+      { property: "og:description", content: "Robots at work in real venues, across ten industries." },
     ],
     links: [{ rel: "canonical", href: "/case-studies" }],
   }),
@@ -20,212 +22,127 @@ export const Route = createFileRoute("/case-studies")({
 });
 
 const filters = [
-  { id: "all", label: "All" },
-  { id: "food-and-beverage", label: "Food & Beverage" },
-  { id: "retail", label: "Retail" },
-  { id: "hospitality", label: "Hospitality" },
-  { id: "industrial", label: "Industrial" },
-  { id: "health-care", label: "Health Care" },
-  { id: "real-estate", label: "Real Estate" },
-  { id: "public-service", label: "Public Service" },
-] as const;
+  { id: "all", key: "cases.filter.all", hash: "featured" },
+  { id: "food-and-beverage", key: "ind.food-and-beverage.name", hash: "food-and-beverage" },
+  { id: "retail", key: "ind.retail.name", hash: "retail" },
+  { id: "hospitality", key: "ind.hospitality.name", hash: "hospitality" },
+  { id: "industrial", key: "case.industrial", hash: "industrial" },
+  { id: "health-care", key: "ind.health-care.name", hash: "health-care" },
+  { id: "real-estate", key: "case.real-estate", hash: "real-estate" },
+  { id: "public-service", key: "case.public-service", hash: "public-service" },
+];
 
-type Study = {
+interface Study {
   id: string;
-  title: string;
-  industry: string;
-  industryId: string;
-  robot: string;
-  location: string;
-  challenge: string;
-  solution: string;
-  result: string;
-  featured?: boolean;
-};
+  key: string;
+  industryKey: string;
+  filter: string;
+  robots: string[];
+}
 
-/**
- * Placeholder deployment records. Customer names, locations and figures are
- * intentionally left generic until real references are supplied.
- */
 const studies: Study[] = [
-  {
-    id: "hotel-room-delivery",
-    title: "Improving hotel room delivery efficiency",
-    industry: "Hospitality",
-    industryId: "hospitality",
-    robot: "butlerbot-w3",
-    location: "Customer to be confirmed · United Kingdom",
-    challenge: "Night-shift staff spent most of the shift walking amenity and room-service runs between floors.",
-    solution: "Lift-integrated delivery robot handling room-to-room drops with a lockable compartment.",
-    result: "Result to be confirmed with the customer.",
-    featured: true,
-  },
-  {
-    id: "restaurant-food-running",
-    title: "Food running across a high-volume dining floor",
-    industry: "Food & Beverage",
-    industryId: "food-and-beverage",
-    robot: "dinerbot-t10",
-    location: "Customer to be confirmed · United Kingdom",
-    challenge: "Servers covered long distances between kitchen pass and tables during peak covers.",
-    solution: "Tray-running robot with digital display used for delivery and in-venue promotion.",
-    result: "Result to be confirmed with the customer.",
-    featured: true,
-  },
-  {
-    id: "retail-floor-cleaning",
-    title: "Overnight floor cleaning in a retail store",
-    industry: "Retail",
-    industryId: "retail",
-    robot: "kleenbot-c30",
-    location: "Customer to be confirmed · United Kingdom",
-    challenge: "Cleaning was booked out-of-hours at premium labour rates.",
-    solution: "Scheduled unattended scrubbing and mopping across the sales floor.",
-    result: "Result to be confirmed with the customer.",
-    featured: true,
-  },
-  {
-    id: "warehouse-transport",
-    title: "Moving heavy loads between warehouse zones",
-    industry: "Industrial",
-    industryId: "industrial",
-    robot: "courier-s100",
-    location: "Customer to be confirmed · United Kingdom",
-    challenge: "Repetitive point-to-point moves of heavy stock tied up trained operators.",
-    solution: "100 kg autonomous courier running fixed internal routes.",
-    result: "Result to be confirmed with the customer.",
-  },
-  {
-    id: "hospital-supply-runs",
-    title: "Internal supply runs in a care setting",
-    industry: "Health Care",
-    industryId: "health-care",
-    robot: "butlerbot-w3",
-    location: "Customer to be confirmed · United Kingdom",
-    challenge: "Clinical staff moved linen and consumables between departments by hand.",
-    solution: "Secure compartment delivery with lift access between floors.",
-    result: "Result to be confirmed with the customer.",
-  },
-  {
-    id: "property-cleaning",
-    title: "Cleaning shared areas across a managed building",
-    industry: "Real Estate",
-    industryId: "real-estate",
-    robot: "kleenbot-c40",
-    location: "Customer to be confirmed · United Kingdom",
-    challenge: "Large lobby and corridor areas needed daily cleaning with a small on-site team.",
-    solution: "4-in-1 cleaning robot on a scheduled unattended route.",
-    result: "Result to be confirmed with the customer.",
-  },
-  {
-    id: "transport-hub-coffee",
-    title: "Unattended coffee service in a public venue",
-    industry: "Public Service",
-    industryId: "public-service",
-    robot: "xbot-s-pro",
-    location: "Customer to be confirmed · United Kingdom",
-    challenge: "Extended opening hours could not be staffed for a small beverage offer.",
-    solution: "Robotic coffee kiosk serving a barista-spec menu without staff.",
-    result: "Result to be confirmed with the customer.",
-  },
+  { id: "hotel-delivery", key: "cases.s1", industryKey: "ind.hospitality.name", filter: "hospitality", robots: ["butlerbot-w3"] },
+  { id: "restaurant-service", key: "cases.s2", industryKey: "ind.food-and-beverage.name", filter: "food-and-beverage", robots: ["dinerbot-t10"] },
+  { id: "retail-cleaning", key: "cases.s3", industryKey: "ind.retail.name", filter: "retail", robots: ["kleenbot-c40"] },
+  { id: "warehouse-transport", key: "cases.s4", industryKey: "case.industrial", filter: "industrial", robots: ["courier-s100"] },
+  { id: "hospital-logistics", key: "cases.s5", industryKey: "ind.health-care.name", filter: "health-care", robots: ["butlerbot-w3", "courier-s100"] },
+  { id: "building-cleaning", key: "cases.s6", industryKey: "case.real-estate", filter: "real-estate", robots: ["kleenbot-c40"] },
+  { id: "venue-coffee", key: "cases.s7", industryKey: "case.public-service", filter: "public-service", robots: ["xbot-s-pro"] },
 ];
 
 function CaseStudies() {
-  const [active, setActive] = useState<string>("all");
-  const shown = active === "all" ? studies : studies.filter((s) => s.industryId === active);
+  const { t } = useI18n();
+  const [active, setActive] = useState("all");
+  const shown = active === "all" ? studies : studies.filter((s) => s.filter === active);
 
   return (
     <>
-      <section className="mx-auto max-w-6xl px-5 pt-20 pb-10">
-        <p className="label-mono text-primary">Case Studies</p>
-        <h1 className="mt-4 max-w-3xl text-4xl md:text-5xl">Robots at work, site by site.</h1>
-        <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-          Deployment records grouped by industry. Customer names and measured results are added once each
-          reference is signed off.
-        </p>
+      <section id="featured" className="scroll-mt-24 border-b border-border bg-gradient-to-b from-accent/60 to-background">
+        <div className="mx-auto max-w-6xl px-5 pt-20 pb-16">
+          <p className="label-mono text-primary">{t("cases.kicker")}</p>
+          <h1 className="mt-4 text-4xl md:text-5xl">{t("cases.title")}</h1>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
+            {t("cases.sub")}
+          </p>
+        </div>
       </section>
 
-      <div className="border-t border-border bg-catalog">
-        <div className="mx-auto max-w-6xl px-5 py-12">
-          <div className="flex flex-wrap gap-2">
-            {filters.map((f) => (
-              <button
-                key={f.id}
-                type="button"
-                onClick={() => setActive(f.id)}
-                className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors ${
-                  active === f.id
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : "border-border bg-card text-foreground/80 hover:border-primary hover:text-primary"
-                }`}
-              >
-                {f.label}
-              </button>
-            ))}
-          </div>
+      <div className="mx-auto max-w-6xl px-5 pt-10">
+        <div className="flex flex-wrap gap-2">
+          {filters.map((f) => (
+            <button
+              key={f.id}
+              type="button"
+              onClick={() => setActive(f.id)}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                active === f.id
+                  ? "bg-primary text-primary-foreground"
+                  : "border border-border bg-card text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {t(f.key)}
+            </button>
+          ))}
+        </div>
 
-          <div id="featured" className="mt-10 grid gap-5 scroll-mt-24 md:grid-cols-2 lg:grid-cols-3">
+        {shown.length === 0 ? (
+          <p className="py-16 text-center text-sm text-muted-foreground">
+            {t("cases.empty")}{" "}
+            <Link to="/book-a-demo" className="font-medium text-primary">
+              {t("cases.talkToUs")}
+            </Link>{" "}
+            {t("cases.emptySuffix")}
+          </p>
+        ) : (
+          <div className="grid gap-6 py-12 md:grid-cols-2">
             {shown.map((s) => {
-              const robot = products.find((p) => p.slug === s.robot);
+              const firstRobot = products.find((p) => p.slug === s.robots[0]);
               return (
-                <article
-                  key={s.id}
-                  id={s.industryId}
-                  className="flex scroll-mt-24 flex-col overflow-hidden rounded-xl border border-border bg-card"
-                >
-                  <div className="flex h-44 items-center justify-center bg-gradient-to-br from-accent/70 to-card">
-                    {robot && (
+                <article key={s.id} className="flex flex-col overflow-hidden rounded-xl border border-border bg-card">
+                  <div className="flex h-56 items-center justify-center bg-catalog p-8">
+                    {firstRobot && (
                       <img
-                        src={robot.image}
-                        alt={`${robot.name} deployed for ${s.industry.toLowerCase()}`}
+                        src={firstRobot.image}
+                        alt={`${firstRobot.name} — ${t(`prod.${firstRobot.slug}.positioning`)}`}
                         loading="lazy"
-                        className="h-32 w-auto object-contain"
+                        className="max-h-full w-auto object-contain"
                       />
                     )}
                   </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <h2 className="text-base font-semibold text-catalog-title">{s.title}</h2>
-                    <p className="mt-1.5 text-xs text-muted-foreground">
-                      {robot?.name} · {s.industry}
+                  <div className="flex flex-1 flex-col p-7">
+                    <p className="label-mono text-primary">{t("cases.locationTbc")}</p>
+                    <h2 className="mt-3 text-xl font-semibold leading-snug">{t(`${s.key}.title`)}</h2>
+                    <p className="mt-1.5 text-sm text-muted-foreground">
+                      {t(s.industryKey)} · {s.robots.map((r) => products.find((p) => p.slug === r)?.name).join(" · ")}
                     </p>
-                    <p className="mt-0.5 text-xs text-muted-foreground">{s.location}</p>
 
-                    <dl className="mt-5 space-y-3 text-xs leading-relaxed">
+                    <dl className="mt-5 space-y-4 text-sm">
                       <div>
-                        <dt className="label-mono text-muted-foreground">Challenge</dt>
-                        <dd className="mt-1 text-catalog-copy">{s.challenge}</dd>
+                        <dt className="label-mono text-muted-foreground">{t("cases.challenge")}</dt>
+                        <dd className="mt-1 leading-relaxed text-muted-foreground">{t(`${s.key}.challenge`)}</dd>
                       </div>
                       <div>
-                        <dt className="label-mono text-muted-foreground">Solution</dt>
-                        <dd className="mt-1 text-catalog-copy">{s.solution}</dd>
+                        <dt className="label-mono text-muted-foreground">{t("cases.solution")}</dt>
+                        <dd className="mt-1 leading-relaxed text-muted-foreground">{t(`${s.key}.solution`)}</dd>
                       </div>
                       <div>
-                        <dt className="label-mono text-muted-foreground">Result</dt>
-                        <dd className="mt-1 text-catalog-copy">{s.result}</dd>
+                        <dt className="label-mono text-muted-foreground">{t("cases.result")}</dt>
+                        <dd className="mt-1 leading-relaxed text-muted-foreground">{t("cases.resultTbc")}</dd>
                       </div>
                     </dl>
 
-                    <div className="mt-6 pt-2">
-                      <Link
-                        to="/products/$slug"
-                        params={{ slug: s.robot }}
-                        className="text-sm font-medium text-primary"
-                      >
-                        Read case study →
-                      </Link>
-                    </div>
+                    <Link
+                      to="/book-a-demo"
+                      className="mt-6 inline-flex items-center gap-2 self-start text-sm font-semibold text-primary"
+                    >
+                      {t("cases.talkToUs")} <ArrowRight className="size-4" />
+                    </Link>
                   </div>
                 </article>
               );
             })}
           </div>
-
-          {shown.length === 0 && (
-            <p className="mt-12 text-sm text-muted-foreground">
-              No deployments listed for this sector yet. <Link to="/book-a-demo" className="text-primary">Talk to us</Link> about a pilot.
-            </p>
-          )}
-        </div>
+        )}
       </div>
     </>
   );

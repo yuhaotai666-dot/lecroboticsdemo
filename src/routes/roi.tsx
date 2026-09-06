@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { products, formatPrice } from "@/lib/products";
+import { useI18n } from "@/lib/i18n/i18n-context";
 
 export const Route = createFileRoute("/roi")({
   head: () => ({
@@ -24,6 +25,7 @@ export const Route = createFileRoute("/roi")({
 });
 
 function RoiPage() {
+  const { t } = useI18n();
   const priced = products.filter((p) => p.price !== null);
   const [slug, setSlug] = useState(priced[0]!.slug);
   const [wage, setWage] = useState(13.5);
@@ -38,13 +40,12 @@ function RoiPage() {
     <>
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-16">
-          <p className="label-mono text-primary">ROI calculator</p>
+          <p className="label-mono text-primary">{t("roi.kicker")}</p>
           <h1 className="mt-4 max-w-3xl text-4xl font-semibold md:text-6xl">
-            How fast does it pay for itself?
+            {t("roi.title")}
           </h1>
           <p className="mt-5 max-w-2xl text-muted-foreground">
-            A rough guide based on the labour hours a machine takes off your rota. It ignores consumables,
-            electricity and servicing — treat it as a starting point, not a quotation.
+            {t("roi.sub")}
           </p>
         </div>
       </section>
@@ -54,7 +55,7 @@ function RoiPage() {
           <div className="space-y-8 rounded-xl border border-border bg-card p-8 shadow-[var(--shadow-card)]">
             <div>
               <label htmlFor="model" className="text-sm font-medium text-foreground">
-                Machine
+                {t("roi.machine")}
               </label>
               <select
                 id="model"
@@ -72,7 +73,7 @@ function RoiPage() {
 
             <div>
               <label htmlFor="wage" className="text-sm font-medium text-foreground">
-                Fully loaded hourly labour cost — £{wage.toFixed(2)}
+                {t("roi.wage", { wage: wage.toFixed(2) })}
               </label>
               <input
                 id="wage"
@@ -88,7 +89,7 @@ function RoiPage() {
 
             <div>
               <label htmlFor="hours" className="text-sm font-medium text-foreground">
-                Hours per week the robot covers — {hours} h
+                {t("roi.hours", { hours })}
               </label>
               <input
                 id="hours"
@@ -104,25 +105,25 @@ function RoiPage() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            <Result label="Weekly labour saved" value={`£${Math.round(weeklySaving).toLocaleString("en-GB")}`} />
-            <Result label="Annual labour saved" value={`£${Math.round(annualSaving).toLocaleString("en-GB")}`} />
-            <Result label="Machine cost" value={formatPrice(product)} note="+ VAT" />
+            <Result label={t("roi.weeklySaved")} value={`£${Math.round(weeklySaving).toLocaleString("en-GB")}`} />
+            <Result label={t("roi.annualSaved")} value={`£${Math.round(annualSaving).toLocaleString("en-GB")}`} />
+            <Result label={t("roi.machineCost")} value={formatPrice(product)} note={t("product.plusVat")} />
             <Result
-              label="Payback period"
-              value={`${Math.round(paybackWeeks)} weeks`}
-              note={`≈ ${(paybackWeeks / 52).toFixed(1)} years`}
+              label={t("roi.payback")}
+              value={t("roi.weeks", { n: Math.round(paybackWeeks) })}
+              note={t("roi.years", { n: (paybackWeeks / 52).toFixed(1) })}
               highlight
             />
             <div className="card-surface p-6 sm:col-span-2">
               <p className="text-sm text-muted-foreground">
-                Prefer to spread it? {product.name} finances at{" "}
-                <span className="font-semibold text-foreground">{product.finance ?? "terms on request"}</span>.
+                {t("roi.spread", { name: product.name })}{" "}
+                <span className="font-semibold text-foreground">{product.finance ?? t("roi.termsOnRequest")}</span>.
               </p>
               <Link
                 to="/book-a-demo"
                 className="mt-5 inline-block rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
               >
-                Get the numbers for your site →
+                {t("roi.cta")} →
               </Link>
             </div>
           </div>

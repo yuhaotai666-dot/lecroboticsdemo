@@ -1,20 +1,22 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { industryMenu } from "@/lib/nav";
+import { ArrowRight } from "lucide-react";
+import { industryMenu, productImage } from "@/lib/nav";
 import { products } from "@/lib/products";
+import { useI18n } from "@/lib/i18n/i18n-context";
 
 export const Route = createFileRoute("/industries")({
   head: () => ({
     meta: [
-      { title: "Industries — Where Service Robots Work | LEC Robotics" },
+      { title: "Robots for Every Industry — Restaurants to Warehouses | LEC Robotics" },
       {
         name: "description",
         content:
-          "Hospitality, food and beverage, retail, healthcare, logistics, transport, education and public spaces: the robots suited to each operation.",
+          "Service robot solutions across Food & Beverage, Retail, Hospitality, Industrial & Logistics, Health Care, Transportation, Entertainment & Sports, Real Estate, Education and Public Service.",
       },
-      { property: "og:title", content: "Industries | LEC Robotics" },
+      { property: "og:title", content: "Robots for Every Industry | LEC Robotics" },
       {
         property: "og:description",
-        content: "Robot deployments by industry, with the recommended models for each environment.",
+        content: "Service robot solutions across ten industries, matched to the right machines.",
       },
     ],
     links: [{ rel: "canonical", href: "/industries" }],
@@ -22,75 +24,80 @@ export const Route = createFileRoute("/industries")({
   component: Industries,
 });
 
-const byslug = (slug: string) => products.find((p) => p.slug === slug);
-
 function Industries() {
+  const { t } = useI18n();
   return (
     <>
-      <section className="mx-auto max-w-6xl px-5 pt-20 pb-14">
-        <p className="label-mono text-primary">Industries</p>
-        <h1 className="mt-4 max-w-3xl text-4xl md:text-5xl">Where our robots go to work.</h1>
-        <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-          Every environment has a different bottleneck. Pick the sector closest to your operation to see the
-          machines that fit it, and the work they take over.
-        </p>
+      <section className="border-b border-border bg-gradient-to-b from-accent/60 to-background">
+        <div className="mx-auto max-w-6xl px-5 pt-20 pb-16">
+          <p className="label-mono text-primary">{t("industries.kicker")}</p>
+          <h1 className="mt-4 text-4xl md:text-5xl">{t("industries.title")}</h1>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
+            {t("industries.sub")}
+          </p>
+        </div>
       </section>
 
-      <div className="border-t border-border bg-catalog">
-        <div className="mx-auto max-w-6xl space-y-4 px-5 py-14">
+      <div className="mx-auto max-w-6xl px-5 py-16">
+        <div className="space-y-14">
           {industryMenu.map((ind, i) => (
             <section
               key={ind.slug}
               id={ind.slug}
-              className="scroll-mt-24 overflow-hidden rounded-xl border border-border bg-card"
+              className={`grid scroll-mt-24 gap-8 rounded-xl border border-border bg-card p-8 md:grid-cols-2 md:p-10 ${
+                i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
+              }`}
             >
-              <div className={`grid md:grid-cols-2 ${i % 2 ? "md:[direction:rtl]" : ""}`}>
-                <div className="flex min-h-56 items-center justify-center bg-gradient-to-br from-accent/70 to-card p-8 md:[direction:ltr]">
-                  <div className="flex items-end gap-4">
-                    {ind.robots.slice(0, 3).map((slug) => {
-                      const p = byslug(slug);
-                      return p ? (
-                        <img
-                          key={slug}
-                          src={p.image}
-                          alt={`${p.name} deployed in ${ind.name.toLowerCase()} environments`}
-                          loading="lazy"
-                          className="h-28 w-auto object-contain md:h-36"
-                        />
-                      ) : null;
-                    })}
-                  </div>
+              <div>
+                <p className="label-mono text-muted-foreground">{String(i + 1).padStart(2, "0")}</p>
+                <h2 className="mt-3 text-2xl font-semibold md:text-3xl">{t(`ind.${ind.slug}.name`)}</h2>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+                  {t(`ind.${ind.slug}.blurb`)}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {ind.robots.map((slug) => {
+                    const p = products.find((r) => r.slug === slug);
+                    if (!p) return null;
+                    return (
+                      <Link
+                        key={slug}
+                        to="/products/$slug"
+                        params={{ slug }}
+                        className="rounded-full border border-border bg-catalog px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
+                      >
+                        {p.name}
+                      </Link>
+                    );
+                  })}
                 </div>
-
-                <div className="p-8 md:[direction:ltr]">
-                  <h2 className="text-2xl">{ind.name}</h2>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{ind.blurb}</p>
-                  <p className="label-mono mt-6 text-muted-foreground">Recommended robots</p>
-                  <ul className="mt-3 flex flex-wrap gap-2">
-                    {ind.robots.map((slug) => {
-                      const p = byslug(slug);
-                      return p ? (
-                        <li key={slug}>
-                          <Link
-                            to="/products/$slug"
-                            params={{ slug }}
-                            className="inline-block rounded-full border border-border px-3 py-1 text-xs font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
-                          >
-                            {p.name}
-                          </Link>
-                        </li>
-                      ) : null;
-                    })}
-                  </ul>
-                  <div className="mt-7 flex gap-4 text-sm font-medium">
-                    <Link to="/case-studies" className="text-primary">
-                      See case studies →
+                <Link
+                  to="/book-a-demo"
+                  className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-primary"
+                >
+                  {t("industries.bookDemo")} <ArrowRight className="size-4" />
+                </Link>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                {ind.robots.slice(0, 4).map((slug) => {
+                  const img = productImage(slug);
+                  const p = products.find((r) => r.slug === slug);
+                  if (!img || !p) return null;
+                  return (
+                    <Link
+                      key={slug}
+                      to="/products/$slug"
+                      params={{ slug }}
+                      className="group flex aspect-[4/3] items-center justify-center rounded-lg bg-catalog p-4"
+                    >
+                      <img
+                        src={img}
+                        alt={`${p.name} — ${t(`prod.${slug}.positioning`)}`}
+                        loading="lazy"
+                        className="max-h-full max-w-full object-contain transition-transform duration-200 group-hover:scale-[1.03]"
+                      />
                     </Link>
-                    <Link to="/book-a-demo" className="text-muted-foreground hover:text-foreground">
-                      Book a demo
-                    </Link>
-                  </div>
-                </div>
+                  );
+                })}
               </div>
             </section>
           ))}

@@ -36,10 +36,8 @@ export function HeroCarousel() {
 
   useEffect(() => {
     const warm = () => setMaxLoaded((m) => Math.max(m, 1));
-    const idle =
-      typeof window !== "undefined" && "requestIdleCallback" in window
-        ? window.requestIdleCallback(warm, { timeout: 2000 })
-        : window.setTimeout(warm, 1200);
+    const ric = (window as Window & typeof globalThis).requestIdleCallback;
+    const idle: number = ric ? ric(warm, { timeout: 2000 }) : window.setTimeout(warm, 1200);
 
     const id = setInterval(() => {
       setIndex((i) => {

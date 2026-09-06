@@ -7,7 +7,7 @@ import createBanner from "@/assets/keenon-create-scene.webp.asset.json";
 
 const slides = [
   {
-    url: rangeBanner.url,
+    url: rangeBannerUrl,
     alt: "The full LEC Robotics range: Kleenbot floor cleaners, Xbot kiosks, Dinerbot service robots, Butlerbot W3 and Courier S100",
   },
   {

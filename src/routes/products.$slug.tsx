@@ -98,7 +98,7 @@ function ProductPage() {
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 to="/book-a-demo"
-                className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
               >
                 {t("pdp.bookDemo")} <ArrowRight className="size-4" />
               </Link>

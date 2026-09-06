@@ -58,7 +58,7 @@ export function SiteHeader() {
     <div className="relative" onMouseEnter={() => setOpen(key)}>
       <Link
         to={to}
-        className="flex items-center gap-1 py-5 text-sm font-medium text-foreground/85 transition-colors hover:text-primary"
+        className="flex items-center gap-1 whitespace-nowrap py-5 text-[13px] font-medium text-foreground/85 transition-colors hover:text-primary xl:text-sm"
         activeProps={{ className: "text-primary" }}
       >
         {label}
@@ -79,12 +79,12 @@ export function SiteHeader() {
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-8 px-5">
-        <Link to="/" className="font-display text-lg font-semibold tracking-tight text-foreground">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5">
+        <Link to="/" className="shrink-0 font-display text-lg font-semibold tracking-tight text-foreground">
           LEC<span className="text-primary">.</span>ROBOTICS
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-5 lg:flex xl:gap-7">
           {trigger("products", t("nav.products"), "/products")}
           {trigger("industries", t("nav.industries"), "/industries")}
           {trigger("cases", t("nav.caseStudies"), "/case-studies")}
@@ -109,14 +109,14 @@ export function SiteHeader() {
           <div className="relative hidden lg:block" onMouseEnter={() => setOpen("support")}>
             <Link
               to="/support"
-              className="rounded-full border border-primary/30 px-4 py-1.5 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
+              className="inline-block whitespace-nowrap rounded-full border border-primary/30 px-4 py-1.5 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
             >
               {t("nav.support")}
             </Link>
           </div>
           <Link
             to="/book-a-demo"
-            className="hidden rounded-full bg-primary px-4 py-1.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 sm:inline-block"
+            className="hidden shrink-0 whitespace-nowrap rounded-full bg-primary px-4 py-1.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 sm:inline-block"
           >
             {t("nav.bookDemo")}
           </Link>

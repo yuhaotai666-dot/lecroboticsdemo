@@ -4,7 +4,7 @@ import { products } from "@/lib/products";
 export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-card">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-4">
+      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-4">
         <div>
           <p className="font-display text-lg font-semibold tracking-tight">
             LEC<span className="text-primary">.</span>ROBOTICS
@@ -68,7 +68,7 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-border px-5 py-6">
-        <p className="mx-auto max-w-7xl text-xs text-muted-foreground">
+        <p className="mx-auto max-w-6xl text-xs text-muted-foreground">
           © {new Date().getFullYear()} LEC Robotics. Prices shown exclude VAT.
         </p>
       </div>

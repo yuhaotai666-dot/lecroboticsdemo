@@ -59,7 +59,7 @@ function Solutions() {
   return (
     <>
       <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-5 py-16">
+        <div className="mx-auto max-w-6xl px-5 py-16">
           <p className="label-mono text-primary">By industry</p>
           <h1 className="mt-4 max-w-3xl text-4xl font-semibold md:text-6xl">
             Same machines. Very different shifts.
@@ -71,7 +71,7 @@ function Solutions() {
       </section>
 
       <section>
-        <div className="mx-auto max-w-7xl px-5 py-14">
+        <div className="mx-auto max-w-6xl px-5 py-14">
           <div className="grid gap-4 md:grid-cols-2">
             {sectors.map((s) => (
               <div key={s.name} className="card-surface p-8">

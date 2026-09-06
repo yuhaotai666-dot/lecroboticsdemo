@@ -71,7 +71,7 @@ function VideoPage() {
   return (
     <>
       <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-5 py-14">
+        <div className="mx-auto max-w-6xl px-5 py-14">
           <nav className="label-mono text-muted-foreground">
             <Link to="/products" className="hover:text-foreground">
               Products
@@ -106,7 +106,7 @@ function VideoPage() {
       </section>
 
       <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-5 py-16">
+        <div className="mx-auto max-w-6xl px-5 py-16">
           <h2 className="text-3xl font-semibold">Operation footage</h2>
           <p className="mt-2 text-sm text-muted-foreground">How the machine is set up and run on a normal shift.</p>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
@@ -118,7 +118,7 @@ function VideoPage() {
       </section>
 
       <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-5 py-16">
+        <div className="mx-auto max-w-6xl px-5 py-16">
           <h2 className="text-3xl font-semibold">Application scenarios</h2>
           <p className="mt-2 text-sm text-muted-foreground">The same machine working in a live customer site.</p>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
@@ -130,7 +130,7 @@ function VideoPage() {
       </section>
 
       <section>
-        <div className="mx-auto max-w-7xl px-5 py-16">
+        <div className="mx-auto max-w-6xl px-5 py-16">
           <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-border bg-card p-8 shadow-[var(--shadow-card)]">
             <div>
               <p className="label-mono text-primary">

@@ -62,7 +62,7 @@ function ProductPage() {
   return (
     <>
       <section className="border-b border-border">
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 py-14 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-6xl gap-12 px-5 py-14 lg:grid-cols-2">
           <div className="flex items-center justify-center rounded-xl border border-border bg-card p-10 shadow-[var(--shadow-card)]">
             <img src={p.image} alt={`${p.name} — ${p.positioning}`} className="max-h-96 w-auto object-contain" />
           </div>
@@ -124,7 +124,7 @@ function ProductPage() {
       </section>
 
       <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-5 py-16">
+        <div className="mx-auto max-w-6xl px-5 py-16">
           <h2 className="text-3xl font-semibold">Specification</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {p.specs.map((s) => (
@@ -142,7 +142,7 @@ function ProductPage() {
       </section>
 
       <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-5 py-16">
+        <div className="mx-auto max-w-6xl px-5 py-16">
           <h2 className="text-3xl font-semibold">What deployment looks like</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {[
@@ -150,7 +150,7 @@ function ProductPage() {
               ["02", "Install & train", "Machine commissioned, routes built, your team trained on shift."],
               ["03", "Run & support", "UK-based support, software updates and servicing for the term."],
             ].map(([n, t, b]) => (
-              <div key={n} className="card-surface p-7">
+              <div key={n} className="card-surface p-8">
                 <span className="label-mono text-primary">{n}</span>
                 <h3 className="mt-4 text-lg font-bold">{t}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{b}</p>
@@ -161,7 +161,7 @@ function ProductPage() {
       </section>
 
       <section>
-        <div className="mx-auto max-w-7xl px-5 py-16">
+        <div className="mx-auto max-w-6xl px-5 py-16">
           <div className="flex items-end justify-between gap-4">
             <h2 className="text-3xl font-semibold">Explore other robots</h2>
             <Link to="/products" className="label-mono text-primary">

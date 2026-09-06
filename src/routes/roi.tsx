@@ -37,7 +37,7 @@ function RoiPage() {
   return (
     <>
       <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-5 py-16">
+        <div className="mx-auto max-w-6xl px-5 py-16">
           <p className="label-mono text-primary">ROI calculator</p>
           <h1 className="mt-4 max-w-3xl text-4xl font-semibold md:text-6xl">
             How fast does it pay for itself?
@@ -50,7 +50,7 @@ function RoiPage() {
       </section>
 
       <section>
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 lg:grid-cols-2">
           <div className="space-y-8 rounded-xl border border-border bg-card p-8 shadow-[var(--shadow-card)]">
             <div>
               <label htmlFor="model" className="text-sm font-medium text-foreground">

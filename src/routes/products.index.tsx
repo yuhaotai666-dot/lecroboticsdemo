@@ -35,7 +35,7 @@ function ProductsIndex() {
   return (
     <>
       <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-5 py-16">
+        <div className="mx-auto max-w-6xl px-5 py-16">
           <p className="label-mono text-primary">The range</p>
           <h1 className="mt-4 max-w-3xl text-4xl font-semibold md:text-6xl">
             Eleven machines. Every price published.
@@ -78,14 +78,14 @@ function ProductsIndex() {
       </section>
 
       <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-5 py-14">
+        <div className="mx-auto max-w-6xl px-5 py-14">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {shown.map((p) => (
               <Link
                 key={p.slug}
                 to="/products/$slug"
                 params={{ slug: p.slug }}
-                className="group flex flex-col card-surface p-7 hover:-translate-y-0.5"
+                className="group flex flex-col card-surface p-8 hover:-translate-y-0.5"
               >
                 <div className="flex items-start justify-between">
                   <span className="label-mono text-muted-foreground">
@@ -120,7 +120,7 @@ function ProductsIndex() {
       </section>
 
       <section>
-        <div className="mx-auto max-w-7xl px-5 py-16">
+        <div className="mx-auto max-w-6xl px-5 py-16">
           <h2 className="text-3xl font-semibold">Compare the full range</h2>
           <p className="mt-2 text-sm text-muted-foreground">All prices exclude VAT. Finance shown over 12 months at 7% unless noted.</p>
           <div className="mt-8 overflow-x-auto rounded-lg border border-border">

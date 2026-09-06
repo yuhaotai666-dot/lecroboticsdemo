@@ -58,9 +58,9 @@ function Support() {
       <div className="border-y border-border bg-catalog">
         <div className="mx-auto grid max-w-6xl gap-12 px-5 py-14 md:grid-cols-2">
           <section id="repair" className="scroll-mt-24">
-            <h2 className="text-2xl">{t("support.repairTitle")}</h2>
+            <h2 className="text-2xl">{t("support.repair.title")}</h2>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              {t("support.repairBody")}
+              {t("support.repair.sub")}
             </p>
             <form
               className="mt-6 space-y-4 rounded-xl border border-border bg-card p-6"
@@ -86,7 +86,7 @@ function Support() {
                 <input
                   id="site"
                   className="mt-2 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm"
-                  placeholder={t("support.form.sitePh")}
+                  placeholder={t("support.form.sitePlaceholder")}
                 />
               </div>
               <div>
@@ -97,7 +97,7 @@ function Support() {
                   id="issue"
                   rows={4}
                   className="mt-2 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm"
-                  placeholder={t("support.form.issuePh")}
+                  placeholder={t("support.form.issuePlaceholder")}
                 />
               </div>
               <button
@@ -114,28 +114,28 @@ function Support() {
 
           <div className="space-y-12">
             <section id="documents" className="scroll-mt-24">
-              <h2 className="text-2xl">{t("support.documentsTitle")}</h2>
+              <h2 className="text-2xl">{t("sup.documents.label")}</h2>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                {t("support.documentsBody")}
+                {t("support.documents.sub")}
               </p>
               <Link to="/resources" hash="downloads" className="mt-4 inline-block text-sm font-medium text-primary">
-                {t("support.documentsLink")} →
+                {t("support.documents.go")} →
               </Link>
             </section>
 
             <section id="plans" className="scroll-mt-24">
-              <h2 className="text-2xl">{t("support.plansTitle")}</h2>
+              <h2 className="text-2xl">{t("sup.plans.label")}</h2>
               <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                <li>{t("support.plan1")}</li>
-                <li>{t("support.plan2")}</li>
-                <li>{t("support.plan3")}</li>
+                <li>{t("support.plans.li1")}</li>
+                <li>{t("support.plans.li2")}</li>
+                <li>{t("support.plans.li3")}</li>
               </ul>
             </section>
 
             <section id="contact" className="scroll-mt-24">
-              <h2 className="text-2xl">{t("support.contactTitle")}</h2>
+              <h2 className="text-2xl">{t("sup.contact.label")}</h2>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                {t("support.contactBody")}
+                {t("support.contact.sub")}
               </p>
             </section>
           </div>
@@ -143,7 +143,7 @@ function Support() {
       </div>
 
       <section id="faq" className="mx-auto max-w-3xl scroll-mt-24 px-5 py-16">
-        <h2 className="text-2xl">{t("sup.faq.label")}</h2>
+        <h2 className="text-2xl">{t("support.faq.title")}</h2>
         <dl className="mt-6 divide-y divide-border border-t border-border">
           {faqKeys.map((k) => (
             <div key={k} className="py-5">

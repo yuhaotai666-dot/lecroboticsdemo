@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { products } from "@/lib/products";
+import { useI18n } from "@/lib/i18n/i18n-context";
 
 export const Route = createFileRoute("/book-a-demo")({
   head: () => ({
@@ -23,35 +24,38 @@ export const Route = createFileRoute("/book-a-demo")({
   component: BookDemo,
 });
 
-const sectors = ["Hospitality", "Food & beverage", "Healthcare", "Retail", "Warehouse", "Education"];
+const sectorKeys = [
+  "demo.sector.hospitality",
+  "demo.sector.fnb",
+  "demo.sector.healthcare",
+  "demo.sector.retail",
+  "demo.sector.warehouse",
+  "demo.sector.education",
+] as const;
 
 function BookDemo() {
+  const { t } = useI18n();
   const [sent, setSent] = useState(false);
 
   return (
     <section>
       <div className="mx-auto grid max-w-6xl gap-14 px-5 py-16 lg:grid-cols-2">
         <div>
-          <p className="label-mono text-primary">Book a demo</p>
-          <h1 className="mt-4 text-4xl font-semibold md:text-6xl">See it work before you buy it.</h1>
-          <p className="mt-5 text-muted-foreground">
-            Our Chelsea showroom runs the full range. Bring a floor plan and a shift pattern and we'll run the
-            machine against your actual conditions, then hand you the payback figures.
-          </p>
+          <p className="label-mono text-primary">{t("demo.kicker")}</p>
+          <h1 className="mt-4 text-4xl font-semibold md:text-6xl">{t("demo.title")}</h1>
+          <p className="mt-5 text-muted-foreground">{t("demo.sub")}</p>
           <ul className="mt-8 space-y-3 text-sm text-muted-foreground">
-            <li className="border-l-2 border-primary pl-4">45-minute session, no obligation.</li>
-            <li className="border-l-2 border-primary pl-4">Every machine priced on the day, VAT and finance included.</li>
-            <li className="border-l-2 border-primary pl-4">Site survey booked straight afterwards if it fits.</li>
+            <li className="border-l-2 border-primary pl-4">{t("demo.b1")}</li>
+            <li className="border-l-2 border-primary pl-4">{t("demo.b2")}</li>
+            <li className="border-l-2 border-primary pl-4">{t("demo.b3")}</li>
           </ul>
         </div>
 
         <div className="rounded-xl border border-border bg-card p-8 shadow-[var(--shadow-card)]">
           {sent ? (
             <div className="py-16 text-center">
-              <h2 className="text-2xl font-semibold">Request received.</h2>
-              <p className="mt-3 text-sm text-muted-foreground">
-                This is a demonstration form — connect it to your inbox or CRM before going live.
-              </p>
+              <h2 className="text-2xl font-semibold">{t("demo.sent.title")}</h2>
+              <p className="mt-3 text-sm text-muted-foreground">{t("demo.sent.body")}</p>
             </div>
           ) : (
             <form
@@ -61,35 +65,35 @@ function BookDemo() {
                 setSent(true);
               }}
             >
-              <Field id="name" label="Name" />
-              <Field id="email" label="Work email" type="email" />
-              <Field id="company" label="Company" />
+              <Field id="name" label={t("demo.form.name")} />
+              <Field id="email" label={t("demo.form.email")} type="email" />
+              <Field id="company" label={t("demo.form.company")} />
 
               <div>
                 <label htmlFor="sector" className="text-sm font-medium text-foreground">
-                  Sector
+                  {t("demo.form.sector")}
                 </label>
                 <select
                   id="sector"
                   className="mt-2 w-full rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm transition-shadow focus:border-primary focus:ring-2 focus:ring-ring/20 focus:outline-none"
-                  defaultValue={sectors[0]}
+                  defaultValue={t(sectorKeys[0])}
                 >
-                  {sectors.map((s) => (
-                    <option key={s}>{s}</option>
+                  {sectorKeys.map((k) => (
+                    <option key={k}>{t(k)}</option>
                   ))}
                 </select>
               </div>
 
               <div>
                 <label htmlFor="machine" className="text-sm font-medium text-foreground">
-                  Machine of interest
+                  {t("demo.form.machine")}
                 </label>
                 <select
                   id="machine"
                   className="mt-2 w-full rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm transition-shadow focus:border-primary focus:ring-2 focus:ring-ring/20 focus:outline-none"
                   defaultValue="not-sure"
                 >
-                  <option value="not-sure">Not sure yet — advise me</option>
+                  <option value="not-sure">{t("demo.form.notSure")}</option>
                   {products.map((p) => (
                     <option key={p.slug} value={p.slug}>
                       {p.name}
@@ -100,7 +104,7 @@ function BookDemo() {
 
               <div>
                 <label htmlFor="notes" className="text-sm font-medium text-foreground">
-                  What are you trying to solve?
+                  {t("demo.form.notes")}
                 </label>
                 <textarea
                   id="notes"
@@ -113,7 +117,7 @@ function BookDemo() {
                 type="submit"
                 className="w-full rounded-lg bg-primary px-6 py-3.5 text-base font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
               >
-                Request a demo
+                {t("demo.form.submit")}
               </button>
             </form>
           )}

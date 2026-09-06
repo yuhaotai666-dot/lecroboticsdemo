@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import rangeBanner from "@/assets/keenon-range.png.asset.json";
-import serveBanner from "@/assets/keenon-serve.png.asset.json";
-import deliverBanner from "@/assets/keenon-deliver.png.asset.json";
-import cleaningBanner from "@/assets/keenon-cleaning.png.asset.json";
-import createBanner from "@/assets/keenon-create.png.asset.json";
+import rangeBanner from "@/assets/keenon-range.webp.asset.json";
+import serveBanner from "@/assets/keenon-serve.webp.asset.json";
+import deliverBanner from "@/assets/keenon-deliver.webp.asset.json";
+import cleaningBanner from "@/assets/keenon-cleaning.webp.asset.json";
+import createBanner from "@/assets/keenon-create.webp.asset.json";
 
 const slides = [
   {

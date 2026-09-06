@@ -59,7 +59,7 @@ const capabilities = [
 
 function Home() {
   const featured = products.filter((p) => p.price !== null).slice(0, 6);
-  const heroProduct = products.find((p) => p.slug === "dinerbot-t10") ?? products[0];
+  const heroProduct = products.find((p) => p.slug === "dinerbot-t10")!;
 
 
   return (

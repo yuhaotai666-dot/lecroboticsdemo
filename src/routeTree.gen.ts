@@ -17,6 +17,7 @@ import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as RoiRouteImport } from './routes/roi'
 import { Route as SolutionsRouteImport } from './routes/solutions'
+import { Route as SupportRouteImport } from './routes/support'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 import { Route as VideosSlugRouteImport } from './routes/videos.$slug'
@@ -61,6 +62,11 @@ const SolutionsRoute = SolutionsRouteImport.update({
   path: '/solutions',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SupportRoute = SupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
   id: '/products/',
   path: '/products/',
@@ -86,6 +92,7 @@ export interface FileRoutesByFullPath {
   '/resources': typeof ResourcesRoute
   '/roi': typeof RoiRoute
   '/solutions': typeof SolutionsRoute
+  '/support': typeof SupportRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/videos/$slug': typeof VideosSlugRoute
   '/products/': typeof ProductsIndexRoute
@@ -99,6 +106,7 @@ export interface FileRoutesByTo {
   '/resources': typeof ResourcesRoute
   '/roi': typeof RoiRoute
   '/solutions': typeof SolutionsRoute
+  '/support': typeof SupportRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/videos/$slug': typeof VideosSlugRoute
   '/products': typeof ProductsIndexRoute
@@ -113,6 +121,7 @@ export interface FileRoutesById {
   '/resources': typeof ResourcesRoute
   '/roi': typeof RoiRoute
   '/solutions': typeof SolutionsRoute
+  '/support': typeof SupportRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/videos/$slug': typeof VideosSlugRoute
   '/products/': typeof ProductsIndexRoute
@@ -128,6 +137,7 @@ export interface FileRouteTypes {
     | '/resources'
     | '/roi'
     | '/solutions'
+    | '/support'
     | '/products/$slug'
     | '/videos/$slug'
     | '/products/'
@@ -141,6 +151,7 @@ export interface FileRouteTypes {
     | '/resources'
     | '/roi'
     | '/solutions'
+    | '/support'
     | '/products/$slug'
     | '/videos/$slug'
     | '/products'
@@ -154,6 +165,7 @@ export interface FileRouteTypes {
     | '/resources'
     | '/roi'
     | '/solutions'
+    | '/support'
     | '/products/$slug'
     | '/videos/$slug'
     | '/products/'
@@ -168,6 +180,7 @@ export interface RootRouteChildren {
   ResourcesRoute: typeof ResourcesRoute
   RoiRoute: typeof RoiRoute
   SolutionsRoute: typeof SolutionsRoute
+  SupportRoute: typeof SupportRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
   VideosSlugRoute: typeof VideosSlugRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
@@ -231,6 +244,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SolutionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/support': {
+      id: '/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof SupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/': {
       id: '/products/'
       path: '/products'
@@ -264,6 +284,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResourcesRoute: ResourcesRoute,
   RoiRoute: RoiRoute,
   SolutionsRoute: SolutionsRoute,
+  SupportRoute: SupportRoute,
   ProductsSlugRoute: ProductsSlugRoute,
   VideosSlugRoute: VideosSlugRoute,
   ProductsIndexRoute: ProductsIndexRoute,

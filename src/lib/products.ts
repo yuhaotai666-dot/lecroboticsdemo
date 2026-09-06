@@ -43,7 +43,7 @@ export const products: Product[] = [
     finance: "£192 / wk",
     badge: "Popular",
     image:
-      "https://cdn.prod.website-files.com/6a20051eaff93cc35362905a/6a28ea024d244d97033b73dd_Xbot%20IC%20(2).png",
+      "https://cdn.prod.website-files.com/6a20051eaff93cc35362905a/6a28ea7b491925eb067ab519_T10.svg",
     brochure:
       "https://cdn.prod.website-files.com/6a20051eaff93cc35362905a/6a229307ac93e535a0880f9e_LEC%20Dinerbot%20T10%20Spec%20Sheet.pdf",
     specs: [

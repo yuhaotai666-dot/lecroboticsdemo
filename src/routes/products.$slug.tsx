@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, PlayCircle } from "lucide-react";
 import { categories, getProduct, products, formatPrice, type Product } from "@/lib/products";
 
 export const Route = createFileRoute("/products/$slug")({

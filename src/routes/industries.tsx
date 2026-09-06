@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { industryMenu } from "@/components/site-header";
+import { industryMenu } from "@/lib/nav";
 import { products } from "@/lib/products";
 
 export const Route = createFileRoute("/industries")({

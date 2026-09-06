@@ -53,15 +53,15 @@ function About() {
         ))}
 
         <section id="contact" className="scroll-mt-24 rounded-xl border border-border bg-card p-8 text-center md:p-10">
-          <h2 className="text-2xl font-semibold">{t("about.contactUs")}</h2>
+          <h2 className="text-2xl font-semibold">{t("about.contact.label")}</h2>
           <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
-            {t("about.contactBody")}
+            {t("about.contact.body")}
           </p>
           <Link
             to="/book-a-demo"
             className="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            {t("about.contactCta")} <ArrowRight className="size-4" />
+            {t("nav.bookDemo")} <ArrowRight className="size-4" />
           </Link>
         </section>
       </div>

@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { products, type Product } from "@/lib/products";
+import { products } from "@/lib/products";
 import { useI18n } from "@/lib/i18n/i18n-context";
 
 export const Route = createFileRoute("/case-studies")({
@@ -34,86 +34,21 @@ const filters = [
 
 interface Study {
   id: string;
-  title: string;
-  industry: string;
+  key: string;
+  industryKey: string;
   filter: string;
   robots: string[];
-  challenge: string;
-  solution: string;
 }
 
 const studies: Study[] = [
-  {
-    id: "hotel-delivery",
-    title: "Improving hotel room delivery efficiency",
-    industry: "Hospitality",
-    filter: "hospitality",
-    robots: ["butlerbot-w3"],
-    challenge:
-      "Late-night room service requests compete with front-desk duties, and lifts and corridors make manual delivery slow.",
-    solution:
-      "Butlerbot W3 handles room deliveries with secure locking compartments and lift integration, while staff stay on guest-facing tasks.",
-  },
-  {
-    id: "restaurant-service",
-    title: "Keeping food service consistent at peak hours",
-    industry: "Food & Beverage",
-    filter: "food-and-beverage",
-    robots: ["dinerbot-t10"],
-    challenge:
-      "Weekend peaks stretch the team: plates wait in the pass while servers run food instead of serving tables.",
-    solution:
-      "Dinerbot T10 runs table routes from kitchen to dining room; servers take the last metre, greet guests and clear tables.",
-  },
-  {
-    id: "warehouse-transport",
-    title: "Cutting repetitive internal transport runs",
-    industry: "Industrial & Logistics",
-    filter: "industrial",
-    robots: ["courier-s100"],
-    challenge:
-      "Operators walk long distances moving totes between picking, packing and dispatch — hundreds of trips a day.",
-    solution:
-      "Courier S100 automates fixed transport routes between zones, freeing operators for value-adding work.",
-  },
-  {
-    id: "retail-cleaning",
-    title: "Overnight floor care for a large retail floor",
-    industry: "Retail",
-    filter: "retail",
-    robots: ["kleenbot-c40"],
-    challenge:
-      "Large-format floors need daily scrubbing, but overnight cleaning crews are hard to staff and inconsistent.",
-    solution:
-      "Kleenbot C40 sweeps, scrubs and dries on scheduled overnight routes, reporting coverage after each run.",
-  },
-  {
-    id: "hospital-logistics",
-    title: "Internal delivery across a hospital site",
-    industry: "Health Care",
-    filter: "health-care",
-    robots: ["butlerbot-w3", "courier-s100"],
-    challenge:
-      "Porters spend hours moving samples, linens and supplies between wards, labs and stores.",
-    solution:
-      "A mixed fleet of Butlerbot W3 and Courier S100 units handles point-to-point delivery with secure compartments.",
-  },
-  {
-    id: "airport-cleaning",
-    title: "Continuous cleaning in a transport hub",
-    industry: "Transportation",
-    filter: "public-service",
-    robots: ["kleenbot-c40"],
-    challenge:
-      "Passenger terminals need constant daytime floor care around heavy foot traffic, not just overnight.",
-    solution:
-      "Kleenbot C40 cleans concourse zones on a rolling schedule, navigating safely around passengers and luggage.",
-  },
+  { id: "hotel-delivery", key: "cases.s1", industryKey: "ind.hospitality.name", filter: "hospitality", robots: ["butlerbot-w3"] },
+  { id: "restaurant-service", key: "cases.s2", industryKey: "ind.food-and-beverage.name", filter: "food-and-beverage", robots: ["dinerbot-t10"] },
+  { id: "retail-cleaning", key: "cases.s3", industryKey: "ind.retail.name", filter: "retail", robots: ["kleenbot-c40"] },
+  { id: "warehouse-transport", key: "cases.s4", industryKey: "case.industrial", filter: "industrial", robots: ["courier-s100"] },
+  { id: "hospital-logistics", key: "cases.s5", industryKey: "ind.health-care.name", filter: "health-care", robots: ["butlerbot-w3", "courier-s100"] },
+  { id: "building-cleaning", key: "cases.s6", industryKey: "case.real-estate", filter: "real-estate", robots: ["kleenbot-c40"] },
+  { id: "venue-coffee", key: "cases.s7", industryKey: "case.public-service", filter: "public-service", robots: ["xbot-s-pro"] },
 ];
-
-function robotOf(slug: string): Product | undefined {
-  return products.find((p) => p.slug === slug);
-}
 
 function CaseStudies() {
   const { t } = useI18n();
@@ -150,58 +85,64 @@ function CaseStudies() {
           ))}
         </div>
 
-        <div className="grid gap-6 py-12 md:grid-cols-2">
-          {shown.map((s) => {
-            const firstRobot = robotOf(s.robots[0]);
-            return (
-              <article key={s.id} className="flex flex-col overflow-hidden rounded-xl border border-border bg-card">
-                <div className="flex h-56 items-center justify-center bg-catalog p-8">
-                  {firstRobot && (
-                    <img
-                      src={firstRobot.image}
-                      alt={`${firstRobot.name} — ${t(`prod.${firstRobot.slug}.positioning`)}`}
-                      loading="lazy"
-                      className="max-h-full w-auto object-contain"
-                    />
-                  )}
-                </div>
-                <div className="flex flex-1 flex-col p-7">
-                  <p className="label-mono text-primary">
-                    {t("cases.placeholder")} · {s.industry}
-                  </p>
-                  <h2 className="mt-3 text-xl font-semibold leading-snug">{s.title}</h2>
-                  <p className="mt-1.5 text-sm text-muted-foreground">
-                    {s.robots.map((r) => robotOf(r)?.name).join(" · ")}
-                  </p>
+        {shown.length === 0 ? (
+          <p className="py-16 text-center text-sm text-muted-foreground">
+            {t("cases.empty")}{" "}
+            <Link to="/book-a-demo" className="font-medium text-primary">
+              {t("cases.talkToUs")}
+            </Link>{" "}
+            {t("cases.emptySuffix")}
+          </p>
+        ) : (
+          <div className="grid gap-6 py-12 md:grid-cols-2">
+            {shown.map((s) => {
+              const firstRobot = products.find((p) => p.slug === s.robots[0]);
+              return (
+                <article key={s.id} className="flex flex-col overflow-hidden rounded-xl border border-border bg-card">
+                  <div className="flex h-56 items-center justify-center bg-catalog p-8">
+                    {firstRobot && (
+                      <img
+                        src={firstRobot.image}
+                        alt={`${firstRobot.name} — ${t(`prod.${firstRobot.slug}.positioning`)}`}
+                        loading="lazy"
+                        className="max-h-full w-auto object-contain"
+                      />
+                    )}
+                  </div>
+                  <div className="flex flex-1 flex-col p-7">
+                    <p className="label-mono text-primary">{t("cases.locationTbc")}</p>
+                    <h2 className="mt-3 text-xl font-semibold leading-snug">{t(`${s.key}.title`)}</h2>
+                    <p className="mt-1.5 text-sm text-muted-foreground">
+                      {t(s.industryKey)} · {s.robots.map((r) => products.find((p) => p.slug === r)?.name).join(" · ")}
+                    </p>
 
-                  <dl className="mt-5 space-y-4 text-sm">
-                    <div>
-                      <dt className="label-mono text-muted-foreground">{t("cases.challenge")}</dt>
-                      <dd className="mt-1 leading-relaxed text-muted-foreground">{s.challenge}</dd>
-                    </div>
-                    <div>
-                      <dt className="label-mono text-muted-foreground">{t("cases.solution")}</dt>
-                      <dd className="mt-1 leading-relaxed text-muted-foreground">{s.solution}</dd>
-                    </div>
-                    <div>
-                      <dt className="label-mono text-muted-foreground">{t("cases.result")}</dt>
-                      <dd className="mt-1 leading-relaxed text-muted-foreground">
-                        {t("cases.resultText")}
-                      </dd>
-                    </div>
-                  </dl>
+                    <dl className="mt-5 space-y-4 text-sm">
+                      <div>
+                        <dt className="label-mono text-muted-foreground">{t("cases.challenge")}</dt>
+                        <dd className="mt-1 leading-relaxed text-muted-foreground">{t(`${s.key}.challenge`)}</dd>
+                      </div>
+                      <div>
+                        <dt className="label-mono text-muted-foreground">{t("cases.solution")}</dt>
+                        <dd className="mt-1 leading-relaxed text-muted-foreground">{t(`${s.key}.solution`)}</dd>
+                      </div>
+                      <div>
+                        <dt className="label-mono text-muted-foreground">{t("cases.result")}</dt>
+                        <dd className="mt-1 leading-relaxed text-muted-foreground">{t("cases.resultTbc")}</dd>
+                      </div>
+                    </dl>
 
-                  <Link
-                    to="/book-a-demo"
-                    className="mt-6 inline-flex items-center gap-2 self-start text-sm font-semibold text-primary"
-                  >
-                    {t("cases.discuss")} <ArrowRight className="size-4" />
-                  </Link>
-                </div>
-              </article>
-            );
-          })}
-        </div>
+                    <Link
+                      to="/book-a-demo"
+                      className="mt-6 inline-flex items-center gap-2 self-start text-sm font-semibold text-primary"
+                    >
+                      {t("cases.talkToUs")} <ArrowRight className="size-4" />
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        )}
       </div>
     </>
   );

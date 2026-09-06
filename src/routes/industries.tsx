@@ -74,7 +74,7 @@ function Industries() {
                   to="/book-a-demo"
                   className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-primary"
                 >
-                  {t("industries.discuss", { industry: t(`ind.${ind.slug}.name`) })} <ArrowRight className="size-4" />
+                  {t("industries.bookDemo")} <ArrowRight className="size-4" />
                 </Link>
               </div>
               <div className="grid grid-cols-2 gap-3">

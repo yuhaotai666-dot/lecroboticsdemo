@@ -22,23 +22,26 @@ export const Route = createFileRoute("/resources")({
 
 interface Post {
   id: string;
-  key: string;
+  titleKey: string;
   categoryKey: string;
-  date: string;
+  date?: string;
 }
 
 const newsPosts: Post[] = [
-  { id: "n1", key: "res.card.n1", categoryKey: "res.cat.news", date: "2026-08-18" },
-  { id: "n2", key: "res.card.n2", categoryKey: "res.cat.news", date: "2026-07-30" },
+  { id: "n1", titleKey: "resources.news1", categoryKey: "resources.cat.news" },
+  { id: "n2", titleKey: "resources.news2", categoryKey: "resources.cat.news" },
+  { id: "n3", titleKey: "resources.news3", categoryKey: "resources.cat.news" },
 ];
 
 const insightPosts: Post[] = [
-  { id: "i1", key: "res.card.i1", categoryKey: "res.cat.insights", date: "2026-08-05" },
-  { id: "i2", key: "res.card.i2", categoryKey: "res.cat.insights", date: "2026-06-21" },
+  { id: "i1", titleKey: "resources.insight1", categoryKey: "resources.cat.insight" },
+  { id: "i2", titleKey: "resources.insight2", categoryKey: "resources.cat.insight" },
+  { id: "i3", titleKey: "resources.insight3", categoryKey: "resources.cat.insight" },
 ];
 
 const eventPosts: Post[] = [
-  { id: "e1", key: "res.card.e1", categoryKey: "res.cat.events", date: "2026-10-06" },
+  { id: "e1", titleKey: "resources.event1", categoryKey: "resources.cat.event" },
+  { id: "e2", titleKey: "resources.event2", categoryKey: "resources.cat.event" },
 ];
 
 function PostCard({ post }: { post: Post }) {
@@ -49,12 +52,11 @@ function PostCard({ post }: { post: Post }) {
         <span className="rounded-full bg-accent px-3 py-1 text-xs font-medium text-primary">
           {t(post.categoryKey)}
         </span>
-        <time className="text-xs text-muted-foreground">{post.date}</time>
+        <span className="text-xs text-muted-foreground">{post.date ?? t("resources.tbc")}</span>
       </div>
-      <h3 className="mt-4 text-lg font-semibold leading-snug">{t(`${post.key}.title`)}</h3>
-      <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{t(`${post.key}.excerpt`)}</p>
+      <h3 className="mt-4 flex-1 text-lg font-semibold leading-snug">{t(post.titleKey)}</h3>
       <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground">
-        {t("res.comingSoon")} <ArrowRight className="size-3.5" />
+        {t("resources.tbc")} <ArrowRight className="size-3.5" />
       </span>
     </article>
   );
@@ -68,10 +70,10 @@ function Resources() {
     <>
       <section className="border-b border-border bg-gradient-to-b from-accent/60 to-background">
         <div className="mx-auto max-w-6xl px-5 pt-20 pb-16">
-          <p className="label-mono text-primary">{t("res.kicker")}</p>
-          <h1 className="mt-4 text-4xl md:text-5xl">{t("res.title")}</h1>
+          <p className="label-mono text-primary">{t("resources.kicker")}</p>
+          <h1 className="mt-4 text-4xl md:text-5xl">{t("resources.title")}</h1>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            {t("res.sub")}
+            {t("resources.sub")}
           </p>
         </div>
       </section>
@@ -80,7 +82,7 @@ function Resources() {
         <section id="news" className="scroll-mt-24">
           <h2 className="text-2xl font-semibold">{t("res.news.label")}</h2>
           <p className="mt-2 text-sm text-muted-foreground">{t("res.news.blurb")}</p>
-          <div className="mt-7 grid gap-5 md:grid-cols-2">
+          <div className="mt-7 grid gap-5 md:grid-cols-3">
             {newsPosts.map((p) => (
               <PostCard key={p.id} post={p} />
             ))}
@@ -90,7 +92,7 @@ function Resources() {
         <section id="insights" className="scroll-mt-24 border-t border-border pt-14">
           <h2 className="text-2xl font-semibold">{t("res.insights.label")}</h2>
           <p className="mt-2 text-sm text-muted-foreground">{t("res.insights.blurb")}</p>
-          <div className="mt-7 grid gap-5 md:grid-cols-2">
+          <div className="mt-7 grid gap-5 md:grid-cols-3">
             {insightPosts.map((p) => (
               <PostCard key={p.id} post={p} />
             ))}
@@ -109,16 +111,14 @@ function Resources() {
 
         <section id="downloads" className="scroll-mt-24 border-t border-border pt-14">
           <h2 className="text-2xl font-semibold">{t("res.downloads.label")}</h2>
-          <p className="mt-2 text-sm text-muted-foreground">{t("res.downloads.blurb")}</p>
+          <p className="mt-2 text-sm text-muted-foreground">{t("resources.downloads.blurb")}</p>
           <ul className="mt-7 divide-y divide-border rounded-xl border border-border bg-card">
             {withBrochure.map((p) => (
               <li key={p.slug} className="flex items-center justify-between gap-4 px-6 py-4">
                 <div className="flex items-center gap-3">
                   <FileText className="size-4 shrink-0 text-primary" strokeWidth={1.75} />
                   <div>
-                    <p className="text-sm font-semibold">
-                      {p.name} — {t("res.specSheet")}
-                    </p>
+                    <p className="text-sm font-semibold">{t("resources.specSheet", { name: p.name })}</p>
                     <p className="text-xs text-muted-foreground">{t(`prod.${p.slug}.positioning`)}</p>
                   </div>
                 </div>
@@ -134,9 +134,7 @@ function Resources() {
             ))}
           </ul>
           <p className="mt-4 text-xs text-muted-foreground">
-            <Link to="/support" hash="documents" className="text-primary">
-              {t("res.manuals")}
-            </Link>
+            {t("resources.sheetsPublished", { n: withBrochure.length, total: products.length })}
           </p>
         </section>
       </div>

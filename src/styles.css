@@ -62,42 +62,46 @@
 }
 
 :root {
-  --radius: 0.25rem;
-  --background: oklch(0.16 0.005 260);
-  --foreground: oklch(0.97 0.002 260);
-  --card: oklch(0.21 0.006 260);
-  --card-foreground: oklch(0.97 0.002 260);
-  --popover: oklch(0.21 0.006 260);
-  --popover-foreground: oklch(0.97 0.002 260);
-  --primary: oklch(0.87 0.21 124);
-  --primary-foreground: oklch(0.18 0.02 130);
-  --secondary: oklch(0.27 0.008 260);
-  --secondary-foreground: oklch(0.97 0.002 260);
-  --muted: oklch(0.25 0.007 260);
-  --muted-foreground: oklch(0.7 0.012 260);
-  --accent: oklch(0.27 0.008 260);
-  --accent-foreground: oklch(0.97 0.002 260);
-  --destructive: oklch(0.62 0.22 27);
-  --destructive-foreground: oklch(0.98 0.003 248);
-  --border: oklch(0.32 0.008 260);
-  --input: oklch(0.32 0.008 260);
-  --ring: oklch(0.87 0.21 124);
-  --chart-1: oklch(0.87 0.21 124);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.21 0.006 260);
-  --sidebar-foreground: oklch(0.97 0.002 260);
-  --sidebar-primary: oklch(0.87 0.21 124);
-  --sidebar-primary-foreground: oklch(0.18 0.02 130);
-  --sidebar-accent: oklch(0.27 0.008 260);
-  --sidebar-accent-foreground: oklch(0.97 0.002 260);
-  --sidebar-border: oklch(0.32 0.008 260);
-  --sidebar-ring: oklch(0.87 0.21 124);
-  --font-display: "Archivo", system-ui, sans-serif;
-  --font-body: "IBM Plex Sans", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  /* Notion design language: 8px base radius, warm neutrals, single purple accent */
+  --radius: 0.75rem;
+  --background: oklch(0.985 0 0);
+  --foreground: oklch(0.36 0.032 25);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.36 0.032 25);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.28 0.03 25);
+  --primary: oklch(0.484 0.212 285);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.925 0.002 30);
+  --secondary-foreground: oklch(0.36 0.032 25);
+  --muted: oklch(0.955 0.002 30);
+  --muted-foreground: oklch(0.6 0.022 25);
+  --accent: oklch(0.925 0.03 287);
+  --accent-foreground: oklch(0.36 0.032 25);
+  --destructive: oklch(0.637 0.208 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.902 0.004 30);
+  --input: oklch(0.87 0.008 30);
+  --ring: oklch(0.484 0.212 285);
+  --chart-1: oklch(0.484 0.212 285);
+  --chart-2: oklch(0.63 0.16 288);
+  --chart-3: oklch(0.74 0.11 290);
+  --chart-4: oklch(0.72 0.15 60);
+  --chart-5: oklch(0.7 0.16 150);
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.36 0.032 25);
+  --sidebar-primary: oklch(0.484 0.212 285);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.925 0.03 287);
+  --sidebar-accent-foreground: oklch(0.36 0.032 25);
+  --sidebar-border: oklch(0.902 0.004 30);
+  --sidebar-ring: oklch(0.484 0.212 285);
+  --font-display: "Inter Tight", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", monospace;
+  --shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-card-hover: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.06);
+  --ease-default: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 @theme inline {

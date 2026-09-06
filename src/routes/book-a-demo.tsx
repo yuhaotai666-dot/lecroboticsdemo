@@ -66,7 +66,7 @@ function BookDemo() {
               <Field id="company" label="Company" />
 
               <div>
-                <label htmlFor="sector" className="label-mono text-muted-foreground">
+                <label htmlFor="sector" className="text-sm font-medium text-foreground">
                   Sector
                 </label>
                 <select
@@ -81,7 +81,7 @@ function BookDemo() {
               </div>
 
               <div>
-                <label htmlFor="machine" className="label-mono text-muted-foreground">
+                <label htmlFor="machine" className="text-sm font-medium text-foreground">
                   Machine of interest
                 </label>
                 <select
@@ -99,7 +99,7 @@ function BookDemo() {
               </div>
 
               <div>
-                <label htmlFor="notes" className="label-mono text-muted-foreground">
+                <label htmlFor="notes" className="text-sm font-medium text-foreground">
                   What are you trying to solve?
                 </label>
                 <textarea
@@ -126,7 +126,7 @@ function BookDemo() {
 function Field({ id, label, type = "text" }: { id: string; label: string; type?: string }) {
   return (
     <div>
-      <label htmlFor={id} className="label-mono text-muted-foreground">
+      <label htmlFor={id} className="text-sm font-medium text-foreground">
         {label}
       </label>
       <input

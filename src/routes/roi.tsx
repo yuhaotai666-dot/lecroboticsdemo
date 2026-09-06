@@ -53,7 +53,7 @@ function RoiPage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 lg:grid-cols-2">
           <div className="space-y-8 rounded-xl border border-border bg-card p-8 shadow-[var(--shadow-card)]">
             <div>
-              <label htmlFor="model" className="label-mono text-muted-foreground">
+              <label htmlFor="model" className="text-sm font-medium text-foreground">
                 Machine
               </label>
               <select
@@ -71,7 +71,7 @@ function RoiPage() {
             </div>
 
             <div>
-              <label htmlFor="wage" className="label-mono text-muted-foreground">
+              <label htmlFor="wage" className="text-sm font-medium text-foreground">
                 Fully loaded hourly labour cost — £{wage.toFixed(2)}
               </label>
               <input
@@ -87,7 +87,7 @@ function RoiPage() {
             </div>
 
             <div>
-              <label htmlFor="hours" className="label-mono text-muted-foreground">
+              <label htmlFor="hours" className="text-sm font-medium text-foreground">
                 Hours per week the robot covers — {hours} h
               </label>
               <input

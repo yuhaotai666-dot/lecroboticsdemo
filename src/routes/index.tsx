@@ -151,7 +151,7 @@ function Home() {
               >
                 <h3 className="text-lg font-bold">{c.label}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{c.blurb}</p>
-                <span className="mt-5 inline-flex items-center gap-2 label-mono text-primary opacity-0 transition-opacity group-hover:opacity-100">
+                <span className="mt-4 inline-flex items-center gap-2 label-mono text-muted-foreground transition-colors group-hover:text-primary">
                   View <ArrowRight className="size-3.5" />
                 </span>
               </Link>

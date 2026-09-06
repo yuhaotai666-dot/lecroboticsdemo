@@ -49,11 +49,9 @@ export function HeroCarousel() {
 
     return () => {
       clearInterval(id);
-      if (typeof window !== "undefined" && "cancelIdleCallback" in window) {
-        window.cancelIdleCallback(idle as number);
-      } else {
-        clearTimeout(idle as number);
-      }
+      const cic = (window as Window & typeof globalThis).cancelIdleCallback;
+      if (ric && cic) cic(idle);
+      else clearTimeout(idle);
     };
   }, []);
 

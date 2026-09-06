@@ -84,7 +84,10 @@ export function HeroCarousel() {
           <button
             key={slide.url}
             type="button"
-            onClick={() => setIndex(i)}
+            onClick={() => {
+              setIndex(i);
+              setMaxLoaded((m) => Math.max(m, i));
+            }}
             aria-label={`Show slide ${i + 1}`}
             className={`h-2 rounded-full transition-all ${
               i === index ? "w-6 bg-primary" : "w-2 bg-foreground/25 hover:bg-foreground/40"

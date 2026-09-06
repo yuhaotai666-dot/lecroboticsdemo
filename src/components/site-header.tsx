@@ -187,12 +187,7 @@ export function SiteHeader() {
             {open === "resources" && (
               <DropdownList to="/resources" items={resourceMenu} />
             )}
-            {open === "about" && (
-              <DropdownList
-                to="/about"
-                items={[...aboutMenu, { hash: "contact", label: "Contact Us", blurb: "Talk to the team." }]}
-              />
-            )}
+            {open === "about" && <DropdownList to="/about" items={aboutMenu} />}
             {open === "support" && <DropdownList to="/support" items={supportMenu} />}
           </div>
         </div>

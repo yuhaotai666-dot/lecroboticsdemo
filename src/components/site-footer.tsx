@@ -3,7 +3,7 @@ import { products } from "@/lib/products";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border bg-card/40">
+    <footer className="border-t border-border bg-card">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-4">
         <div>
           <p className="font-display text-lg font-semibold tracking-tight">

@@ -45,7 +45,7 @@ function BookDemo() {
           </ul>
         </div>
 
-        <div className="rounded-lg border border-border bg-card p-8">
+        <div className="rounded-xl border border-border bg-card p-8 shadow-[var(--shadow-card)]">
           {sent ? (
             <div className="py-16 text-center">
               <h2 className="text-2xl font-semibold">Request received.</h2>
@@ -71,7 +71,7 @@ function BookDemo() {
                 </label>
                 <select
                   id="sector"
-                  className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3"
+                  className="mt-2 w-full rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm transition-shadow focus:border-primary focus:ring-2 focus:ring-ring/20 focus:outline-none"
                   defaultValue={sectors[0]}
                 >
                   {sectors.map((s) => (
@@ -86,7 +86,7 @@ function BookDemo() {
                 </label>
                 <select
                   id="machine"
-                  className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3"
+                  className="mt-2 w-full rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm transition-shadow focus:border-primary focus:ring-2 focus:ring-ring/20 focus:outline-none"
                   defaultValue="not-sure"
                 >
                   <option value="not-sure">Not sure yet — advise me</option>
@@ -105,7 +105,7 @@ function BookDemo() {
                 <textarea
                   id="notes"
                   rows={4}
-                  className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3"
+                  className="mt-2 w-full rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm transition-shadow focus:border-primary focus:ring-2 focus:ring-ring/20 focus:outline-none"
                 />
               </div>
 
@@ -133,7 +133,7 @@ function Field({ id, label, type = "text" }: { id: string; label: string; type?:
         id={id}
         type={type}
         required
-        className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-3"
+        className="mt-2 w-full rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm transition-shadow focus:border-primary focus:ring-2 focus:ring-ring/20 focus:outline-none"
       />
     </div>
   );

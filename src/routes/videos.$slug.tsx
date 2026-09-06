@@ -35,7 +35,7 @@ export const Route = createFileRoute("/videos/$slug")({
 
 function ClipCard({ clip, poster, alt }: { clip: Clip; poster?: string; alt: string }) {
   return (
-    <article className="bg-background p-6">
+    <article className="card-surface p-6">
       <div className="flex aspect-video items-center justify-center overflow-hidden rounded-lg border border-border bg-card">
         {clip.src ? (
           <video
@@ -131,7 +131,7 @@ function VideoPage() {
 
       <section>
         <div className="mx-auto max-w-7xl px-5 py-16">
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-lg border border-border bg-card p-8">
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-border bg-card p-8 shadow-[var(--shadow-card)]">
             <div>
               <p className="label-mono text-primary">
                 <PlayCircle className="mr-2 inline size-4" aria-hidden />

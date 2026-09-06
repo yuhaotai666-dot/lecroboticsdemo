@@ -51,7 +51,7 @@ function RoiPage() {
 
       <section>
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 lg:grid-cols-2">
-          <div className="space-y-8 rounded-lg border border-border bg-card p-8">
+          <div className="space-y-8 rounded-xl border border-border bg-card p-8 shadow-[var(--shadow-card)]">
             <div>
               <label htmlFor="model" className="label-mono text-muted-foreground">
                 Machine
@@ -60,7 +60,7 @@ function RoiPage() {
                 id="model"
                 value={slug}
                 onChange={(e) => setSlug(e.target.value)}
-                className="mt-3 w-full rounded-lg border border-border bg-background px-4 py-3"
+                className="mt-3 w-full rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm transition-shadow focus:border-primary focus:ring-2 focus:ring-ring/20 focus:outline-none"
               >
                 {priced.map((p) => (
                   <option key={p.slug} value={p.slug}>
@@ -113,7 +113,7 @@ function RoiPage() {
               note={`≈ ${(paybackWeeks / 52).toFixed(1)} years`}
               highlight
             />
-            <div className="bg-background p-6 sm:col-span-2">
+            <div className="card-surface p-6 sm:col-span-2">
               <p className="text-sm text-muted-foreground">
                 Prefer to spread it? {product.name} finances at{" "}
                 <span className="font-semibold text-foreground">{product.finance ?? "terms on request"}</span>.

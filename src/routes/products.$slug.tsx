@@ -63,7 +63,7 @@ function ProductPage() {
     <>
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 py-14 lg:grid-cols-2">
-          <div className="flex items-center justify-center rounded-lg border border-border bg-card p-10">
+          <div className="flex items-center justify-center rounded-xl border border-border bg-card p-10 shadow-[var(--shadow-card)]">
             <img src={p.image} alt={`${p.name} — ${p.positioning}`} className="max-h-96 w-auto object-contain" />
           </div>
 
@@ -79,12 +79,12 @@ function ProductPage() {
             <p className="mt-5 text-lg text-muted-foreground">{p.tagline}</p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              <div className="bg-background p-5">
+              <div className="card-surface p-5">
                 <p className="label-mono text-muted-foreground">Buy outright</p>
                 <p className="mt-2 font-display text-3xl font-semibold">{formatPrice(p)}</p>
                 <p className="mt-1 text-xs text-muted-foreground">+ VAT</p>
               </div>
-              <div className="bg-background p-5">
+              <div className="card-surface p-5">
                 <p className="label-mono text-muted-foreground">Finance</p>
                 <p className="mt-2 font-display text-3xl font-semibold">{p.finance ?? "On request"}</p>
                 <p className="mt-1 text-xs text-muted-foreground">
@@ -128,7 +128,7 @@ function ProductPage() {
           <h2 className="text-3xl font-semibold">Specification</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {p.specs.map((s) => (
-              <div key={s.label} className="bg-background p-6">
+              <div key={s.label} className="card-surface p-6">
                 <p className="label-mono text-muted-foreground">{s.label}</p>
                 <p className="mt-2 text-xl font-bold">{s.value}</p>
               </div>
@@ -150,7 +150,7 @@ function ProductPage() {
               ["02", "Install & train", "Machine commissioned, routes built, your team trained on shift."],
               ["03", "Run & support", "UK-based support, software updates and servicing for the term."],
             ].map(([n, t, b]) => (
-              <div key={n} className="bg-background p-7">
+              <div key={n} className="card-surface p-7">
                 <span className="label-mono text-primary">{n}</span>
                 <h3 className="mt-4 text-lg font-bold">{t}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{b}</p>
@@ -174,7 +174,7 @@ function ProductPage() {
                 key={o.slug}
                 to="/products/$slug"
                 params={{ slug: o.slug }}
-                className="group bg-background p-6 transition-colors hover:bg-card"
+                className="group card-surface p-6 hover:-translate-y-0.5"
               >
                 <div className="flex h-28 items-center justify-center">
                   <img

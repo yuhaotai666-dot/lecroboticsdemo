@@ -34,7 +34,7 @@ const productGroups = [
       { slug: "xbot-ic", name: "Xbot IC", blurb: "Automated fresh ice cream solution" },
     ],
   },
-] as const;
+];
 
 export const industryMenu = [
   {

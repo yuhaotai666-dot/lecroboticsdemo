@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, Download, PlayCircle } from "lucide-react";
 import { categories, getProduct, products, formatPrice, type Product } from "@/lib/products";
+import { useI18n } from "@/lib/i18n/i18n-context";
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
@@ -56,6 +57,7 @@ export const Route = createFileRoute("/products/$slug")({
 
 function ProductPage() {
   const { product: p } = Route.useLoaderData();
+  const { t } = useI18n();
   const others = products.filter((o) => o.slug !== p.slug).slice(0, 4);
   const category = categories.find((c) => c.id === p.category);
 
@@ -64,31 +66,31 @@ function ProductPage() {
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-6xl gap-12 px-5 py-14 lg:grid-cols-2">
           <div className="flex items-center justify-center rounded-xl border border-border bg-card p-10 shadow-[var(--shadow-card)]">
-            <img src={p.image} alt={`${p.name} — ${p.positioning}`} className="max-h-96 w-auto object-contain" />
+            <img src={p.image} alt={`${p.name} — ${t(`prod.${p.slug}.positioning`)}`} className="max-h-96 w-auto object-contain" />
           </div>
 
           <div>
             <nav className="label-mono text-muted-foreground">
               <Link to="/products" className="hover:text-foreground">
-                Products
+                {t("nav.products")}
               </Link>{" "}
-              / {category?.label}
+              / {category ? t(`cat.${category.id}.label`) : ""}
             </nav>
             <h1 className="mt-4 text-4xl font-semibold md:text-5xl">{p.name}</h1>
-            <p className="mt-2 label-mono text-primary">{p.positioning}</p>
-            <p className="mt-5 text-lg text-muted-foreground">{p.tagline}</p>
+            <p className="mt-2 label-mono text-primary">{t(`prod.${p.slug}.positioning`)}</p>
+            <p className="mt-5 text-lg text-muted-foreground">{t(`prod.${p.slug}.tagline`)}</p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               <div className="card-surface p-5">
-                <p className="label-mono text-muted-foreground">Buy outright</p>
+                <p className="label-mono text-muted-foreground">{t("pdp.buyOutright")}</p>
                 <p className="mt-2 font-display text-3xl font-semibold">{formatPrice(p)}</p>
-                <p className="mt-1 text-xs text-muted-foreground">+ VAT</p>
+                <p className="mt-1 text-xs text-muted-foreground">{t("product.plusVat")}</p>
               </div>
               <div className="card-surface p-5">
-                <p className="label-mono text-muted-foreground">Finance</p>
-                <p className="mt-2 font-display text-3xl font-semibold">{p.finance ?? "On request"}</p>
+                <p className="label-mono text-muted-foreground">{t("pdp.finance")}</p>
+                <p className="mt-2 font-display text-3xl font-semibold">{p.finance ?? t("pdp.onRequest")}</p>
                 <p className="mt-1 text-xs text-muted-foreground">
-                  {p.finance ? "12 months · 7% + VAT" : "Terms available on enquiry"}
+                  {p.finance ? t("pdp.financeNote") : t("pdp.termsOnEnquiry")}
                 </p>
               </div>
             </div>
@@ -98,14 +100,14 @@ function ProductPage() {
                 to="/book-a-demo"
                 className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
               >
-                Book a demo <ArrowRight className="size-4" />
+                {t("pdp.bookDemo")} <ArrowRight className="size-4" />
               </Link>
               <Link
                 to="/videos/$slug"
                 params={{ slug: p.slug }}
                 className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-sm font-semibold shadow-sm transition-colors hover:border-primary hover:text-primary"
               >
-                <PlayCircle className="size-4" /> Watch it work
+                <PlayCircle className="size-4" /> {t("pdp.watchItWork")}
               </Link>
               {p.brochure && (
                 <a
@@ -114,7 +116,7 @@ function ProductPage() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-sm font-semibold shadow-sm transition-colors hover:border-primary hover:text-primary"
                 >
-                  <Download className="size-4" /> Spec sheet
+                  <Download className="size-4" /> {t("pdp.specSheet")}
                 </a>
               )}
             </div>
@@ -125,34 +127,33 @@ function ProductPage() {
 
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-16">
-          <h2 className="text-3xl font-semibold">Specification</h2>
+          <h2 className="text-3xl font-semibold">{t("pdp.specification")}</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {p.specs.map((s) => (
               <div key={s.label} className="card-surface p-6">
-                <p className="label-mono text-muted-foreground">{s.label}</p>
+                <p className="label-mono text-muted-foreground">{t(`spec.${s.label}`)}</p>
                 <p className="mt-2 text-xl font-bold">{s.value}</p>
               </div>
             ))}
           </div>
           <p className="mt-4 text-xs text-muted-foreground">
-            Figures as published on the current LEC Robotics product pages. Full specification supplied with the
-            quotation.
+            {t("pdp.specNote")}
           </p>
         </div>
       </section>
 
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-16">
-          <h2 className="text-3xl font-semibold">What deployment looks like</h2>
+          <h2 className="text-3xl font-semibold">{t("pdp.deployTitle")}</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {[
-              ["01", "Site survey", "We map your floors, lifts, docking points and shift pattern."],
-              ["02", "Install & train", "Machine commissioned, routes built, your team trained on shift."],
-              ["03", "Run & support", "UK-based support, software updates and servicing for the term."],
-            ].map(([n, t, b]) => (
+              ["01", t("pdp.step1.title"), t("pdp.step1.body")],
+              ["02", t("pdp.step2.title"), t("pdp.step2.body")],
+              ["03", t("pdp.step3.title"), t("pdp.step3.body")],
+            ].map(([n, title, b]) => (
               <div key={n} className="card-surface p-8">
                 <span className="label-mono text-primary">{n}</span>
-                <h3 className="mt-4 text-lg font-bold">{t}</h3>
+                <h3 className="mt-4 text-lg font-bold">{title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{b}</p>
               </div>
             ))}
@@ -163,9 +164,9 @@ function ProductPage() {
       <section>
         <div className="mx-auto max-w-6xl px-5 py-16">
           <div className="flex items-end justify-between gap-4">
-            <h2 className="text-3xl font-semibold">Explore other robots</h2>
+            <h2 className="text-3xl font-semibold">{t("pdp.exploreOthers")}</h2>
             <Link to="/products" className="label-mono text-primary">
-              All robots →
+              {t("pdp.allRobots")} →
             </Link>
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -179,13 +180,13 @@ function ProductPage() {
                 <div className="flex h-28 items-center justify-center">
                   <img
                     src={o.image}
-                    alt={`${o.name} — ${o.positioning}`}
+                    alt={`${o.name} — ${t(`prod.${o.slug}.positioning`)}`}
                     loading="lazy"
                     className="h-full w-auto object-contain"
                   />
                 </div>
                 <h3 className="mt-5 font-bold">{o.name}</h3>
-                <p className="mt-1 text-sm text-muted-foreground">{o.tagline}</p>
+                <p className="mt-1 text-sm text-muted-foreground">{t(`prod.${o.slug}.tagline`)}</p>
               </Link>
             ))}
           </div>

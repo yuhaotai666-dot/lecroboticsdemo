@@ -129,7 +129,7 @@ function Home() {
       </section>
 
       {/* Categories */}
-      <section className="border-b border-border">
+      <section className="border-b border-border bg-catalog">
         <div className="mx-auto max-w-6xl px-5 py-20">
           <p className="label-mono text-muted-foreground">Find by job</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Start with the work, not the model number.</h2>
@@ -171,22 +171,22 @@ function Home() {
                 key={p.slug}
                 to="/products/$slug"
                 params={{ slug: p.slug }}
-                className="group flex flex-col card-surface p-8 hover:-translate-y-0.5"
+                className="group flex min-h-[460px] flex-col bg-card px-8 pb-8 pt-6"
               >
-                <div className="flex h-40 items-center justify-center">
+                <div className="flex h-56 items-center justify-center">
                   <img
                     src={p.image}
                     alt={`${p.name} — ${p.positioning}`}
                     loading="lazy"
-                    className="h-full w-auto object-contain transition-transform group-hover:scale-105"
+                    className="h-full max-w-full object-contain transition-transform duration-200 group-hover:scale-[1.03]"
                   />
                 </div>
-                <h3 className="mt-6 text-xl font-bold">{p.name}</h3>
-                <p className="mt-1 label-mono text-muted-foreground">{p.positioning}</p>
-                <p className="mt-3 flex-1 text-sm text-muted-foreground">{p.tagline}</p>
-                <p className="mt-5 border-t border-border pt-4 font-display text-lg font-semibold">
+                <h3 className="mt-5 text-2xl font-semibold leading-8 text-catalog-title">{p.name}</h3>
+                <p className="mt-2 text-sm leading-5 text-catalog-copy">{p.positioning}</p>
+                <p className="mt-2 flex-1 text-sm leading-5 text-catalog-copy">{p.tagline}</p>
+                <p className="mt-5 border-t border-border pt-5 text-base font-semibold text-catalog-title">
                   {formatPrice(p)}
-                  <span className="ml-2 label-mono font-normal text-muted-foreground">
+                  <span className="ml-2 text-xs font-normal text-catalog-copy">
                     {p.finance ? `or ${p.finance}` : "+ VAT"}
                   </span>
                 </p>

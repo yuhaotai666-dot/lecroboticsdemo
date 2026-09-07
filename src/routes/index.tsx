@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { categories, products, formatPrice } from "@/lib/products";
 import { HeroCarousel } from "@/components/hero-carousel";
+import { CapabilityStory } from "@/components/capability-story";
 import { useI18n } from "@/lib/i18n/i18n-context";
 
 
@@ -26,15 +27,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Home,
 });
-
-const capabilityKeys = [
-  "home.cap1",
-  "home.cap2",
-  "home.cap3",
-  "home.cap4",
-  "home.cap5",
-  "home.cap6",
-] as const;
 
 function Home() {
   const { t } = useI18n();
@@ -167,21 +159,7 @@ function Home() {
       </section>
 
       {/* Capabilities */}
-      <section className="border-b border-border bg-muted/40">
-        <div className="mx-auto max-w-6xl px-5 py-20">
-          <p className="label-mono text-muted-foreground">{t("home.capKicker")}</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">{t("home.capTitle")}</h2>
-          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {capabilityKeys.map((key, i) => (
-              <div key={key} className="card-surface p-8">
-                <span className="label-mono text-primary">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="mt-4 text-lg font-bold">{t(`${key}.title`)}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{t(`${key}.body`)}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CapabilityStory />
 
       {/* CTA */}
       <section>

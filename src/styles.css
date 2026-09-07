@@ -224,3 +224,21 @@
     radial-gradient(circle at 1px 1px, var(--color-border) 1px, transparent 0);
   background-size: 28px 28px;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .capability-story {
+    height: auto !important;
+  }
+
+  .capability-story__stage {
+    position: static !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .capability-story__track {
+    max-width: 72rem !important;
+    flex-direction: column !important;
+    transform: none !important;
+  }
+}

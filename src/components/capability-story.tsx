@@ -22,7 +22,7 @@ export function CapabilityStory() {
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<number | null>(null);
-  const [progress, setProgress] = useState(0);
+  const [translateX, setTranslateX] = useState(0);
   const [active, setActive] = useState(0);
 
   useEffect(() => {
@@ -37,7 +37,11 @@ export function CapabilityStory() {
       const rect = section.getBoundingClientRect();
       const scrollable = Math.max(section.offsetHeight - window.innerHeight, 1);
       const nextProgress = Math.min(1, Math.max(0, -rect.top / scrollable));
-      setProgress(nextProgress);
+      const maxTravel = Math.max(
+        0,
+        (trackRef.current?.scrollWidth ?? 0) - (viewportRef.current?.clientWidth ?? 0),
+      );
+      setTranslateX(-nextProgress * maxTravel);
       setActive(Math.min(capabilities.length - 1, Math.round(nextProgress * (capabilities.length - 1))));
     };
 
@@ -55,14 +59,9 @@ export function CapabilityStory() {
     };
   }, []);
 
-  const maxTravel = Math.max(
-    0,
-    (trackRef.current?.scrollWidth ?? 0) - (viewportRef.current?.clientWidth ?? 0),
-  );
-
   return (
-    <section ref={sectionRef} className="border-b border-border bg-muted/40 lg:h-[600vh]">
-      <div className="lg:sticky lg:top-16 lg:flex lg:h-[calc(100vh-4rem)] lg:flex-col lg:justify-center lg:overflow-hidden">
+    <section ref={sectionRef} className="capability-story border-b border-border bg-muted/40 lg:h-[600vh]">
+      <div className="capability-story__stage lg:sticky lg:top-16 lg:flex lg:h-[calc(100vh-4rem)] lg:flex-col lg:justify-center lg:overflow-hidden">
         <div className="mx-auto w-full max-w-6xl px-5 pt-20 lg:pt-0">
           <p className="label-mono text-muted-foreground">{t("home.capKicker")}</p>
           <div className="mt-3 flex items-end justify-between gap-6">
@@ -76,8 +75,8 @@ export function CapabilityStory() {
         <div ref={viewportRef} className="mt-8 overflow-hidden pb-20 lg:pb-0">
           <div
             ref={trackRef}
-            className="mx-auto flex max-w-6xl flex-col gap-5 px-5 lg:max-w-none lg:flex-row lg:gap-6 lg:will-change-transform"
-            style={{ transform: `translate3d(${-progress * maxTravel}px, 0, 0)` }}
+            className="capability-story__track mx-auto flex max-w-6xl flex-col gap-5 px-5 lg:max-w-none lg:flex-row lg:gap-6 lg:will-change-transform"
+            style={{ transform: `translate3d(${translateX}px, 0, 0)` }}
           >
             {capabilities.map((capability, index) => (
               <figure

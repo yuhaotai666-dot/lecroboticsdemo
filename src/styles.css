@@ -226,7 +226,19 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .lg\:will-change-transform {
+  .capability-story {
+    height: auto !important;
+  }
+
+  .capability-story__stage {
+    position: static !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .capability-story__track {
+    max-width: 72rem !important;
+    flex-direction: column !important;
     transform: none !important;
   }
 }

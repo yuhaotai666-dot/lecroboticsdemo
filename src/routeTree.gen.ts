@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as BookADemoRouteImport } from './routes/book-a-demo'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as IndustriesRouteImport } from './routes/industries'
+import { Route as LandingRouteImport } from './routes/landing'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as RoiRouteImport } from './routes/roi'
 import { Route as SolutionsRouteImport } from './routes/solutions'
@@ -45,6 +46,11 @@ const CaseStudiesRoute = CaseStudiesRouteImport.update({
 const IndustriesRoute = IndustriesRouteImport.update({
   id: '/industries',
   path: '/industries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingRoute = LandingRouteImport.update({
+  id: '/landing',
+  path: '/landing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResourcesRoute = ResourcesRouteImport.update({
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/book-a-demo': typeof BookADemoRoute
   '/case-studies': typeof CaseStudiesRoute
   '/industries': typeof IndustriesRoute
+  '/landing': typeof LandingRoute
   '/resources': typeof ResourcesRoute
   '/roi': typeof RoiRoute
   '/solutions': typeof SolutionsRoute
@@ -103,6 +110,7 @@ export interface FileRoutesByTo {
   '/book-a-demo': typeof BookADemoRoute
   '/case-studies': typeof CaseStudiesRoute
   '/industries': typeof IndustriesRoute
+  '/landing': typeof LandingRoute
   '/resources': typeof ResourcesRoute
   '/roi': typeof RoiRoute
   '/solutions': typeof SolutionsRoute
@@ -118,6 +126,7 @@ export interface FileRoutesById {
   '/book-a-demo': typeof BookADemoRoute
   '/case-studies': typeof CaseStudiesRoute
   '/industries': typeof IndustriesRoute
+  '/landing': typeof LandingRoute
   '/resources': typeof ResourcesRoute
   '/roi': typeof RoiRoute
   '/solutions': typeof SolutionsRoute
@@ -134,6 +143,7 @@ export interface FileRouteTypes {
     | '/book-a-demo'
     | '/case-studies'
     | '/industries'
+    | '/landing'
     | '/resources'
     | '/roi'
     | '/solutions'
@@ -148,6 +158,7 @@ export interface FileRouteTypes {
     | '/book-a-demo'
     | '/case-studies'
     | '/industries'
+    | '/landing'
     | '/resources'
     | '/roi'
     | '/solutions'
@@ -162,6 +173,7 @@ export interface FileRouteTypes {
     | '/book-a-demo'
     | '/case-studies'
     | '/industries'
+    | '/landing'
     | '/resources'
     | '/roi'
     | '/solutions'
@@ -177,6 +189,7 @@ export interface RootRouteChildren {
   BookADemoRoute: typeof BookADemoRoute
   CaseStudiesRoute: typeof CaseStudiesRoute
   IndustriesRoute: typeof IndustriesRoute
+  LandingRoute: typeof LandingRoute
   ResourcesRoute: typeof ResourcesRoute
   RoiRoute: typeof RoiRoute
   SolutionsRoute: typeof SolutionsRoute
@@ -221,6 +234,13 @@ declare module '@tanstack/react-router' {
       path: '/industries'
       fullPath: '/industries'
       preLoaderRoute: typeof IndustriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing': {
+      id: '/landing'
+      path: '/landing'
+      fullPath: '/landing'
+      preLoaderRoute: typeof LandingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/resources': {
@@ -281,6 +301,7 @@ const rootRouteChildren: RootRouteChildren = {
   BookADemoRoute: BookADemoRoute,
   CaseStudiesRoute: CaseStudiesRoute,
   IndustriesRoute: IndustriesRoute,
+  LandingRoute: LandingRoute,
   ResourcesRoute: ResourcesRoute,
   RoiRoute: RoiRoute,
   SolutionsRoute: SolutionsRoute,

@@ -8,11 +8,12 @@ const robots = products.filter((p) =>
   (scene.robots as readonly string[]).includes(p.slug)
 );
 
-const positions = [
-  { size: "w-[30vw] max-w-[420px]", left: "md:left-[10%]", top: "md:top-[22%]", delay: "0s", depth: 0.6 },
-  { size: "w-[22vw] max-w-[300px]", right: "md:right-[8%]", top: "md:top-[16%]", delay: "1.2s", depth: 0.4 },
-  { size: "w-[24vw] max-w-[340px]", left: "md:left-[6%]", bottom: "md:bottom-[12%]", delay: "2.4s", depth: 0.5 },
-  { size: "w-[18vw] max-w-[260px]", right: "md:right-[18%]", bottom: "md:bottom-[18%]", delay: "3.6s", depth: 0.3 },
+// Delivery lanes: each robot travels a route, pauses at the "table", then returns.
+const lanes = [
+  { size: "w-[26vw] max-w-[380px]", top: "md:top-[18%]", anim: "deliverA", dur: "14s", delay: "0s", depth: 0.6 },
+  { size: "w-[19vw] max-w-[280px]", top: "md:top-[10%]", anim: "deliverB", dur: "18s", delay: "3s", depth: 0.4 },
+  { size: "w-[22vw] max-w-[320px]", bottom: "md:bottom-[16%]", anim: "deliverC", dur: "16s", delay: "6s", depth: 0.5 },
+  { size: "w-[15vw] max-w-[220px]", bottom: "md:bottom-[8%]", anim: "deliverD", dur: "20s", delay: "9s", depth: 0.3 },
 ];
 
 export function RestaurantScene() {
@@ -115,14 +116,14 @@ export function RestaurantScene() {
       {/* Depth 3 — robots */}
       <div className="relative inset-0 z-30 flex min-h-screen flex-col items-center justify-center gap-8 py-20 md:absolute md:block md:py-0">
         {robots.map((robot, i) => {
-          const cfg = positions[i]!;
-          const y = reducedMotion ? 0 : offset * (cfg.depth * 160 - 80);
+          const cfg = lanes[i]!;
+          const y = reducedMotion ? 0 : offset * (cfg.depth * 120 - 60);
           return (
             <div
               key={robot.slug}
-              className={`will-change-transform ${cfg.size} ${cfg.left} ${cfg.right} ${cfg.top} ${cfg.bottom} relative md:absolute`}
+              className={`will-change-transform ${cfg.size} ${cfg.top ?? ""} ${cfg.bottom ?? ""} relative md:absolute md:left-0`}
               style={{
-                animation: reducedMotion ? undefined : `restFloat${i + 1} ${6 + i * 0.7}s ease-in-out infinite`,
+                animation: reducedMotion ? undefined : `${cfg.anim} ${cfg.dur} ease-in-out infinite`,
                 animationDelay: reducedMotion ? undefined : cfg.delay,
                 transform: `translate3d(0, ${y}px, 0)`,
               }}
@@ -152,21 +153,37 @@ export function RestaurantScene() {
       </div>
 
       <style>{`
-        @keyframes restFloat1 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-16px) rotate(0.8deg); }
+        /* Delivery routes: travel out, pause to "serve", return home */
+        @keyframes deliverA {
+          0%   { transform: translate3d(-30vw, 0, 0); }
+          35%  { transform: translate3d(38vw, -1.5vh, 0); }
+          50%  { transform: translate3d(38vw, 0, 0); }        /* pause at table */
+          85%  { transform: translate3d(-30vw, 1vh, 0); }
+          100% { transform: translate3d(-30vw, 0, 0); }
         }
-        @keyframes restFloat2 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(-0.6deg); }
+        @keyframes deliverB {
+          0%   { transform: translate3d(108vw, 0, 0) scaleX(-1); }
+          30%  { transform: translate3d(58vw, 1vh, 0) scaleX(-1); }
+          45%  { transform: translate3d(58vw, 0, 0) scaleX(-1); } /* pause at table */
+          80%  { transform: translate3d(108vw, -1vh, 0) scaleX(-1); }
+          100% { transform: translate3d(108vw, 0, 0) scaleX(-1); }
         }
-        @keyframes restFloat3 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-14px) rotate(1deg); }
+        @keyframes deliverC {
+          0%   { transform: translate3d(-28vw, 0, 0); }
+          40%  { transform: translate3d(60vw, -2vh, 0); }
+          52%  { transform: translate3d(60vw, 0, 0); }        /* pause at table */
+          88%  { transform: translate3d(-28vw, 1vh, 0); }
+          100% { transform: translate3d(-28vw, 0, 0); }
         }
-        @keyframes restFloat4 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-18px) rotate(-0.8deg); }
+        @keyframes deliverD {
+          0%   { transform: translate3d(106vw, 0, 0) scaleX(-1); }
+          32%  { transform: translate3d(70vw, 1vh, 0) scaleX(-1); }
+          44%  { transform: translate3d(70vw, 0, 0) scaleX(-1); } /* pause at table */
+          82%  { transform: translate3d(106vw, -1vh, 0) scaleX(-1); }
+          100% { transform: translate3d(106vw, 0, 0) scaleX(-1); }
+        }
+        @media (max-width: 767px) {
+          /* On mobile, robots stack statically; no travel animation */
         }
       `}</style>
     </section>

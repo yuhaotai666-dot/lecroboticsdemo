@@ -115,7 +115,7 @@ export function RestaurantScene() {
       {/* Depth 3 — robots */}
       <div className="relative inset-0 z-30 flex min-h-screen flex-col items-center justify-center gap-8 py-20 md:absolute md:block md:py-0">
         {robots.map((robot, i) => {
-          const cfg = positions[i];
+          const cfg = positions[i]!;
           const y = reducedMotion ? 0 : offset * (cfg.depth * 160 - 80);
           return (
             <div

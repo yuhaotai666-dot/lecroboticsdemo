@@ -132,7 +132,16 @@ export function HandsHero() {
           </div>
 
           <div className="pointer-events-none z-30 mt-10 flex max-w-[44rem] flex-col items-center justify-center gap-0.5 px-5 text-center md:absolute md:inset-0 md:mx-auto md:mt-0 md:gap-1.5">
-            {([0, 1, 2] as const).map((i) => (
+            {[
+              // Brand name, so it is not translated — and it carries the site's
+              // wordmark treatment (primary-coloured dot) used in the header and
+              // footer rather than rendering as flat text.
+              <>
+                LEC<span className="text-primary">.</span>ROBOTICS
+              </>,
+              t("home.hands.line2"),
+              t("home.hands.line3"),
+            ].map((content, i) => (
               <div
                 key={i}
                 ref={(el) => {
@@ -141,10 +150,12 @@ export function HandsHero() {
                 className={`hands-hero__text leading-[1.05] font-semibold tracking-tight ${
                   i === 1
                     ? "text-foreground text-[clamp(1.75rem,4.7vw,4rem)]"
-                    : "text-muted-foreground text-[clamp(1.25rem,3.3vw,2.75rem)]"
+                    : i === 0
+                      ? "text-foreground text-[clamp(1.25rem,3.3vw,2.75rem)]"
+                      : "text-muted-foreground text-[clamp(1.25rem,3.3vw,2.75rem)]"
                 }`}
               >
-                {t(`home.hands.line${i + 1}`)}
+                {content}
               </div>
             ))}
           </div>

@@ -186,10 +186,9 @@ export const en: Record<string, string> = {
   "product.badge.popular": "Popular",
 
   // Home
-  "home.hands.line1": "Let robots",
   "home.hands.line2": "power your business",
   "home.hands.line3": "to the next level",
-  "home.hands.summary": "Let robots power your business to the next level",
+  "home.hands.summary": "LEC.ROBOTICS power your business to the next level",
   "home.kicker": "Commercial service robotics · United Kingdom",
   "home.heroTitle1": "Robots that do the shift.",
   "home.heroTitle2": "Priced, financed and supported here.",

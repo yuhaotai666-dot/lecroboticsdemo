@@ -220,7 +220,10 @@ function Home() {
           {/* A rule spans the gap to the link, tying the two ends of the row
               together instead of leaving them floating apart. */}
           <div className="flex flex-wrap items-end gap-4">
-            <div className="shrink-0">
+            {/* shrink-0 only from md: below it the heading could not wrap and
+                overflowed the viewport — the section clips, so it was silently
+                cut rather than producing a scrollbar. */}
+            <div className="md:shrink-0">
               <p className="label-mono text-muted-foreground">{t("home.rangeKicker")}</p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
                 {t("home.rangeTitle")}

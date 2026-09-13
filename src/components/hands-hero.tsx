@@ -123,36 +123,41 @@ export function HandsHero() {
                 className="hands-hero__hand hands-hero__hand--human w-full object-contain"
               />
             </div>
+          </div>
 
-            {/* depth-4 — headline */}
-            <div className="pointer-events-none z-30 mt-10 flex max-w-[44rem] flex-col items-center justify-center gap-0.5 px-5 text-center md:absolute md:inset-0 md:mx-auto md:mt-0 md:gap-1.5">
-              {[
-                // Brand name, so it is not translated — and it carries the site's
-                // wordmark treatment (primary-coloured dot) used in the header and
-                // footer rather than rendering as flat text.
-                <>
-                  LEC<span className="text-primary">.</span>ROBOTICS
-                </>,
-                t("home.hands.line2"),
-                t("home.hands.line3"),
-              ].map((content, i) => (
-                <div
-                  key={i}
-                  ref={(el) => {
-                    textRefs.current[i] = el;
-                  }}
-                  className={`hands-hero__text leading-[1.05] font-semibold tracking-tight ${
-                    i === 1
-                      ? "text-foreground text-[clamp(1.75rem,4.7vw,4rem)]"
-                      : i === 0
-                        ? "text-foreground text-[clamp(1.25rem,3.3vw,2.75rem)]"
-                        : "text-muted-foreground text-[clamp(1.25rem,3.3vw,2.75rem)]"
-                  }`}
-                >
-                  {content}
-                </div>
-              ))}
-            </div>
+          {/* depth-4 — headline.
+              A sibling of the hands row, not a child of it: as a child it became
+              a third flex item in that horizontal row, squeezing both hands to
+              the left and stranding the text against the right edge on narrow
+              screens. Below md it stacks under the hands; from md up it lifts
+              out and centres over them. */}
+          <div className="pointer-events-none z-30 mt-8 flex w-full max-w-[44rem] flex-col items-center justify-center gap-0.5 px-5 text-center md:absolute md:inset-0 md:mx-auto md:mt-0 md:gap-1.5">
+            {[
+              // Brand name, so it is not translated — and it carries the site's
+              // wordmark treatment (primary-coloured dot) used in the header and
+              // footer rather than rendering as flat text.
+              <>
+                LEC<span className="text-primary">.</span>ROBOTICS
+              </>,
+              t("home.hands.line2"),
+              t("home.hands.line3"),
+            ].map((content, i) => (
+              <div
+                key={i}
+                ref={(el) => {
+                  textRefs.current[i] = el;
+                }}
+                className={`hands-hero__text leading-[1.05] font-semibold tracking-tight ${
+                  i === 1
+                    ? "text-foreground text-[clamp(1.75rem,4.7vw,4rem)]"
+                    : i === 0
+                      ? "text-foreground text-[clamp(1.25rem,3.3vw,2.75rem)]"
+                      : "text-muted-foreground text-[clamp(1.25rem,3.3vw,2.75rem)]"
+                }`}
+              >
+                {content}
+              </div>
+            ))}
           </div>
         </div>
       </div>

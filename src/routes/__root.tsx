@@ -1,21 +1,18 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
-  Link,
   createRootRouteWithContext,
   useRouter,
   useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
 import { Toaster } from "@/components/ui/sonner";
-import { I18nProvider } from "@/lib/i18n/i18n-context";
+import { defaultLocale, isLocale, type Locale } from "@/lib/i18n/locales";
+import { LocaleLink } from "@/lib/i18n/locale-link";
 
 function NotFoundComponent() {
   return (
@@ -27,12 +24,12 @@ function NotFoundComponent() {
           The page you're looking for doesn't exist or has been moved.
         </p>
         <div className="mt-6">
-          <Link
+          <LocaleLink
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Go home
-          </Link>
+          </LocaleLink>
         </div>
       </div>
     </div>
@@ -42,9 +39,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -94,13 +88,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&display=swap",
-      },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
     ],
   }),
   shellComponent: RootShell,
@@ -109,9 +98,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+function useUrlLocale(): Locale {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const first = pathname.split("/")[1];
+  return isLocale(first) ? first : defaultLocale;
+}
+
 function RootShell({ children }: { children: ReactNode }) {
+  // lang must reflect the locale the server actually rendered, not a constant —
+  // screen readers and search engines both key off it.
+  const locale = useUrlLocale();
   return (
-    <html lang="en">
+    <html lang={locale}>
       <head>
         <HeadContent />
       </head>
@@ -125,31 +123,12 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const isBareCanvas = pathname === "/landing" || pathname.startsWith("/landing/");
-
-  if (isBareCanvas) {
-    return (
-      <QueryClientProvider client={queryClient}>
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
-      </QueryClientProvider>
-    );
-  }
-
   return (
     <QueryClientProvider client={queryClient}>
-      <I18nProvider>
-        <div className="flex min-h-screen flex-col bg-background text-foreground">
-          <SiteHeader />
-          <main className="flex-1">
-            {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-            <Outlet />
-          </main>
-          <SiteFooter />
-          <Toaster position="bottom-center" richColors />
-        </div>
-      </I18nProvider>
+      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes.
+          Site chrome lives in routes/{-$locale}/route.tsx so it can read translations. */}
+      <Outlet />
+      <Toaster position="bottom-center" richColors />
     </QueryClientProvider>
   );
 }

@@ -9,233 +9,209 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as BookADemoRouteImport } from './routes/book-a-demo'
-import { Route as CaseStudiesRouteImport } from './routes/case-studies'
-import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as LandingRouteImport } from './routes/landing'
-import { Route as ResourcesRouteImport } from './routes/resources'
-import { Route as RoiRouteImport } from './routes/roi'
-import { Route as SolutionsRouteImport } from './routes/solutions'
-import { Route as SupportRouteImport } from './routes/support'
-import { Route as ProductsIndexRouteImport } from './routes/products.index'
-import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
-import { Route as VideosSlugRouteImport } from './routes/videos.$slug'
+import { Route as Char123LocaleChar125RouteRouteImport } from './routes/{-$locale}/route'
+import { Route as Char123LocaleChar125IndexRouteImport } from './routes/{-$locale}/index'
+import { Route as Char123LocaleChar125AboutRouteImport } from './routes/{-$locale}/about'
+import { Route as Char123LocaleChar125BookADemoRouteImport } from './routes/{-$locale}/book-a-demo'
+import { Route as Char123LocaleChar125CaseStudiesRouteImport } from './routes/{-$locale}/case-studies'
+import { Route as Char123LocaleChar125IndustriesRouteImport } from './routes/{-$locale}/industries'
+import { Route as Char123LocaleChar125ResourcesRouteImport } from './routes/{-$locale}/resources'
+import { Route as Char123LocaleChar125RoiRouteImport } from './routes/{-$locale}/roi'
+import { Route as Char123LocaleChar125SolutionsRouteImport } from './routes/{-$locale}/solutions'
+import { Route as Char123LocaleChar125SupportRouteImport } from './routes/{-$locale}/support'
+import { Route as Char123LocaleChar125ProductsIndexRouteImport } from './routes/{-$locale}/products.index'
+import { Route as Char123LocaleChar125ProductsSlugRouteImport } from './routes/{-$locale}/products.$slug'
+import { Route as Char123LocaleChar125VideosSlugRouteImport } from './routes/{-$locale}/videos.$slug'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BookADemoRoute = BookADemoRouteImport.update({
-  id: '/book-a-demo',
-  path: '/book-a-demo',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CaseStudiesRoute = CaseStudiesRouteImport.update({
-  id: '/case-studies',
-  path: '/case-studies',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IndustriesRoute = IndustriesRouteImport.update({
-  id: '/industries',
-  path: '/industries',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const LandingRoute = LandingRouteImport.update({
   id: '/landing',
   path: '/landing',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResourcesRoute = ResourcesRouteImport.update({
-  id: '/resources',
-  path: '/resources',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RoiRoute = RoiRouteImport.update({
+const Char123LocaleChar125RouteRoute =
+  Char123LocaleChar125RouteRouteImport.update({
+    id: '/{-$locale}',
+    path: '/{-$locale}',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const Char123LocaleChar125IndexRoute =
+  Char123LocaleChar125IndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125AboutRoute =
+  Char123LocaleChar125AboutRouteImport.update({
+    id: '/about',
+    path: '/about',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125BookADemoRoute =
+  Char123LocaleChar125BookADemoRouteImport.update({
+    id: '/book-a-demo',
+    path: '/book-a-demo',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125CaseStudiesRoute =
+  Char123LocaleChar125CaseStudiesRouteImport.update({
+    id: '/case-studies',
+    path: '/case-studies',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125IndustriesRoute =
+  Char123LocaleChar125IndustriesRouteImport.update({
+    id: '/industries',
+    path: '/industries',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125ResourcesRoute =
+  Char123LocaleChar125ResourcesRouteImport.update({
+    id: '/resources',
+    path: '/resources',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125RoiRoute = Char123LocaleChar125RoiRouteImport.update({
   id: '/roi',
   path: '/roi',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => Char123LocaleChar125RouteRoute,
 } as any)
-const SolutionsRoute = SolutionsRouteImport.update({
-  id: '/solutions',
-  path: '/solutions',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SupportRoute = SupportRouteImport.update({
-  id: '/support',
-  path: '/support',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProductsIndexRoute = ProductsIndexRouteImport.update({
-  id: '/products/',
-  path: '/products/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProductsSlugRoute = ProductsSlugRouteImport.update({
-  id: '/products/$slug',
-  path: '/products/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const VideosSlugRoute = VideosSlugRouteImport.update({
-  id: '/videos/$slug',
-  path: '/videos/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const Char123LocaleChar125SolutionsRoute =
+  Char123LocaleChar125SolutionsRouteImport.update({
+    id: '/solutions',
+    path: '/solutions',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125SupportRoute =
+  Char123LocaleChar125SupportRouteImport.update({
+    id: '/support',
+    path: '/support',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125ProductsIndexRoute =
+  Char123LocaleChar125ProductsIndexRouteImport.update({
+    id: '/products/',
+    path: '/products/',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125ProductsSlugRoute =
+  Char123LocaleChar125ProductsSlugRouteImport.update({
+    id: '/products/$slug',
+    path: '/products/$slug',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125VideosSlugRoute =
+  Char123LocaleChar125VideosSlugRouteImport.update({
+    id: '/videos/$slug',
+    path: '/videos/$slug',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/book-a-demo': typeof BookADemoRoute
-  '/case-studies': typeof CaseStudiesRoute
-  '/industries': typeof IndustriesRoute
+  '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
   '/landing': typeof LandingRoute
-  '/resources': typeof ResourcesRoute
-  '/roi': typeof RoiRoute
-  '/solutions': typeof SolutionsRoute
-  '/support': typeof SupportRoute
-  '/products/$slug': typeof ProductsSlugRoute
-  '/videos/$slug': typeof VideosSlugRoute
-  '/products/': typeof ProductsIndexRoute
+  '/{-$locale}/about': typeof Char123LocaleChar125AboutRoute
+  '/{-$locale}/book-a-demo': typeof Char123LocaleChar125BookADemoRoute
+  '/{-$locale}/case-studies': typeof Char123LocaleChar125CaseStudiesRoute
+  '/{-$locale}/industries': typeof Char123LocaleChar125IndustriesRoute
+  '/{-$locale}/resources': typeof Char123LocaleChar125ResourcesRoute
+  '/{-$locale}/roi': typeof Char123LocaleChar125RoiRoute
+  '/{-$locale}/solutions': typeof Char123LocaleChar125SolutionsRoute
+  '/{-$locale}/support': typeof Char123LocaleChar125SupportRoute
+  '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
+  '/{-$locale}/products/$slug': typeof Char123LocaleChar125ProductsSlugRoute
+  '/{-$locale}/videos/$slug': typeof Char123LocaleChar125VideosSlugRoute
+  '/{-$locale}/products/': typeof Char123LocaleChar125ProductsIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/book-a-demo': typeof BookADemoRoute
-  '/case-studies': typeof CaseStudiesRoute
-  '/industries': typeof IndustriesRoute
   '/landing': typeof LandingRoute
-  '/resources': typeof ResourcesRoute
-  '/roi': typeof RoiRoute
-  '/solutions': typeof SolutionsRoute
-  '/support': typeof SupportRoute
-  '/products/$slug': typeof ProductsSlugRoute
-  '/videos/$slug': typeof VideosSlugRoute
-  '/products': typeof ProductsIndexRoute
+  '/{-$locale}/about': typeof Char123LocaleChar125AboutRoute
+  '/{-$locale}/book-a-demo': typeof Char123LocaleChar125BookADemoRoute
+  '/{-$locale}/case-studies': typeof Char123LocaleChar125CaseStudiesRoute
+  '/{-$locale}/industries': typeof Char123LocaleChar125IndustriesRoute
+  '/{-$locale}/resources': typeof Char123LocaleChar125ResourcesRoute
+  '/{-$locale}/roi': typeof Char123LocaleChar125RoiRoute
+  '/{-$locale}/solutions': typeof Char123LocaleChar125SolutionsRoute
+  '/{-$locale}/support': typeof Char123LocaleChar125SupportRoute
+  '/{-$locale}': typeof Char123LocaleChar125IndexRoute
+  '/{-$locale}/products/$slug': typeof Char123LocaleChar125ProductsSlugRoute
+  '/{-$locale}/videos/$slug': typeof Char123LocaleChar125VideosSlugRoute
+  '/{-$locale}/products': typeof Char123LocaleChar125ProductsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/book-a-demo': typeof BookADemoRoute
-  '/case-studies': typeof CaseStudiesRoute
-  '/industries': typeof IndustriesRoute
+  '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
   '/landing': typeof LandingRoute
-  '/resources': typeof ResourcesRoute
-  '/roi': typeof RoiRoute
-  '/solutions': typeof SolutionsRoute
-  '/support': typeof SupportRoute
-  '/products/$slug': typeof ProductsSlugRoute
-  '/videos/$slug': typeof VideosSlugRoute
-  '/products/': typeof ProductsIndexRoute
+  '/{-$locale}/about': typeof Char123LocaleChar125AboutRoute
+  '/{-$locale}/book-a-demo': typeof Char123LocaleChar125BookADemoRoute
+  '/{-$locale}/case-studies': typeof Char123LocaleChar125CaseStudiesRoute
+  '/{-$locale}/industries': typeof Char123LocaleChar125IndustriesRoute
+  '/{-$locale}/resources': typeof Char123LocaleChar125ResourcesRoute
+  '/{-$locale}/roi': typeof Char123LocaleChar125RoiRoute
+  '/{-$locale}/solutions': typeof Char123LocaleChar125SolutionsRoute
+  '/{-$locale}/support': typeof Char123LocaleChar125SupportRoute
+  '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
+  '/{-$locale}/products/$slug': typeof Char123LocaleChar125ProductsSlugRoute
+  '/{-$locale}/videos/$slug': typeof Char123LocaleChar125VideosSlugRoute
+  '/{-$locale}/products/': typeof Char123LocaleChar125ProductsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
-    | '/about'
-    | '/book-a-demo'
-    | '/case-studies'
-    | '/industries'
+    | '/{-$locale}'
     | '/landing'
-    | '/resources'
-    | '/roi'
-    | '/solutions'
-    | '/support'
-    | '/products/$slug'
-    | '/videos/$slug'
-    | '/products/'
+    | '/{-$locale}/about'
+    | '/{-$locale}/book-a-demo'
+    | '/{-$locale}/case-studies'
+    | '/{-$locale}/industries'
+    | '/{-$locale}/resources'
+    | '/{-$locale}/roi'
+    | '/{-$locale}/solutions'
+    | '/{-$locale}/support'
+    | '/{-$locale}/'
+    | '/{-$locale}/products/$slug'
+    | '/{-$locale}/videos/$slug'
+    | '/{-$locale}/products/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
-    | '/about'
-    | '/book-a-demo'
-    | '/case-studies'
-    | '/industries'
     | '/landing'
-    | '/resources'
-    | '/roi'
-    | '/solutions'
-    | '/support'
-    | '/products/$slug'
-    | '/videos/$slug'
-    | '/products'
+    | '/{-$locale}/about'
+    | '/{-$locale}/book-a-demo'
+    | '/{-$locale}/case-studies'
+    | '/{-$locale}/industries'
+    | '/{-$locale}/resources'
+    | '/{-$locale}/roi'
+    | '/{-$locale}/solutions'
+    | '/{-$locale}/support'
+    | '/{-$locale}'
+    | '/{-$locale}/products/$slug'
+    | '/{-$locale}/videos/$slug'
+    | '/{-$locale}/products'
   id:
     | '__root__'
-    | '/'
-    | '/about'
-    | '/book-a-demo'
-    | '/case-studies'
-    | '/industries'
+    | '/{-$locale}'
     | '/landing'
-    | '/resources'
-    | '/roi'
-    | '/solutions'
-    | '/support'
-    | '/products/$slug'
-    | '/videos/$slug'
-    | '/products/'
+    | '/{-$locale}/about'
+    | '/{-$locale}/book-a-demo'
+    | '/{-$locale}/case-studies'
+    | '/{-$locale}/industries'
+    | '/{-$locale}/resources'
+    | '/{-$locale}/roi'
+    | '/{-$locale}/solutions'
+    | '/{-$locale}/support'
+    | '/{-$locale}/'
+    | '/{-$locale}/products/$slug'
+    | '/{-$locale}/videos/$slug'
+    | '/{-$locale}/products/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
-  BookADemoRoute: typeof BookADemoRoute
-  CaseStudiesRoute: typeof CaseStudiesRoute
-  IndustriesRoute: typeof IndustriesRoute
+  Char123LocaleChar125RouteRoute: typeof Char123LocaleChar125RouteRouteWithChildren
   LandingRoute: typeof LandingRoute
-  ResourcesRoute: typeof ResourcesRoute
-  RoiRoute: typeof RoiRoute
-  SolutionsRoute: typeof SolutionsRoute
-  SupportRoute: typeof SupportRoute
-  ProductsSlugRoute: typeof ProductsSlugRoute
-  VideosSlugRoute: typeof VideosSlugRoute
-  ProductsIndexRoute: typeof ProductsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/book-a-demo': {
-      id: '/book-a-demo'
-      path: '/book-a-demo'
-      fullPath: '/book-a-demo'
-      preLoaderRoute: typeof BookADemoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/case-studies': {
-      id: '/case-studies'
-      path: '/case-studies'
-      fullPath: '/case-studies'
-      preLoaderRoute: typeof CaseStudiesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/industries': {
-      id: '/industries'
-      path: '/industries'
-      fullPath: '/industries'
-      preLoaderRoute: typeof IndustriesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/landing': {
       id: '/landing'
       path: '/landing'
@@ -243,72 +219,141 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LandingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/resources': {
-      id: '/resources'
+    '/{-$locale}': {
+      id: '/{-$locale}'
+      path: '/{-$locale}'
+      fullPath: '/{-$locale}'
+      preLoaderRoute: typeof Char123LocaleChar125RouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/{-$locale}/': {
+      id: '/{-$locale}/'
+      path: '/'
+      fullPath: '/{-$locale}/'
+      preLoaderRoute: typeof Char123LocaleChar125IndexRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/about': {
+      id: '/{-$locale}/about'
+      path: '/about'
+      fullPath: '/{-$locale}/about'
+      preLoaderRoute: typeof Char123LocaleChar125AboutRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/book-a-demo': {
+      id: '/{-$locale}/book-a-demo'
+      path: '/book-a-demo'
+      fullPath: '/{-$locale}/book-a-demo'
+      preLoaderRoute: typeof Char123LocaleChar125BookADemoRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/case-studies': {
+      id: '/{-$locale}/case-studies'
+      path: '/case-studies'
+      fullPath: '/{-$locale}/case-studies'
+      preLoaderRoute: typeof Char123LocaleChar125CaseStudiesRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/industries': {
+      id: '/{-$locale}/industries'
+      path: '/industries'
+      fullPath: '/{-$locale}/industries'
+      preLoaderRoute: typeof Char123LocaleChar125IndustriesRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/resources': {
+      id: '/{-$locale}/resources'
       path: '/resources'
-      fullPath: '/resources'
-      preLoaderRoute: typeof ResourcesRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/{-$locale}/resources'
+      preLoaderRoute: typeof Char123LocaleChar125ResourcesRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
     }
-    '/roi': {
-      id: '/roi'
+    '/{-$locale}/roi': {
+      id: '/{-$locale}/roi'
       path: '/roi'
-      fullPath: '/roi'
-      preLoaderRoute: typeof RoiRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/{-$locale}/roi'
+      preLoaderRoute: typeof Char123LocaleChar125RoiRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
     }
-    '/solutions': {
-      id: '/solutions'
+    '/{-$locale}/solutions': {
+      id: '/{-$locale}/solutions'
       path: '/solutions'
-      fullPath: '/solutions'
-      preLoaderRoute: typeof SolutionsRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/{-$locale}/solutions'
+      preLoaderRoute: typeof Char123LocaleChar125SolutionsRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
     }
-    '/support': {
-      id: '/support'
+    '/{-$locale}/support': {
+      id: '/{-$locale}/support'
       path: '/support'
-      fullPath: '/support'
-      preLoaderRoute: typeof SupportRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/{-$locale}/support'
+      preLoaderRoute: typeof Char123LocaleChar125SupportRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
     }
-    '/products/': {
-      id: '/products/'
+    '/{-$locale}/products/': {
+      id: '/{-$locale}/products/'
       path: '/products'
-      fullPath: '/products/'
-      preLoaderRoute: typeof ProductsIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/{-$locale}/products/'
+      preLoaderRoute: typeof Char123LocaleChar125ProductsIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
     }
-    '/products/$slug': {
-      id: '/products/$slug'
+    '/{-$locale}/products/$slug': {
+      id: '/{-$locale}/products/$slug'
       path: '/products/$slug'
-      fullPath: '/products/$slug'
-      preLoaderRoute: typeof ProductsSlugRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/{-$locale}/products/$slug'
+      preLoaderRoute: typeof Char123LocaleChar125ProductsSlugRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
     }
-    '/videos/$slug': {
-      id: '/videos/$slug'
+    '/{-$locale}/videos/$slug': {
+      id: '/{-$locale}/videos/$slug'
       path: '/videos/$slug'
-      fullPath: '/videos/$slug'
-      preLoaderRoute: typeof VideosSlugRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/{-$locale}/videos/$slug'
+      preLoaderRoute: typeof Char123LocaleChar125VideosSlugRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
     }
   }
 }
 
+interface Char123LocaleChar125RouteRouteChildren {
+  Char123LocaleChar125AboutRoute: typeof Char123LocaleChar125AboutRoute
+  Char123LocaleChar125BookADemoRoute: typeof Char123LocaleChar125BookADemoRoute
+  Char123LocaleChar125CaseStudiesRoute: typeof Char123LocaleChar125CaseStudiesRoute
+  Char123LocaleChar125IndustriesRoute: typeof Char123LocaleChar125IndustriesRoute
+  Char123LocaleChar125ResourcesRoute: typeof Char123LocaleChar125ResourcesRoute
+  Char123LocaleChar125RoiRoute: typeof Char123LocaleChar125RoiRoute
+  Char123LocaleChar125SolutionsRoute: typeof Char123LocaleChar125SolutionsRoute
+  Char123LocaleChar125SupportRoute: typeof Char123LocaleChar125SupportRoute
+  Char123LocaleChar125IndexRoute: typeof Char123LocaleChar125IndexRoute
+  Char123LocaleChar125ProductsSlugRoute: typeof Char123LocaleChar125ProductsSlugRoute
+  Char123LocaleChar125VideosSlugRoute: typeof Char123LocaleChar125VideosSlugRoute
+  Char123LocaleChar125ProductsIndexRoute: typeof Char123LocaleChar125ProductsIndexRoute
+}
+
+const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChildren =
+  {
+    Char123LocaleChar125AboutRoute: Char123LocaleChar125AboutRoute,
+    Char123LocaleChar125BookADemoRoute: Char123LocaleChar125BookADemoRoute,
+    Char123LocaleChar125CaseStudiesRoute: Char123LocaleChar125CaseStudiesRoute,
+    Char123LocaleChar125IndustriesRoute: Char123LocaleChar125IndustriesRoute,
+    Char123LocaleChar125ResourcesRoute: Char123LocaleChar125ResourcesRoute,
+    Char123LocaleChar125RoiRoute: Char123LocaleChar125RoiRoute,
+    Char123LocaleChar125SolutionsRoute: Char123LocaleChar125SolutionsRoute,
+    Char123LocaleChar125SupportRoute: Char123LocaleChar125SupportRoute,
+    Char123LocaleChar125IndexRoute: Char123LocaleChar125IndexRoute,
+    Char123LocaleChar125ProductsSlugRoute:
+      Char123LocaleChar125ProductsSlugRoute,
+    Char123LocaleChar125VideosSlugRoute: Char123LocaleChar125VideosSlugRoute,
+    Char123LocaleChar125ProductsIndexRoute:
+      Char123LocaleChar125ProductsIndexRoute,
+  }
+
+const Char123LocaleChar125RouteRouteWithChildren =
+  Char123LocaleChar125RouteRoute._addFileChildren(
+    Char123LocaleChar125RouteRouteChildren,
+  )
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
-  BookADemoRoute: BookADemoRoute,
-  CaseStudiesRoute: CaseStudiesRoute,
-  IndustriesRoute: IndustriesRoute,
+  Char123LocaleChar125RouteRoute: Char123LocaleChar125RouteRouteWithChildren,
   LandingRoute: LandingRoute,
-  ResourcesRoute: ResourcesRoute,
-  RoiRoute: RoiRoute,
-  SolutionsRoute: SolutionsRoute,
-  SupportRoute: SupportRoute,
-  ProductsSlugRoute: ProductsSlugRoute,
-  VideosSlugRoute: VideosSlugRoute,
-  ProductsIndexRoute: ProductsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

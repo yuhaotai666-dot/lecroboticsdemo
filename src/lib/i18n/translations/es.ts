@@ -15,25 +15,32 @@ export const es: Record<string, string> = {
   "pg.fnb": "Alimentación y bebidas automatizadas",
 
   "ind.food-and-beverage.name": "Alimentación y bebidas",
-  "ind.food-and-beverage.blurb": "Entrega en restaurantes, servicio de comidas, café, helados y automatización de la limpieza.",
+  "ind.food-and-beverage.blurb":
+    "Entrega en restaurantes, servicio de comidas, café, helados y automatización de la limpieza.",
   "ind.retail.name": "Comercio minorista",
-  "ind.retail.blurb": "Atención al cliente, bebidas automatizadas, transporte interno y limpieza de suelos.",
+  "ind.retail.blurb":
+    "Atención al cliente, bebidas automatizadas, transporte interno y limpieza de suelos.",
   "ind.hospitality.name": "Hostelería",
-  "ind.hospitality.blurb": "Entrega en habitaciones, servicio de restaurante, experiencia del huésped y limpieza.",
+  "ind.hospitality.blurb":
+    "Entrega en habitaciones, servicio de restaurante, experiencia del huésped y limpieza.",
   "ind.industrial-logistics.name": "Industria, almacén y logística",
-  "ind.industrial-logistics.blurb": "Transporte de materiales, tareas logísticas repetitivas y limpieza de grandes superficies.",
+  "ind.industrial-logistics.blurb":
+    "Transporte de materiales, tareas logísticas repetitivas y limpieza de grandes superficies.",
   "ind.health-care.name": "Sanidad",
   "ind.health-care.blurb": "Entrega interna, transporte de materiales y limpieza automatizada.",
   "ind.transportation.name": "Transporte",
-  "ind.transportation.blurb": "Aeropuertos, estaciones y grandes centros que necesitan automatización de limpieza y entrega.",
+  "ind.transportation.blurb":
+    "Aeropuertos, estaciones y grandes centros que necesitan automatización de limpieza y entrega.",
   "ind.entertainment-sports.name": "Ocio y deporte",
-  "ind.entertainment-sports.blurb": "Servicio de comidas, bebidas, entrega móvil y limpieza de recintos.",
+  "ind.entertainment-sports.blurb":
+    "Servicio de comidas, bebidas, entrega móvil y limpieza de recintos.",
   "ind.real-estate.name": "Inmobiliaria y servicios inmobiliarios",
   "ind.real-estate.blurb": "Entrega en edificios, limpieza de propiedades y logística interna.",
   "ind.education.name": "Educación",
   "ind.education.blurb": "Limpieza de campus, entrega en edificios y servicio de comidas.",
   "ind.public-service.name": "Servicios públicos",
-  "ind.public-service.blurb": "Automatización inteligente para pabellones, instalaciones públicas y grandes recintos.",
+  "ind.public-service.blurb":
+    "Automatización inteligente para pabellones, instalaciones públicas y grandes recintos.",
 
   "case.featured": "Casos de éxito destacados",
   "case.industrial": "Industria y logística",
@@ -85,7 +92,8 @@ export const es: Record<string, string> = {
   "lang.label": "Idioma",
 
   "footer.newsletter.title": "Suscríbete a nuestras noticias",
-  "footer.newsletter.sub": "Recibe novedades de productos, análisis de robótica y noticias de la empresa.",
+  "footer.newsletter.sub":
+    "Recibe novedades de productos, análisis de robótica y noticias de la empresa.",
   "footer.newsletter.placeholder": "Introduce tu correo electrónico",
   "footer.newsletter.subscribe": "Suscribirse",
   "footer.newsletter.toast": "Gracias por suscribirte — ya estás en la lista.",
@@ -174,9 +182,6 @@ export const es: Record<string, string> = {
   "home.stat.sectors": "Sectores cubiertos",
   "home.stat.entry": "Precio de entrada + IVA",
   "home.stat.certified": "Gama certificada",
-  "home.eventStrip":
-    "Demostraciones en directo cada semana en el showroom de Chelsea — ve cada máquina funcionando antes de comprar.",
-  "home.eventCta": "Reservar una plaza",
   "home.findByJob": "Buscar por tarea",
   "home.catTitle": "Empieza por el trabajo, no por el número de modelo.",
   "home.view": "Ver",
@@ -186,17 +191,23 @@ export const es: Record<string, string> = {
   "home.capKicker": "Lo que realmente hacemos",
   "home.capTitle": "Seis capacidades. Un resultado.",
   "home.cap1.title": "Selección del robot — Encuentra el robot adecuado",
-  "home.cap1.body": "Evaluamos el espacio, los flujos y los requisitos operativos para seleccionar los robots más adecuados para el trabajo.",
+  "home.cap1.body":
+    "Evaluamos el espacio, los flujos y los requisitos operativos para seleccionar los robots más adecuados para el trabajo.",
   "home.cap2.title": "Despliegue y localización — Intégralo en tu operación",
-  "home.cap2.body": "Configuramos cada robot para su entorno, desde el mapeo y la localización hasta la navegación, la seguridad y el acceso al edificio.",
+  "home.cap2.body":
+    "Configuramos cada robot para su entorno, desde el mapeo y la localización hasta la navegación, la seguridad y el acceso al edificio.",
   "home.cap3.title": "Integración de sistemas — Conecta los robots a tu flujo",
-  "home.cap3.body": "Conectamos la robótica con ascensores, puertas, WMS, POS, API y sistemas de gestión de edificios.",
+  "home.cap3.body":
+    "Conectamos la robótica con ascensores, puertas, WMS, POS, API y sistemas de gestión de edificios.",
   "home.cap4.title": "Formación operativa — Enseña a los robots cómo trabajas",
-  "home.cap4.body": "Entrenamos los sistemas robóticos en torno a tu espacio, tus flujos de trabajo y tus datos operativos.",
+  "home.cap4.body":
+    "Entrenamos los sistemas robóticos en torno a tu espacio, tus flujos de trabajo y tus datos operativos.",
   "home.cap5.title": "Inteligencia de flota — Haz que la flota sea inteligente",
-  "home.cap5.body": "Los agentes de IA asignan tareas, coordinan flotas y gestionan excepciones para que tu equipo gestione resultados, no máquinas.",
+  "home.cap5.body":
+    "Los agentes de IA asignan tareas, coordinan flotas y gestionan excepciones para que tu equipo gestione resultados, no máquinas.",
   "home.cap6.title": "Escala operativa — Escala en toda tu operación",
-  "home.cap6.body": "Empieza con un robot y un flujo de trabajo, y amplía después a equipos, sedes y flotas completas.",
+  "home.cap6.body":
+    "Empieza con un robot y un flujo de trabajo, y amplía después a equipos, sedes y flotas completas.",
   "home.ctaTitle": "Ve uno funcionando en tu espacio.",
   "home.ctaSub":
     "Trae tu plano y tu esquema de turnos. Haremos funcionar la máquina y te daremos los números de retorno para tu propia operación.",
@@ -204,10 +215,12 @@ export const es: Record<string, string> = {
 
   "products.kicker": "La gama",
   "products.title": "Once máquinas. Todos los precios publicados.",
-  "products.sub": "Filtra por la tarea que necesitas y compara toda la gama en carga, autonomía y coste en una sola tabla.",
+  "products.sub":
+    "Filtra por la tarea que necesitas y compara toda la gama en carga, autonomía y coste en una sola tabla.",
   "products.all": "Todos",
   "products.compareTitle": "Comparar toda la gama",
-  "products.compareNote": "Todos los precios sin IVA. Financiación a 12 meses al 7 % salvo indicación contraria.",
+  "products.compareNote":
+    "Todos los precios sin IVA. Financiación a 12 meses al 7 % salvo indicación contraria.",
   "products.th.model": "Modelo",
   "products.th.category": "Categoría",
   "products.th.keySpec": "Especificación clave",
@@ -224,14 +237,16 @@ export const es: Record<string, string> = {
   "pdp.watchItWork": "Verlo en acción",
   "pdp.specSheet": "Ficha técnica",
   "pdp.specification": "Especificaciones",
-  "pdp.specNote": "Datos tal como se publican en las páginas de producto actuales de LEC Robotics. Especificación completa suministrada con el presupuesto.",
+  "pdp.specNote":
+    "Datos tal como se publican en las páginas de producto actuales de LEC Robotics. Especificación completa suministrada con el presupuesto.",
   "pdp.deployTitle": "Cómo es un despliegue",
   "pdp.step1.title": "Estudio del sitio",
   "pdp.step1.body": "Mapeamos tus suelos, ascensores, puntos de carga y esquema de turnos.",
   "pdp.step2.title": "Instalación y formación",
   "pdp.step2.body": "Máquina puesta en marcha, rutas creadas, tu equipo formado durante el turno.",
   "pdp.step3.title": "Operación y soporte",
-  "pdp.step3.body": "Soporte desde el Reino Unido, actualizaciones de software y mantenimiento durante todo el período.",
+  "pdp.step3.body":
+    "Soporte desde el Reino Unido, actualizaciones de software y mantenimiento durante todo el período.",
   "pdp.exploreOthers": "Explorar otros robots",
   "pdp.allRobots": "Todos los robots",
 
@@ -245,7 +260,8 @@ export const es: Record<string, string> = {
 
   "cases.kicker": "Casos de éxito",
   "cases.title": "Robots trabajando, sitio a sitio.",
-  "cases.sub": "Registros de despliegue agrupados por sector. Los nombres de clientes y resultados medidos se añaden cuando se aprueba cada referencia.",
+  "cases.sub":
+    "Registros de despliegue agrupados por sector. Los nombres de clientes y resultados medidos se añaden cuando se aprueba cada referencia.",
   "cases.filter.all": "Todos",
   "cases.challenge": "Desafío",
   "cases.solution": "Solución",
@@ -257,30 +273,38 @@ export const es: Record<string, string> = {
   "cases.locationTbc": "Cliente por confirmar · Reino Unido",
   "cases.resultTbc": "Resultado por confirmar con el cliente.",
   "cases.s1.title": "Mejorar la eficiencia de la entrega en habitaciones de hotel",
-  "cases.s1.challenge": "El personal del turno de noche pasaba la mayor parte del turno recorriendo los pisos para las entregas.",
+  "cases.s1.challenge":
+    "El personal del turno de noche pasaba la mayor parte del turno recorriendo los pisos para las entregas.",
   "cases.s1.solution": "Robot de entrega integrado con ascensor, con compartimento con llave.",
   "cases.s2.title": "Servicio de platos en un comedor de alto volumen",
-  "cases.s2.challenge": "Los camareros recorrían largas distancias entre la cocina y las mesas en las horas punta.",
+  "cases.s2.challenge":
+    "Los camareros recorrían largas distancias entre la cocina y las mesas en las horas punta.",
   "cases.s2.solution": "Robot porta-bandeja con pantalla digital para entrega y promoción en sala.",
   "cases.s3.title": "Limpieza nocturna de suelos en una tienda",
-  "cases.s3.challenge": "La limpieza se contrataba fuera del horario con tarifas de mano de obra superiores.",
+  "cases.s3.challenge":
+    "La limpieza se contrataba fuera del horario con tarifas de mano de obra superiores.",
   "cases.s3.solution": "Fregado y trapeado programado sin supervisión en la zona de ventas.",
   "cases.s4.title": "Mover cargas pesadas entre zonas del almacén",
-  "cases.s4.challenge": "Los traslados repetitivos de existencias pesadas ocupaban a operarios cualificados.",
+  "cases.s4.challenge":
+    "Los traslados repetitivos de existencias pesadas ocupaban a operarios cualificados.",
   "cases.s4.solution": "Mensajero autónomo de 100 kg en rutas internas fijas.",
   "cases.s5.title": "Entregas internas en un entorno sanitario",
-  "cases.s5.challenge": "El personal sanitario movía ropa y consumibles entre departamentos a mano.",
+  "cases.s5.challenge":
+    "El personal sanitario movía ropa y consumibles entre departamentos a mano.",
   "cases.s5.solution": "Entrega en compartimento seguro con acceso al ascensor entre pisos.",
   "cases.s6.title": "Limpieza de zonas comunes en un edificio gestionado",
-  "cases.s6.challenge": "Grandes vestíbulos y pasillos requerían limpieza diaria con un equipo pequeño.",
+  "cases.s6.challenge":
+    "Grandes vestíbulos y pasillos requerían limpieza diaria con un equipo pequeño.",
   "cases.s6.solution": "Robot de limpieza 4 en 1 en ruta programada sin supervisión.",
   "cases.s7.title": "Servicio de café sin personal en un lugar público",
-  "cases.s7.challenge": "No se podía cubrir con personal una pequeña oferta de bebidas en horarios ampliados.",
+  "cases.s7.challenge":
+    "No se podía cubrir con personal una pequeña oferta de bebidas en horarios ampliados.",
   "cases.s7.solution": "Quiosco de café robotizado con menú de calidad barista, sin personal.",
 
   "resources.kicker": "Recursos",
   "resources.title": "Todo lo que conviene leer antes de desplegar.",
-  "resources.sub": "Noticias, análisis prácticos, eventos y documentación de producto en un solo lugar. Las entradas con fecha se publican a medida que salen.",
+  "resources.sub":
+    "Noticias, análisis prácticos, eventos y documentación de producto en un solo lugar. Las entradas con fecha se publican a medida que salen.",
   "resources.tbc": "Por confirmar",
   "resources.news1": "Espacio de anuncio — contenido pendiente",
   "resources.news2": "Espacio de lanzamiento de producto — contenido pendiente",
@@ -293,7 +317,8 @@ export const es: Record<string, string> = {
   "resources.cat.news": "Noticia",
   "resources.cat.insight": "Análisis",
   "resources.cat.event": "Evento",
-  "resources.downloads.blurb": "Folletos de producto, fichas técnicas y material de soluciones. Las fichas disponibles están enlazadas abajo; el resto seguirá.",
+  "resources.downloads.blurb":
+    "Folletos de producto, fichas técnicas y material de soluciones. Las fichas disponibles están enlazadas abajo; el resto seguirá.",
   "resources.specSheet": "Ficha técnica de {name}",
   "resources.download": "Descargar",
   "resources.request": "Solicitar",
@@ -301,7 +326,8 @@ export const es: Record<string, string> = {
 
   "about.kicker": "Sobre nosotros",
   "about.title": "Construyendo el espacio de trabajo de la próxima década.",
-  "about.sub": "Una empresa de robótica para operadores comerciales: un único proveedor para las máquinas, el despliegue y el servicio que las mantiene en marcha.",
+  "about.sub":
+    "Una empresa de robótica para operadores comerciales: un único proveedor para las máquinas, el despliegue y el servicio que las mantiene en marcha.",
   "about.overview.body":
     "Suministramos, desplegamos y damos soporte a robots de servicio comerciales en todo el Reino Unido: servicio en sala, limpieza autónoma de suelos, entrega segura en edificios, transporte interno pesado y quioscos de alimentación sin personal. Cada máquina que vendemos la instalamos, ponemos en marcha y mantenemos nosotros mismos.",
   "about.mission.body":
@@ -330,33 +356,41 @@ export const es: Record<string, string> = {
   "support.card4.title": "Soporte técnico",
   "support.card4.body": "Diagnóstico remoto y escalado in situ cuando sea necesario.",
   "support.repair.title": "Servicio online / solicitud de reparación",
-  "support.repair.sub": "Indícanos el modelo, el sitio y lo que hace el robot. Hacemos una valoración remota antes de enviar un técnico.",
+  "support.repair.sub":
+    "Indícanos el modelo, el sitio y lo que hace el robot. Hacemos una valoración remota antes de enviar un técnico.",
   "support.form.model": "Modelo de robot",
   "support.form.site": "Sitio / empresa",
   "support.form.sitePlaceholder": "Dónde está instalado el robot",
   "support.form.issue": "Qué está pasando",
   "support.form.issuePlaceholder": "Mensajes de error, cuándo empezó, qué cambió",
   "support.form.submit": "Enviar solicitud",
-  "support.form.note": "Las solicitudes aún no se dirigen a un servicio de asistencia activo — conecta este formulario cuando tu bandeja de soporte esté lista.",
-  "support.documents.sub": "Manuales, guías de inicio rápido, documentos de instalación y guías de resolución de problemas por modelo. Las fichas técnicas publicadas están en la página de recursos.",
+  "support.form.note":
+    "Las solicitudes aún no se dirigen a un servicio de asistencia activo — conecta este formulario cuando tu bandeja de soporte esté lista.",
+  "support.documents.sub":
+    "Manuales, guías de inicio rápido, documentos de instalación y guías de resolución de problemas por modelo. Las fichas técnicas publicadas están en la página de recursos.",
   "support.documents.go": "Ir a descargas",
   "support.plans.li1": "Instalación y puesta en marcha, incluidos mapeo y entrega al personal.",
   "support.plans.li2": "Visitas de mantenimiento preventivo en un ciclo programado.",
   "support.plans.li3": "Cobertura posventa y repuestos. Precios y condiciones por confirmar.",
-  "support.contact.sub": "El teléfono directo, el correo y los horarios de soporte se publicarán una vez confirmados.",
+  "support.contact.sub":
+    "El teléfono directo, el correo y los horarios de soporte se publicarán una vez confirmados.",
   "support.faq.title": "Preguntas frecuentes",
   "support.faq1.q": "¿Cuánto tarda un despliegue?",
-  "support.faq1.a": "La mayoría de las instalaciones de un solo robot se estudian, mapean y ponen en marcha en una sola visita. Los despliegues de varios pisos o integrados con ascensor llevan más tiempo.",
+  "support.faq1.a":
+    "La mayoría de las instalaciones de un solo robot se estudian, mapean y ponen en marcha en una sola visita. Los despliegues de varios pisos o integrados con ascensor llevan más tiempo.",
   "support.faq2.q": "¿El personal necesita formación?",
-  "support.faq2.a": "Sí, pero breve. La entrega cubre el arranque diario, la selección de rutas, la limpieza de los consumibles y la resolución básica de fallos.",
+  "support.faq2.a":
+    "Sí, pero breve. La entrega cubre el arranque diario, la selección de rutas, la limpieza de los consumibles y la resolución básica de fallos.",
   "support.faq3.q": "¿Qué pasa si un robot falla en el sitio?",
-  "support.faq3.a": "Envía una solicitud de reparación y primero hacemos una valoración remota. Si hace falta un técnico, programamos una visita.",
+  "support.faq3.a":
+    "Envía una solicitud de reparación y primero hacemos una valoración remota. Si hace falta un técnico, programamos una visita.",
   "support.faq4.q": "¿Qué cubre la garantía?",
   "support.faq4.a": "Las condiciones de garantía se están confirmando y aún no se indican aquí.",
 
   "demo.kicker": "Reservar una demo",
   "demo.title": "Mírala funcionar antes de comprarla.",
-  "demo.sub": "Nuestro showroom de Chelsea pone en marcha toda la gama. Trae un plano y un esquema de turnos: haremos funcionar la máquina en tus condiciones reales y te entregaremos las cifras de retorno.",
+  "demo.sub":
+    "Nuestro showroom de Chelsea pone en marcha toda la gama. Trae un plano y un esquema de turnos: haremos funcionar la máquina en tus condiciones reales y te entregaremos las cifras de retorno.",
   "demo.b1": "Sesión de 45 minutos, sin compromiso.",
   "demo.b2": "Cada máquina con precio el mismo día, IVA y financiación incluidos.",
   "demo.b3": "Estudio del sitio reservable justo después, si encaja.",
@@ -369,7 +403,8 @@ export const es: Record<string, string> = {
   "demo.form.notes": "¿Qué problema intentas resolver?",
   "demo.form.submit": "Solicitar una demo",
   "demo.sent.title": "Solicitud recibida.",
-  "demo.sent.body": "Este es un formulario de demostración — conéctalo a tu correo o CRM antes del lanzamiento.",
+  "demo.sent.body":
+    "Este es un formulario de demostración — conéctalo a tu correo o CRM antes del lanzamiento.",
   "demo.sector.hospitality": "Hostelería",
   "demo.sector.fnb": "Alimentación y bebidas",
   "demo.sector.healthcare": "Sanidad",
@@ -379,7 +414,8 @@ export const es: Record<string, string> = {
 
   "roi.kicker": "Calculadora de ROI",
   "roi.title": "¿En cuánto tiempo se amortiza?",
-  "roi.sub": "Una estimación aproximada basada en las horas de trabajo que una máquina quita de tu plantilla. No incluye consumibles, electricidad ni mantenimiento — es un punto de partida, no un presupuesto.",
+  "roi.sub":
+    "Una estimación aproximada basada en las horas de trabajo que una máquina quita de tu plantilla. No incluye consumibles, electricidad ni mantenimiento — es un punto de partida, no un presupuesto.",
   "roi.machine": "Máquina",
   "roi.wage": "Coste laboral por hora completo — {wage} £",
   "roi.hours": "Horas semanales que cubre el robot — {hours} h",
@@ -394,7 +430,8 @@ export const es: Record<string, string> = {
   "roi.cta": "Obtén las cifras para tu sitio",
 
   "videos.title": "{name} en vídeo",
-  "videos.intro": "Demostraciones filmadas y despliegues reales, para que veas la máquina funcionando antes de reservar una demo. {price} + IVA",
+  "videos.intro":
+    "Demostraciones filmadas y despliegues reales, para que veas la máquina funcionando antes de reservar una demo. {price} + IVA",
   "videos.introFinance": ", o {finance} con financiación.",
   "videos.bookLive": "Reservar una demo en directo",
   "videos.specPricing": "Especificaciones y precios",
@@ -410,11 +447,13 @@ export const es: Record<string, string> = {
 
   "solutions.kicker": "Por sector",
   "solutions.title": "Las mismas máquinas. Turnos muy diferentes.",
-  "solutions.sub": "Empieza por el problema que quieres eliminar y te indicaremos la máquina que lo elimina.",
+  "solutions.sub":
+    "Empieza por el problema que quieres eliminar y te indicaremos la máquina que lo elimina.",
   "solutions.s1.name": "Hostelería",
   "solutions.s1.problem": "El servicio de habitaciones y las entregas consumen el turno de noche.",
   "solutions.s2.name": "Alimentación y bebidas",
-  "solutions.s2.problem": "El servicio de platos y la retirada de bandejas alejan al personal de los clientes.",
+  "solutions.s2.problem":
+    "El servicio de platos y la retirada de bandejas alejan al personal de los clientes.",
   "solutions.s3.name": "Sanidad",
   "solutions.s3.problem": "El personal sanitario pasa horas moviendo suministros y ropa.",
   "solutions.s4.name": "Comercio minorista",
@@ -422,8 +461,10 @@ export const es: Record<string, string> = {
   "solutions.s5.name": "Almacén y logística",
   "solutions.s5.problem": "Traslados punto a punto de cargas pesadas en largas distancias.",
   "solutions.s6.name": "Educación",
-  "solutions.s6.problem": "La enseñanza de la robótica necesita una plataforma que los estudiantes puedan reconfigurar de verdad.",
-  "solutions.caseSlot": "Espacio para caso de éxito — esperando nombre de cliente, sitio y resultado reales.",
+  "solutions.s6.problem":
+    "La enseñanza de la robótica necesita una plataforma que los estudiantes puedan reconfigurar de verdad.",
+  "solutions.caseSlot":
+    "Espacio para caso de éxito — esperando nombre de cliente, sitio y resultado reales.",
 
   "nf.title": "Página no encontrada",
   "nf.body": "La página que buscas no existe o ha sido movida.",

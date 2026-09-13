@@ -2,6 +2,14 @@
 @source "../src";
 @import "tw-animate-css";
 
+/* Self-hosted. Previously two render-blocking requests to fonts.googleapis.com
+   sat on the critical path; these ship from our own origin with the rest of the
+   build. The sans is the weight-axis variable file (no width axis), so one
+   request covers 400–700. */
+@import "@fontsource-variable/ibm-plex-sans/wght.css";
+@import "@fontsource/ibm-plex-mono/latin-500.css";
+@import "@fontsource/ibm-plex-mono/latin-ext-500.css";
+
 @custom-variant dark (&:is(.dark *));
 
 /*
@@ -68,45 +76,47 @@
 :root {
   /* Notion design language: 8px base radius, warm neutrals, single purple accent */
   --radius: 0.75rem;
-  --background: oklch(0.985 0 0);
-  --foreground: oklch(0.36 0.032 25);
+  --background: oklch(0.985 0.001 255);
+  --foreground: oklch(0.32 0.018 255);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.36 0.032 25);
+  --card-foreground: oklch(0.32 0.018 255);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.28 0.03 25);
+  --popover-foreground: oklch(0.26 0.018 255);
   --primary: oklch(0.56 0.21 262);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.925 0.002 30);
-  --secondary-foreground: oklch(0.36 0.032 25);
-  --muted: oklch(0.955 0.002 30);
-  --muted-foreground: oklch(0.6 0.022 25);
-  --accent: oklch(0.93 0.03 255);
-  --accent-foreground: oklch(0.36 0.032 25);
+  --secondary: oklch(0.93 0.003 255);
+  --secondary-foreground: oklch(0.32 0.018 255);
+  --muted: oklch(0.955 0.003 255);
+  /* 0.545 not 0.56: at 0.56 this measured 4.46:1 against the background, just
+     under the 4.5:1 AA floor for body text. */
+  --muted-foreground: oklch(0.545 0.014 255);
+  --accent: oklch(0.93 0.03 258);
+  --accent-foreground: oklch(0.32 0.018 255);
   --destructive: oklch(0.637 0.208 25);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.902 0.004 30);
-  --input: oklch(0.87 0.008 30);
+  --border: oklch(0.9 0.004 255);
+  --input: oklch(0.865 0.008 255);
   --ring: oklch(0.56 0.21 262);
   --chart-1: oklch(0.56 0.21 262);
   --chart-2: oklch(0.63 0.16 288);
   --chart-3: oklch(0.74 0.11 290);
-  --chart-4: oklch(0.72 0.15 60);
-  --chart-5: oklch(0.7 0.16 150);
+  --chart-4: oklch(0.68 0.19 45);
+  --chart-5: oklch(0.66 0.13 175);
   --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0.36 0.032 25);
+  --sidebar-foreground: oklch(0.32 0.018 255);
   --sidebar-primary: oklch(0.56 0.21 262);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.93 0.03 255);
-  --sidebar-accent-foreground: oklch(0.36 0.032 25);
-  --sidebar-border: oklch(0.902 0.004 30);
+  --sidebar-accent: oklch(0.93 0.03 258);
+  --sidebar-accent-foreground: oklch(0.32 0.018 255);
+  --sidebar-border: oklch(0.9 0.004 255);
   --sidebar-ring: oklch(0.56 0.21 262);
-  --catalog: oklch(0.96 0.003 250);
-  --catalog-title: oklch(0.14 0 0);
-  --catalog-copy: oklch(0.42 0 0);
+  --catalog: oklch(0.96 0.003 255);
+  --catalog-title: oklch(0.2 0.012 255);
+  --catalog-copy: oklch(0.47 0.01 255);
   --badge: oklch(0.68 0.19 45);
-  --font-display: "Inter Tight", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", monospace;
+  --font-display: "IBM Plex Sans Variable", "IBM Plex Sans", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans Variable", "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
   --shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-card-hover: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.06);
   --ease-default: cubic-bezier(0.32, 0.72, 0, 1);
@@ -118,38 +128,37 @@
   --font-mono: var(--font-mono);
 }
 
-
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
+  --background: oklch(0.16 0.014 258);
+  --foreground: oklch(0.96 0.003 255);
+  --card: oklch(0.21 0.016 258);
+  --card-foreground: oklch(0.96 0.003 255);
+  --popover: oklch(0.21 0.016 258);
+  --popover-foreground: oklch(0.96 0.003 255);
+  --primary: oklch(0.7 0.16 262);
+  --primary-foreground: oklch(0.16 0.014 258);
+  --secondary: oklch(0.28 0.016 258);
+  --secondary-foreground: oklch(0.96 0.003 255);
+  --muted: oklch(0.28 0.016 258);
+  --muted-foreground: oklch(0.73 0.012 255);
+  --accent: oklch(0.3 0.035 258);
+  --accent-foreground: oklch(0.96 0.003 255);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.984 0.003 247.858);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
+  --ring: oklch(0.62 0.12 262);
+  --chart-1: oklch(0.7 0.16 262);
+  --chart-2: oklch(0.7 0.14 288);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar: oklch(0.21 0.016 258);
+  --sidebar-foreground: oklch(0.96 0.003 255);
+  --sidebar-primary: oklch(0.7 0.16 262);
+  --sidebar-primary-foreground: oklch(0.16 0.014 258);
+  --sidebar-accent: oklch(0.3 0.035 258);
+  --sidebar-accent-foreground: oklch(0.96 0.003 255);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
@@ -198,12 +207,13 @@
   }
 }
 
-/* Notion "overline" label: quiet sans caps, not mono */
+/* Overline label. Now actually monospaced — Plex Mono gives these the
+   spec-sheet register that suits published prices and machine names. */
 @utility label-mono {
-  font-family: var(--font-body);
+  font-family: var(--font-mono);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
@@ -212,7 +222,9 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   box-shadow: var(--shadow-card);
-  transition: box-shadow 250ms var(--ease-default), transform 250ms var(--ease-default);
+  transition:
+    box-shadow 250ms var(--ease-default),
+    transform 250ms var(--ease-default);
 
   &:hover {
     box-shadow: var(--shadow-card-hover);
@@ -220,9 +232,57 @@
 }
 
 @utility grid-lines {
-  background-image:
-    radial-gradient(circle at 1px 1px, var(--color-border) 1px, transparent 0);
+  background-image: radial-gradient(circle at 1px 1px, var(--color-border) 1px, transparent 0);
   background-size: 28px 28px;
+}
+
+/* Atmosphere for otherwise flat sections. Two off-centre washes rather than a
+   centred glow, so the light reads as coming from somewhere. */
+@utility section-wash {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        52% 44% at 12% 8%,
+        color-mix(in oklch, var(--color-primary) 6%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        44% 40% at 92% 96%,
+        color-mix(in oklch, var(--color-foreground) 5%, transparent),
+        transparent 72%
+      );
+  }
+}
+
+/* Grain. Breaks up the flat fills that large gradient areas otherwise show as
+   banding, and gives the surfaces a little tooth. */
+@utility grain {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* Section index marker — oversized, half off the edge. Gives each block its own
+   anchor instead of every one opening identically. */
+@utility section-index {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 13vw, 11rem);
+  font-weight: 600;
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: color-mix(in oklch, var(--color-foreground) 6%, transparent);
+  user-select: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

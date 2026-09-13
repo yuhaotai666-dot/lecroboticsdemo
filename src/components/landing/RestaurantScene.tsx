@@ -116,14 +116,14 @@ export function RestaurantScene() {
       {/* Depth 3 — robots */}
       <div className="relative inset-0 z-30 flex min-h-screen flex-col items-center justify-center gap-8 py-20 md:absolute md:block md:py-0">
         {robots.map((robot, i) => {
-          const cfg = positions[i]!;
-          const y = reducedMotion ? 0 : offset * (cfg.depth * 160 - 80);
+          const cfg = lanes[i]!;
+          const y = reducedMotion ? 0 : offset * (cfg.depth * 120 - 60);
           return (
             <div
               key={robot.slug}
-              className={`will-change-transform ${cfg.size} ${cfg.left} ${cfg.right} ${cfg.top} ${cfg.bottom} relative md:absolute`}
+              className={`will-change-transform ${cfg.size} ${cfg.top ?? ""} ${cfg.bottom ?? ""} relative md:absolute md:left-0`}
               style={{
-                animation: reducedMotion ? undefined : `restFloat${i + 1} ${6 + i * 0.7}s ease-in-out infinite`,
+                animation: reducedMotion ? undefined : `${cfg.anim} ${cfg.dur} ease-in-out infinite`,
                 animationDelay: reducedMotion ? undefined : cfg.delay,
                 transform: `translate3d(0, ${y}px, 0)`,
               }}

@@ -41,7 +41,7 @@ function ProductsIndex() {
     <>
       <section className="bg-card">
         <div className="mx-auto max-w-6xl px-5 pb-12 pt-16">
-          <p className="text-sm font-medium text-primary">{t("products.kicker")}</p>
+          <p className="label-mono text-primary">{t("products.kicker")}</p>
           <h1 className="mt-4 max-w-3xl text-4xl font-semibold leading-tight text-catalog-title md:text-5xl">
             {t("products.title")}
           </h1>

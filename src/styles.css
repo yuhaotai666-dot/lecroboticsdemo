@@ -2,6 +2,14 @@
 @source "../src";
 @import "tw-animate-css";
 
+/* Self-hosted. Previously two render-blocking requests to fonts.googleapis.com
+   sat on the critical path; these ship from our own origin with the rest of the
+   build. The sans is the weight-axis variable file (no width axis), so one
+   request covers 400–700. */
+@import "@fontsource-variable/ibm-plex-sans/wght.css";
+@import "@fontsource/ibm-plex-mono/latin-500.css";
+@import "@fontsource/ibm-plex-mono/latin-ext-500.css";
+
 @custom-variant dark (&:is(.dark *));
 
 /*
@@ -104,9 +112,9 @@
   --catalog-title: oklch(0.14 0 0);
   --catalog-copy: oklch(0.42 0 0);
   --badge: oklch(0.68 0.19 45);
-  --font-display: "Inter Tight", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", monospace;
+  --font-display: "IBM Plex Sans Variable", "IBM Plex Sans", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans Variable", "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
   --shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-card-hover: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.06);
   --ease-default: cubic-bezier(0.32, 0.72, 0, 1);
@@ -197,12 +205,13 @@
   }
 }
 
-/* Notion "overline" label: quiet sans caps, not mono */
+/* Overline label. Now actually monospaced — Plex Mono gives these the
+   spec-sheet register that suits published prices and machine names. */
 @utility label-mono {
-  font-family: var(--font-body);
+  font-family: var(--font-mono);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 

@@ -1,11 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowDown } from "lucide-react";
 
 import robotHandAsset from "@/assets/landing/robot-hand.png";
 import humanHandAsset from "@/assets/landing/human-hand.png";
 import { useI18n } from "@/lib/i18n/i18n-context";
-
-const CATEGORIES = ["cleaning", "serve", "deliver", "create"] as const;
 
 /**
  * Scroll-driven opener: the two hands part as you scroll and the headline
@@ -93,7 +90,7 @@ export function HandsHero() {
         staticState ? "hands-hero--static" : ""
       }`}
     >
-      <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-5 pt-10 pb-7">
+      <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col justify-center px-5 py-10">
         <div className="relative flex flex-1 flex-col justify-center py-14 md:py-8">
           {/* The animated lines sit inside an aria-hidden stage, so the section
               needs a text equivalent. Not an h1 — the page heading is the
@@ -154,28 +151,6 @@ export function HandsHero() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-
-        <div className="grid items-end gap-8 md:grid-cols-[1fr_auto_1fr]">
-          <p className="max-w-[330px] text-[13px] leading-[1.55] text-muted-foreground">
-            {t("home.hands.blurb")}
-          </p>
-
-          <span className="hidden flex-col items-center gap-2 text-[8px] font-semibold tracking-[0.24em] text-muted-foreground/60 uppercase md:flex">
-            {t("home.hands.scroll")}
-            <ArrowDown className="size-4" strokeWidth={1.25} aria-hidden />
-          </span>
-
-          <div className="flex flex-wrap gap-2 md:justify-end">
-            {CATEGORIES.map((key) => (
-              <span
-                key={key}
-                className="rounded-full border border-border px-3.5 py-2 text-[11px] text-muted-foreground"
-              >
-                {t(`home.hands.cat.${key}`)}
-              </span>
-            ))}
           </div>
         </div>
       </div>

@@ -153,21 +153,37 @@ export function RestaurantScene() {
       </div>
 
       <style>{`
-        @keyframes restFloat1 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-16px) rotate(0.8deg); }
+        /* Delivery routes: travel out, pause to "serve", return home */
+        @keyframes deliverA {
+          0%   { transform: translate3d(-30vw, 0, 0); }
+          35%  { transform: translate3d(38vw, -1.5vh, 0); }
+          50%  { transform: translate3d(38vw, 0, 0); }        /* pause at table */
+          85%  { transform: translate3d(-30vw, 1vh, 0); }
+          100% { transform: translate3d(-30vw, 0, 0); }
         }
-        @keyframes restFloat2 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(-0.6deg); }
+        @keyframes deliverB {
+          0%   { transform: translate3d(108vw, 0, 0) scaleX(-1); }
+          30%  { transform: translate3d(58vw, 1vh, 0) scaleX(-1); }
+          45%  { transform: translate3d(58vw, 0, 0) scaleX(-1); } /* pause at table */
+          80%  { transform: translate3d(108vw, -1vh, 0) scaleX(-1); }
+          100% { transform: translate3d(108vw, 0, 0) scaleX(-1); }
         }
-        @keyframes restFloat3 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-14px) rotate(1deg); }
+        @keyframes deliverC {
+          0%   { transform: translate3d(-28vw, 0, 0); }
+          40%  { transform: translate3d(60vw, -2vh, 0); }
+          52%  { transform: translate3d(60vw, 0, 0); }        /* pause at table */
+          88%  { transform: translate3d(-28vw, 1vh, 0); }
+          100% { transform: translate3d(-28vw, 0, 0); }
         }
-        @keyframes restFloat4 {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-18px) rotate(-0.8deg); }
+        @keyframes deliverD {
+          0%   { transform: translate3d(106vw, 0, 0) scaleX(-1); }
+          32%  { transform: translate3d(70vw, 1vh, 0) scaleX(-1); }
+          44%  { transform: translate3d(70vw, 0, 0) scaleX(-1); } /* pause at table */
+          82%  { transform: translate3d(106vw, -1vh, 0) scaleX(-1); }
+          100% { transform: translate3d(106vw, 0, 0) scaleX(-1); }
+        }
+        @media (max-width: 767px) {
+          /* On mobile, robots stack statically; no travel animation */
         }
       `}</style>
     </section>

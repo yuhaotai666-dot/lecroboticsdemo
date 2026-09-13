@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import capability01 from "@/assets/capability-01.webp";
 import capability02 from "@/assets/capability-02.webp";
 import capability03 from "@/assets/capability-03.webp";
@@ -6,12 +6,21 @@ import capability04 from "@/assets/capability-04.webp";
 import capability05 from "@/assets/capability-05.webp";
 import capability06 from "@/assets/capability-06.webp";
 import { useI18n } from "@/lib/i18n/i18n-context";
+import { useScrollMotion } from "@/lib/use-scroll-motion";
 
 const capabilities = [
   { image: capability01, title: "Robot Selection", heading: "Find the right robot" },
-  { image: capability02, title: "Deployment & Localisation", heading: "Deploy it into your operation" },
+  {
+    image: capability02,
+    title: "Deployment & Localisation",
+    heading: "Deploy it into your operation",
+  },
   { image: capability03, title: "Systems Integration", heading: "Connect robots to your workflow" },
-  { image: capability04, title: "Operational Training", heading: "Teach robots how your operation works" },
+  {
+    image: capability04,
+    title: "Operational Training",
+    heading: "Teach robots how your operation works",
+  },
   { image: capability05, title: "Fleet Intelligence", heading: "Make the fleet intelligent" },
   { image: capability06, title: "Operational Scale", heading: "Scale across your operation" },
 ] as const;
@@ -19,54 +28,83 @@ const capabilities = [
 export function CapabilityStory() {
   const { t } = useI18n();
   const sectionRef = useRef<HTMLElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const frameRef = useRef<number | null>(null);
-  const [translateX, setTranslateX] = useState(0);
   const [active, setActive] = useState(0);
 
-  useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const desktop = window.matchMedia("(min-width: 1024px)");
+  // Was a hand-rolled scroll listener + rAF writing translate3d into React state.
+  // That never re-measured, so a resize or a late webfont left the horizontal
+  // travel wrong, and it ran a second scroll loop alongside the GSAP already on
+  // the page. ScrollTrigger owns the pin, the scrub and the re-measure now.
+  const staticState = useScrollMotion(sectionRef, (gsap, _ScrollTrigger, scope) => {
+    const mm = gsap.matchMedia();
 
-    const update = () => {
-      frameRef.current = null;
-      const section = sectionRef.current;
-      if (!section || reduceMotion.matches || !desktop.matches) return;
+    // Horizontal travel only makes sense where there is width to travel across;
+    // below lg the cards stack and scroll normally.
+    mm.add("(min-width: 1024px)", () => {
+      const track = trackRef.current;
+      const viewport = viewportRef.current;
+      const stage = stageRef.current;
+      if (!track || !viewport || !stage) return;
 
-      const rect = section.getBoundingClientRect();
-      const scrollable = Math.max(section.offsetHeight - window.innerHeight, 1);
-      const nextProgress = Math.min(1, Math.max(0, -rect.top / scrollable));
-      const maxTravel = Math.max(
-        0,
-        (trackRef.current?.scrollWidth ?? 0) - (viewportRef.current?.clientWidth ?? 0),
-      );
-      setTranslateX(-nextProgress * maxTravel);
-      setActive(Math.min(capabilities.length - 1, Math.round(nextProgress * (capabilities.length - 1))));
-    };
+      // Read at refresh time rather than once at build time.
+      const distance = () => Math.max(track.scrollWidth - viewport.clientWidth, 1);
 
-    const requestUpdate = () => {
-      if (frameRef.current === null) frameRef.current = window.requestAnimationFrame(update);
-    };
-
-    update();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-    return () => {
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
-      if (frameRef.current !== null) window.cancelAnimationFrame(frameRef.current);
-    };
-  }, []);
+      gsap.to(track, {
+        x: () => -distance(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: scope,
+          start: "top top",
+          end: () => `+=${distance()}`,
+          pin: stage,
+          scrub: 0.6,
+          invalidateOnRefresh: true,
+          onUpdate: (self) =>
+            setActive(
+              Math.min(
+                capabilities.length - 1,
+                Math.round(self.progress * (capabilities.length - 1)),
+              ),
+            ),
+        },
+      });
+    });
+  });
 
   return (
-    <section ref={sectionRef} className="capability-story border-b border-border bg-muted/40 lg:h-[600vh]">
-      <div className="capability-story__stage lg:sticky lg:top-16 lg:flex lg:h-[calc(100vh-4rem)] lg:flex-col lg:justify-center lg:overflow-hidden">
+    <section
+      ref={sectionRef}
+      className={`capability-story relative border-b border-border bg-muted/40 ${
+        staticState ? "capability-story--static" : ""
+      }`}
+    >
+      {/* depth-1 — atmosphere. Sits behind the cards and drifts at a slower rate
+          so the strip reads as sitting in space rather than on a flat panel. */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-70"
+        aria-hidden="true"
+        style={{
+          background:
+            "radial-gradient(60% 50% at 20% 30%, color-mix(in oklch, var(--primary) 7%, transparent), transparent 70%)",
+        }}
+      />
+
+      <div
+        ref={stageRef}
+        className="capability-story__stage relative lg:flex lg:h-screen lg:flex-col lg:justify-center lg:overflow-hidden"
+      >
         <div className="mx-auto w-full max-w-6xl px-5 pt-20 lg:pt-0">
           <p className="label-mono text-muted-foreground">{t("home.capKicker")}</p>
           <div className="mt-3 flex items-end justify-between gap-6">
-            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">{t("home.capTitle")}</h2>
-            <p className="hidden shrink-0 text-sm tabular-nums text-muted-foreground lg:block" aria-live="polite">
+            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
+              {t("home.capTitle")}
+            </h2>
+            <p
+              className="hidden shrink-0 text-sm tabular-nums text-muted-foreground lg:block"
+              aria-live="polite"
+            >
               {String(active + 1).padStart(2, "0")} / 06
             </p>
           </div>
@@ -76,13 +114,14 @@ export function CapabilityStory() {
           <div
             ref={trackRef}
             className="capability-story__track mx-auto flex max-w-6xl flex-col gap-5 px-5 lg:max-w-none lg:flex-row lg:gap-6 lg:will-change-transform"
-            style={{ transform: `translate3d(${translateX}px, 0, 0)` }}
           >
             {capabilities.map((capability, index) => (
               <figure
                 key={capability.title}
                 className={`shrink-0 overflow-hidden rounded-lg border border-border bg-card shadow-sm transition-[opacity,transform] duration-300 lg:w-[78vw] lg:max-w-6xl ${
-                  index === active ? "lg:scale-100 lg:opacity-100" : "lg:scale-[0.985] lg:opacity-60"
+                  index === active
+                    ? "lg:scale-100 lg:opacity-100"
+                    : "lg:scale-[0.985] lg:opacity-60"
                 }`}
               >
                 <img
@@ -100,7 +139,10 @@ export function CapabilityStory() {
           </div>
         </div>
 
-        <div className="mx-auto mt-6 hidden w-full max-w-6xl items-center gap-2 px-5 lg:flex" aria-hidden="true">
+        <div
+          className="mx-auto mt-6 hidden w-full max-w-6xl items-center gap-2 px-5 lg:flex"
+          aria-hidden="true"
+        >
           {capabilities.map((capability, index) => (
             <span
               key={capability.title}

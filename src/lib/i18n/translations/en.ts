@@ -200,9 +200,6 @@ export const en: Record<string, string> = {
   "home.stat.sectors": "Sectors covered",
   "home.stat.entry": "Entry price + VAT",
   "home.stat.certified": "Certified range",
-  "home.eventStrip":
-    "Live demonstrations run weekly at the Chelsea showroom — see every machine working before you buy.",
-  "home.eventCta": "Reserve a slot",
   "home.findByJob": "Find by job",
   "home.catTitle": "Start with the work, not the model number.",
   "home.view": "View",

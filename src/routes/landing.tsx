@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { RestaurantScene } from "@/components/landing/RestaurantScene";
 
 export const Route = createFileRoute("/landing")({
   head: () => ({
@@ -15,5 +16,9 @@ export const Route = createFileRoute("/landing")({
 });
 
 function LandingPage() {
-  return <main />;
+  return (
+    <main>
+      <RestaurantScene />
+    </main>
+  );
 }

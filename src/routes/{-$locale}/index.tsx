@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { categories, products, formatPrice } from "@/lib/products";
+import { HandsHero } from "@/components/hands-hero";
 import { HeroCarousel } from "@/components/hero-carousel";
 import { CapabilityStory } from "@/components/capability-story";
 import { useI18n } from "@/lib/i18n/i18n-context";
@@ -38,11 +39,16 @@ function Home() {
 
   return (
     <>
-      {/* Hero */}
+      <HandsHero />
+
+      {/* Hero — copy leads, product photography follows.
+          The carousel art is KEENON's own campaign imagery (their wordmark and
+          "for a brighter tomorrow" strapline are baked into it), so running it
+          above the headline handed the first screen to a supplier's brand.
+          Stated the LEC proposition first and demoted the art to evidence. */}
       <section className="relative overflow-hidden border-b border-border">
-        <HeroCarousel />
         <div className="grid-lines pointer-events-none absolute inset-0 opacity-30" aria-hidden />
-        <div className="relative mx-auto max-w-6xl px-5 py-12 md:py-16">
+        <div className="relative mx-auto max-w-6xl px-5 pt-12 pb-10 md:pt-16 md:pb-12">
           <div className="max-w-3xl">
             <p className="label-mono text-primary">{t("home.kicker")}</p>
             <h1 className="mt-6 text-5xl leading-[1.02] font-semibold tracking-tight md:text-6xl">
@@ -70,6 +76,7 @@ function Home() {
             </div>
           </div>
         </div>
+        <HeroCarousel />
       </section>
 
       {/* Event strip — swap the copy when the event changes, delete when there isn't one */}

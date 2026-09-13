@@ -94,7 +94,7 @@ export function HeroCarousel() {
             alt={slide.alt}
             width={1920}
             height={720}
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
+            className={`absolute inset-0 h-full w-full object-cover object-center lg:object-bottom transition-opacity duration-1000 ${
               i === index ? "opacity-100" : "opacity-0"
             }`}
             fetchPriority={i === 0 ? "high" : "low"}

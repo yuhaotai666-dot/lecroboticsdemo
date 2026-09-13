@@ -186,6 +186,17 @@ export const en: Record<string, string> = {
   "product.badge.popular": "Popular",
 
   // Home
+  "home.hands.line1": "Let robots",
+  "home.hands.line2": "power your business",
+  "home.hands.line3": "to the next level",
+  "home.hands.summary": "Let robots power your business to the next level",
+  "home.hands.blurb":
+    "Commercial service robots for cleaning, serving, delivery and interactive experiences — built to work in real operations.",
+  "home.hands.scroll": "Scroll down",
+  "home.hands.cat.cleaning": "Cleaning",
+  "home.hands.cat.serve": "Serve",
+  "home.hands.cat.deliver": "Deliver",
+  "home.hands.cat.create": "Create",
   "home.kicker": "Commercial service robotics · United Kingdom",
   "home.heroTitle1": "Robots that do the shift.",
   "home.heroTitle2": "Priced, financed and supported here.",

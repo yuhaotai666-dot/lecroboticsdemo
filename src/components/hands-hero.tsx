@@ -43,10 +43,18 @@ export function HandsHero() {
     let cancelled = false;
 
     void (async () => {
-      const [{ gsap }, { ScrollTrigger }] = await Promise.all([
-        import("gsap"),
-        import("gsap/ScrollTrigger"),
-      ]);
+      let gsap, ScrollTrigger;
+      try {
+        [{ gsap }, { ScrollTrigger }] = await Promise.all([
+          import("gsap"),
+          import("gsap/ScrollTrigger"),
+        ]);
+      } catch {
+        // Without the timeline the hands never part, so the headline would land
+        // on top of them. Fall back to the resolved layout instead.
+        if (!cancelled) setStaticState(true);
+        return;
+      }
       if (cancelled) return;
       gsap.registerPlugin(ScrollTrigger);
 

@@ -120,9 +120,11 @@ function Home() {
           aria-hidden
         />
         {/* Oversized index, half off the right edge — each section now opens on
-            its own marker instead of the identical kicker+heading stack. */}
+            its own marker instead of the identical kicker+heading stack.
+            Bleeds sideways only: the section clips its overflow, so a negative
+            top offset sliced the numerals flat along the border. */}
         <span
-          className="section-index pointer-events-none absolute -top-6 -right-6 hidden lg:block"
+          className="section-index pointer-events-none absolute top-8 -right-6 hidden lg:block"
           aria-hidden
         >
           01

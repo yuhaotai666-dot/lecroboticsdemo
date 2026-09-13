@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ChevronDown, Menu, Search, X } from "lucide-react";
 import {
@@ -13,7 +13,8 @@ import {
 import { useI18n } from "@/lib/i18n/i18n-context";
 import { SearchOverlay } from "@/components/search-overlay";
 import { LanguageSwitcher } from "@/components/language-switcher";
-import { locales } from "@/lib/i18n/locales";
+import { locales, switchLocaleHref } from "@/lib/i18n/locales";
+import { LocaleLink, type AppPath } from "@/lib/i18n/locale-link";
 
 type MenuKey = "products" | "industries" | "cases" | "resources" | "about" | "support";
 
@@ -25,13 +26,16 @@ const groupKey: Record<string, string> = {
 };
 
 const caseKey = (hash: string) =>
-  hash === "featured" || hash === "industrial" || hash === "real-estate" || hash === "public-service"
+  hash === "featured" ||
+  hash === "industrial" ||
+  hash === "real-estate" ||
+  hash === "public-service"
     ? `case.${hash}`
     : `ind.${hash}.name`;
 
 export function SiteHeader() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const { t, locale, setLocale } = useI18n();
+  const { t, locale } = useI18n();
   const [open, setOpen] = useState<MenuKey | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSection, setMobileSection] = useState<MenuKey | null>(null);
@@ -54,9 +58,9 @@ export function SiteHeader() {
 
   const solid = !overlay || scrolled || open !== null || searchOpen;
 
-  const trigger = (key: MenuKey, label: string, to: string) => (
+  const trigger = (key: MenuKey, label: string, to: AppPath) => (
     <div className="relative" onMouseEnter={() => setOpen(key)}>
-      <Link
+      <LocaleLink
         to={to}
         className="flex items-center gap-1 whitespace-nowrap py-5 text-[13px] font-medium text-foreground/85 transition-colors hover:text-primary xl:text-sm"
         activeProps={{ className: "text-primary" }}
@@ -66,7 +70,7 @@ export function SiteHeader() {
           className={`size-3.5 transition-transform duration-200 ${open === key ? "rotate-180" : ""}`}
           strokeWidth={2}
         />
-      </Link>
+      </LocaleLink>
     </div>
   );
 
@@ -80,9 +84,12 @@ export function SiteHeader() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5">
-        <Link to="/" className="shrink-0 font-display text-lg font-semibold tracking-tight text-foreground">
+        <LocaleLink
+          to="/"
+          className="shrink-0 font-display text-lg font-semibold tracking-tight text-foreground"
+        >
           LEC<span className="text-primary">.</span>ROBOTICS
-        </Link>
+        </LocaleLink>
 
         <nav className="hidden items-center gap-5 lg:flex xl:gap-7">
           {trigger("products", t("nav.products"), "/products")}
@@ -107,19 +114,19 @@ export function SiteHeader() {
             <LanguageSwitcher />
           </div>
           <div className="relative hidden lg:block" onMouseEnter={() => setOpen("support")}>
-            <Link
+            <LocaleLink
               to="/support"
               className="inline-block whitespace-nowrap rounded-full border border-primary/30 px-4 py-1.5 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
             >
               {t("nav.support")}
-            </Link>
+            </LocaleLink>
           </div>
-          <Link
+          <LocaleLink
             to="/book-a-demo"
             className="hidden shrink-0 whitespace-nowrap rounded-full bg-primary px-4 py-1.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 sm:inline-block"
           >
             {t("nav.bookDemo")}
-          </Link>
+          </LocaleLink>
           <button
             type="button"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -142,11 +149,13 @@ export function SiteHeader() {
                 <div className="grid gap-8 md:grid-cols-4">
                   {productGroups.map((g) => (
                     <div key={g.title}>
-                      <p className="label-mono text-muted-foreground">{t(groupKey[g.title] ?? "")}</p>
+                      <p className="label-mono text-muted-foreground">
+                        {t(groupKey[g.title] ?? "")}
+                      </p>
                       <ul className="mt-4 space-y-1">
                         {g.items.map((it) => (
                           <li key={it.slug}>
-                            <Link
+                            <LocaleLink
                               to="/products/$slug"
                               params={{ slug: it.slug }}
                               className="group flex gap-3 rounded-lg p-2 transition-colors hover:bg-accent/50"
@@ -165,7 +174,7 @@ export function SiteHeader() {
                                   {t(`prod.${it.slug}.tagline`)}
                                 </span>
                               </span>
-                            </Link>
+                            </LocaleLink>
                           </li>
                         ))}
                       </ul>
@@ -173,9 +182,9 @@ export function SiteHeader() {
                   ))}
                 </div>
                 <div className="mt-7 border-t border-border/60 pt-5">
-                  <Link to="/products" className="text-sm font-medium text-primary">
+                  <LocaleLink to="/products" className="text-sm font-medium text-primary">
                     {t("nav.viewAllProducts")} →
-                  </Link>
+                  </LocaleLink>
                 </div>
               </>
             )}
@@ -184,7 +193,7 @@ export function SiteHeader() {
               <>
                 <div className="grid gap-x-8 gap-y-5 md:grid-cols-3">
                   {industryMenu.map((ind) => (
-                    <Link
+                    <LocaleLink
                       key={ind.slug}
                       to="/industries"
                       hash={ind.slug}
@@ -196,13 +205,13 @@ export function SiteHeader() {
                       <p className="mt-1 text-xs leading-snug text-muted-foreground">
                         {t(`ind.${ind.slug}.blurb`)}
                       </p>
-                    </Link>
+                    </LocaleLink>
                   ))}
                 </div>
                 <div className="mt-7 border-t border-border/60 pt-5">
-                  <Link to="/industries" className="text-sm font-medium text-primary">
+                  <LocaleLink to="/industries" className="text-sm font-medium text-primary">
                     {t("nav.exploreAllIndustries")} →
-                  </Link>
+                  </LocaleLink>
                 </div>
               </>
             )}
@@ -210,14 +219,14 @@ export function SiteHeader() {
             {open === "cases" && (
               <div className="grid gap-2 md:grid-cols-4">
                 {caseMenu.map((c) => (
-                  <Link
+                  <LocaleLink
                     key={c.hash}
                     to="/case-studies"
                     hash={c.hash}
                     className="rounded-lg p-2 text-sm text-foreground/85 transition-colors hover:bg-accent/50 hover:text-primary"
                   >
                     {t(caseKey(c.hash))}
-                  </Link>
+                  </LocaleLink>
                 ))}
               </div>
             )}
@@ -238,25 +247,36 @@ export function SiteHeader() {
             active={mobileSection}
             onToggle={setMobileSection}
           >
-            {productGroups.flatMap((g) => g.items).map((it) => (
-              <Link
-                key={it.slug}
-                to="/products/$slug"
-                params={{ slug: it.slug }}
-                onClick={() => setMobileOpen(false)}
-                className="block py-2 text-sm text-muted-foreground"
-              >
-                {it.name}
-              </Link>
-            ))}
-            <Link to="/products" onClick={() => setMobileOpen(false)} className="block py-2 text-sm text-primary">
+            {productGroups
+              .flatMap((g) => g.items)
+              .map((it) => (
+                <LocaleLink
+                  key={it.slug}
+                  to="/products/$slug"
+                  params={{ slug: it.slug }}
+                  onClick={() => setMobileOpen(false)}
+                  className="block py-2 text-sm text-muted-foreground"
+                >
+                  {it.name}
+                </LocaleLink>
+              ))}
+            <LocaleLink
+              to="/products"
+              onClick={() => setMobileOpen(false)}
+              className="block py-2 text-sm text-primary"
+            >
               {t("nav.viewAllProducts")} →
-            </Link>
+            </LocaleLink>
           </MobileGroup>
 
-          <MobileGroup k="industries" label={t("nav.industries")} active={mobileSection} onToggle={setMobileSection}>
+          <MobileGroup
+            k="industries"
+            label={t("nav.industries")}
+            active={mobileSection}
+            onToggle={setMobileSection}
+          >
             {industryMenu.map((ind) => (
-              <Link
+              <LocaleLink
                 key={ind.slug}
                 to="/industries"
                 hash={ind.slug}
@@ -264,13 +284,18 @@ export function SiteHeader() {
                 className="block py-2 text-sm text-muted-foreground"
               >
                 {t(`ind.${ind.slug}.name`)}
-              </Link>
+              </LocaleLink>
             ))}
           </MobileGroup>
 
-          <MobileGroup k="cases" label={t("nav.caseStudies")} active={mobileSection} onToggle={setMobileSection}>
+          <MobileGroup
+            k="cases"
+            label={t("nav.caseStudies")}
+            active={mobileSection}
+            onToggle={setMobileSection}
+          >
             {caseMenu.map((c) => (
-              <Link
+              <LocaleLink
                 key={c.hash}
                 to="/case-studies"
                 hash={c.hash}
@@ -278,13 +303,18 @@ export function SiteHeader() {
                 className="block py-2 text-sm text-muted-foreground"
               >
                 {t(caseKey(c.hash))}
-              </Link>
+              </LocaleLink>
             ))}
           </MobileGroup>
 
-          <MobileGroup k="resources" label={t("nav.resources")} active={mobileSection} onToggle={setMobileSection}>
+          <MobileGroup
+            k="resources"
+            label={t("nav.resources")}
+            active={mobileSection}
+            onToggle={setMobileSection}
+          >
             {resourceMenu.map((r) => (
-              <Link
+              <LocaleLink
                 key={r.hash}
                 to="/resources"
                 hash={r.hash}
@@ -292,13 +322,18 @@ export function SiteHeader() {
                 className="block py-2 text-sm text-muted-foreground"
               >
                 {t(`res.${r.hash}.label`)}
-              </Link>
+              </LocaleLink>
             ))}
           </MobileGroup>
 
-          <MobileGroup k="about" label={t("nav.about")} active={mobileSection} onToggle={setMobileSection}>
+          <MobileGroup
+            k="about"
+            label={t("nav.about")}
+            active={mobileSection}
+            onToggle={setMobileSection}
+          >
             {aboutMenu.map((a) => (
-              <Link
+              <LocaleLink
                 key={a.hash}
                 to="/about"
                 hash={a.hash}
@@ -306,13 +341,18 @@ export function SiteHeader() {
                 className="block py-2 text-sm text-muted-foreground"
               >
                 {t(`about.${a.hash}.label`)}
-              </Link>
+              </LocaleLink>
             ))}
           </MobileGroup>
 
-          <MobileGroup k="support" label={t("nav.support")} active={mobileSection} onToggle={setMobileSection}>
+          <MobileGroup
+            k="support"
+            label={t("nav.support")}
+            active={mobileSection}
+            onToggle={setMobileSection}
+          >
             {supportMenu.map((s) => (
-              <Link
+              <LocaleLink
                 key={s.hash}
                 to="/support"
                 hash={s.hash}
@@ -320,7 +360,7 @@ export function SiteHeader() {
                 className="block py-2 text-sm text-muted-foreground"
               >
                 {t(`sup.${s.hash}.label`)}
-              </Link>
+              </LocaleLink>
             ))}
           </MobileGroup>
 
@@ -329,10 +369,10 @@ export function SiteHeader() {
             <p className="label-mono text-muted-foreground">{t("lang.label")}</p>
             <div className="mt-3 grid grid-cols-2 gap-1">
               {locales.map((l) => (
-                <button
+                <a
                   key={l.code}
-                  type="button"
-                  onClick={() => setLocale(l.code)}
+                  href={switchLocaleHref(pathname, l.code)}
+                  hrefLang={l.code}
                   className={`rounded-lg px-3 py-2 text-left text-sm transition-colors ${
                     l.code === locale
                       ? "bg-accent/60 font-medium text-primary"
@@ -340,18 +380,18 @@ export function SiteHeader() {
                   }`}
                 >
                   {l.label}
-                </button>
+                </a>
               ))}
             </div>
           </div>
 
-          <Link
+          <LocaleLink
             to="/book-a-demo"
             onClick={() => setMobileOpen(false)}
             className="mt-6 block rounded-full bg-primary px-4 py-2.5 text-center text-sm font-semibold text-primary-foreground"
           >
             {t("nav.bookDemo")}
-          </Link>
+          </LocaleLink>
         </div>
       )}
     </header>
@@ -371,7 +411,7 @@ function DropdownList({
   return (
     <div className="grid gap-2 md:grid-cols-3">
       {items.map((it) => (
-        <Link
+        <LocaleLink
           key={it.hash}
           to={to}
           hash={it.hash}
@@ -383,7 +423,7 @@ function DropdownList({
           <p className="mt-1 text-xs leading-snug text-muted-foreground">
             {t(`${ns}.${it.hash}.blurb`)}
           </p>
-        </Link>
+        </LocaleLink>
       ))}
     </div>
   );
@@ -411,7 +451,9 @@ function MobileGroup({
         className="flex w-full items-center justify-between py-4 text-left text-base font-medium text-foreground"
       >
         {label}
-        <ChevronDown className={`size-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
+        <ChevronDown
+          className={`size-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+        />
       </button>
       {isOpen && <div className="pb-3">{children}</div>}
     </div>

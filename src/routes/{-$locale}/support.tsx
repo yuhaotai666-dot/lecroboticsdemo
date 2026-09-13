@@ -1,10 +1,12 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Clock, ShieldCheck, Wrench, Headset } from "lucide-react";
 import { products } from "@/lib/products";
 import { useI18n } from "@/lib/i18n/i18n-context";
+import { LocaleLink } from "@/lib/i18n/locale-link";
+import { headLinks, localeFromParams } from "@/lib/i18n/locales";
 
-export const Route = createFileRoute("/support")({
-  head: () => ({
+export const Route = createFileRoute("/{-$locale}/support")({
+  head: ({ params }) => ({
     meta: [
       { title: "Service & Support — Robot Lifecycle Support | LEC Robotics" },
       {
@@ -13,9 +15,12 @@ export const Route = createFileRoute("/support")({
           "Repair requests, manuals and documents, service plans, FAQs and technical support for every robot in the LEC range.",
       },
       { property: "og:title", content: "Service & Support | LEC Robotics" },
-      { property: "og:description", content: "Reliable support throughout the entire robot lifecycle." },
+      {
+        property: "og:description",
+        content: "Reliable support throughout the entire robot lifecycle.",
+      },
     ],
-    links: [{ rel: "canonical", href: "/support" }],
+    links: headLinks("/support", localeFromParams(params)),
   }),
   component: Support,
 });
@@ -48,8 +53,12 @@ function Support() {
           {cards.map((c) => (
             <div key={c.key} className="rounded-xl border border-border bg-card p-6">
               <c.icon className="size-5 text-primary" strokeWidth={1.75} />
-              <h2 className="mt-4 text-base font-semibold text-catalog-title">{t(`${c.key}.title`)}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t(`${c.key}.body`)}</p>
+              <h2 className="mt-4 text-base font-semibold text-catalog-title">
+                {t(`${c.key}.title`)}
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {t(`${c.key}.body`)}
+              </p>
             </div>
           ))}
         </div>
@@ -106,9 +115,7 @@ function Support() {
               >
                 {t("support.form.submit")}
               </button>
-              <p className="text-xs text-muted-foreground">
-                {t("support.form.note")}
-              </p>
+              <p className="text-xs text-muted-foreground">{t("support.form.note")}</p>
             </form>
           </section>
 
@@ -118,9 +125,13 @@ function Support() {
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 {t("support.documents.sub")}
               </p>
-              <Link to="/resources" hash="downloads" className="mt-4 inline-block text-sm font-medium text-primary">
+              <LocaleLink
+                to="/resources"
+                hash="downloads"
+                className="mt-4 inline-block text-sm font-medium text-primary"
+              >
                 {t("support.documents.go")} →
-              </Link>
+              </LocaleLink>
             </section>
 
             <section id="plans" className="scroll-mt-24">

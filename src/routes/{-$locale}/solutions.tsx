@@ -1,9 +1,11 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { products } from "@/lib/products";
 import { useI18n } from "@/lib/i18n/i18n-context";
+import { LocaleLink } from "@/lib/i18n/locale-link";
+import { headLinks, localeFromParams, pageUrl } from "@/lib/i18n/locales";
 
-export const Route = createFileRoute("/solutions")({
-  head: () => ({
+export const Route = createFileRoute("/{-$locale}/solutions")({
+  head: ({ params }) => ({
     meta: [
       { title: "Robotics by Industry — Hospitality, Healthcare, Retail | LEC Robotics" },
       {
@@ -14,11 +16,12 @@ export const Route = createFileRoute("/solutions")({
       { property: "og:title", content: "Robotics by Industry | LEC Robotics" },
       {
         property: "og:description",
-        content: "The machines suited to hospitality, food service, healthcare, retail, warehousing and education.",
+        content:
+          "The machines suited to hospitality, food service, healthcare, retail, warehousing and education.",
       },
-      { property: "og:url", content: "/solutions" },
+      { property: "og:url", content: pageUrl("/solutions", localeFromParams(params)) },
     ],
-    links: [{ rel: "canonical", href: "/solutions" }],
+    links: headLinks("/solutions", localeFromParams(params)),
   }),
   component: Solutions,
 });
@@ -42,9 +45,7 @@ function Solutions() {
           <h1 className="mt-4 max-w-3xl text-4xl font-semibold md:text-6xl">
             {t("solutions.title")}
           </h1>
-          <p className="mt-5 max-w-2xl text-muted-foreground">
-            {t("solutions.sub")}
-          </p>
+          <p className="mt-5 max-w-2xl text-muted-foreground">{t("solutions.sub")}</p>
         </div>
       </section>
 
@@ -60,14 +61,14 @@ function Solutions() {
                     const p = products.find((x) => x.slug === slug);
                     if (!p) return null;
                     return (
-                      <Link
+                      <LocaleLink
                         key={slug}
                         to="/products/$slug"
                         params={{ slug }}
                         className="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium transition-colors hover:border-primary hover:text-primary"
                       >
                         {p.name}
-                      </Link>
+                      </LocaleLink>
                     );
                   })}
                 </div>

@@ -1,15 +1,17 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 import { categories, products, formatPrice } from "@/lib/products";
 import { useI18n } from "@/lib/i18n/i18n-context";
+import { LocaleLink } from "@/lib/i18n/locale-link";
+import { headLinks, localeFromParams, pageUrl } from "@/lib/i18n/locales";
 
 const searchSchema = z.object({
   category: z.string().optional(),
 });
 
-export const Route = createFileRoute("/products/")({
+export const Route = createFileRoute("/{-$locale}/products/")({
   validateSearch: searchSchema,
-  head: () => ({
+  head: ({ params }) => ({
     meta: [
       { title: "All Robots — Prices, Specs and Finance | LEC Robotics" },
       {
@@ -20,11 +22,12 @@ export const Route = createFileRoute("/products/")({
       { property: "og:title", content: "All Robots — Prices, Specs and Finance | LEC Robotics" },
       {
         property: "og:description",
-        content: "Compare payload, battery life, outright price and weekly finance across the full range.",
+        content:
+          "Compare payload, battery life, outright price and weekly finance across the full range.",
       },
-      { property: "og:url", content: "/products" },
+      { property: "og:url", content: pageUrl("/products", localeFromParams(params)) },
     ],
-    links: [{ rel: "canonical", href: "/products" }],
+    links: headLinks("/products", localeFromParams(params)),
   }),
   component: ProductsIndex,
 });
@@ -51,20 +54,22 @@ function ProductsIndex() {
       <section className="bg-catalog">
         <div className="mx-auto max-w-6xl px-5 pt-8">
           <div className="flex gap-8 overflow-x-auto border-b border-border pb-4">
-            <Link
+            <LocaleLink
               to="/products"
               search={{}}
               className={`shrink-0 border-b-2 px-1 pb-3 text-sm transition-colors ${
-                !category ? "border-primary font-semibold text-catalog-title" : "border-transparent font-normal text-catalog-copy hover:text-catalog-title"
+                !category
+                  ? "border-primary font-semibold text-catalog-title"
+                  : "border-transparent font-normal text-catalog-copy hover:text-catalog-title"
               }`}
             >
               {t("products.all")} ({products.length})
-            </Link>
+            </LocaleLink>
             {categories.map((c) => {
               const count = products.filter((p) => p.category === c.id).length;
               const active = category === c.id;
               return (
-                <Link
+                <LocaleLink
                   key={c.id}
                   to="/products"
                   search={{ category: c.id }}
@@ -75,13 +80,13 @@ function ProductsIndex() {
                   }`}
                 >
                   {t(`cat.${c.id}.label`)} ({count})
-                </Link>
+                </LocaleLink>
               );
             })}
           </div>
           <div className="grid gap-3 py-6 sm:grid-cols-2 lg:grid-cols-4">
             {shown.map((p) => (
-              <Link
+              <LocaleLink
                 key={p.slug}
                 to="/products/$slug"
                 params={{ slug: p.slug }}
@@ -103,17 +108,20 @@ function ProductsIndex() {
                     </span>
                   )}
                 </div>
-                <p className="mt-1 min-h-8 text-xs leading-4 text-catalog-copy">{t(`prod.${p.slug}.positioning`)}</p>
+                <p className="mt-1 min-h-8 text-xs leading-4 text-catalog-copy">
+                  {t(`prod.${p.slug}.positioning`)}
+                </p>
                 <p className="mt-auto border-t border-border pt-3 text-sm font-medium text-catalog-title">
                   {formatPrice(p)}
                   <span className="ml-2 text-xs font-normal text-catalog-copy">
-                    {p.finance ? t("product.orFinance", { finance: p.finance }) : t("product.plusVat")}
+                    {p.finance
+                      ? t("product.orFinance", { finance: p.finance })
+                      : t("product.plusVat")}
                   </span>
                 </p>
-              </Link>
+              </LocaleLink>
             ))}
           </div>
-
         </div>
       </section>
 
@@ -137,9 +145,13 @@ function ProductsIndex() {
                 {products.map((p) => (
                   <tr key={p.slug} className="border-t border-border">
                     <td className="px-5 py-4 font-semibold">
-                      <Link to="/products/$slug" params={{ slug: p.slug }} className="hover:text-primary">
+                      <LocaleLink
+                        to="/products/$slug"
+                        params={{ slug: p.slug }}
+                        className="hover:text-primary"
+                      >
                         {p.name}
-                      </Link>
+                      </LocaleLink>
                     </td>
                     <td className="px-5 py-4 text-muted-foreground">
                       {t(`cat.${p.category}.label`)}

@@ -2,9 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Download, FileText } from "lucide-react";
 import { products } from "@/lib/products";
 import { useI18n } from "@/lib/i18n/i18n-context";
+import { headLinks, localeFromParams } from "@/lib/i18n/locales";
 
-export const Route = createFileRoute("/resources")({
-  head: () => ({
+export const Route = createFileRoute("/{-$locale}/resources")({
+  head: ({ params }) => ({
     meta: [
       { title: "Resources — News, Insights, Events & Downloads | LEC Robotics" },
       {
@@ -15,7 +16,7 @@ export const Route = createFileRoute("/resources")({
       { property: "og:title", content: "Resources | LEC Robotics" },
       { property: "og:description", content: "News, insights, events and downloadable materials." },
     ],
-    links: [{ rel: "canonical", href: "/resources" }],
+    links: headLinks("/resources", localeFromParams(params)),
   }),
   component: Resources,
 });
@@ -118,8 +119,12 @@ function Resources() {
                 <div className="flex items-center gap-3">
                   <FileText className="size-4 shrink-0 text-primary" strokeWidth={1.75} />
                   <div>
-                    <p className="text-sm font-semibold">{t("resources.specSheet", { name: p.name })}</p>
-                    <p className="text-xs text-muted-foreground">{t(`prod.${p.slug}.positioning`)}</p>
+                    <p className="text-sm font-semibold">
+                      {t("resources.specSheet", { name: p.name })}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {t(`prod.${p.slug}.positioning`)}
+                    </p>
                   </div>
                 </div>
                 <a

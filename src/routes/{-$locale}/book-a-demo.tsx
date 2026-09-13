@@ -2,9 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { products } from "@/lib/products";
 import { useI18n } from "@/lib/i18n/i18n-context";
+import { headLinks, localeFromParams, pageUrl } from "@/lib/i18n/locales";
 
-export const Route = createFileRoute("/book-a-demo")({
-  head: () => ({
+export const Route = createFileRoute("/{-$locale}/book-a-demo")({
+  head: ({ params }) => ({
     meta: [
       { title: "Book a Demo at the Chelsea Showroom | LEC Robotics" },
       {
@@ -17,9 +18,9 @@ export const Route = createFileRoute("/book-a-demo")({
         property: "og:description",
         content: "See any machine working before you buy — live demonstrations in London.",
       },
-      { property: "og:url", content: "/book-a-demo" },
+      { property: "og:url", content: pageUrl("/book-a-demo", localeFromParams(params)) },
     ],
-    links: [{ rel: "canonical", href: "/book-a-demo" }],
+    links: headLinks("/book-a-demo", localeFromParams(params)),
   }),
   component: BookDemo,
 });

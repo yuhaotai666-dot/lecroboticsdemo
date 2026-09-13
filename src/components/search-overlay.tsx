@@ -4,19 +4,21 @@ import { Search } from "lucide-react";
 import { products } from "@/lib/products";
 import { industryMenu } from "@/lib/nav";
 import { useI18n } from "@/lib/i18n/i18n-context";
+import type { AppPath } from "@/lib/i18n/locale-link";
+import { localeParam } from "@/lib/i18n/locales";
 
 type Result = {
   kind: "product" | "industry" | "page";
   label: string;
   hint?: string;
   image?: string;
-  to: string;
+  to: AppPath;
   params?: Record<string, string>;
   hash?: string;
 };
 
 export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
@@ -80,9 +82,10 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
 
   const go = (r: Result) => {
     onClose();
+    // Results must land on the page in the language currently being viewed.
     navigate({
-      to: r.to as never,
-      params: r.params as never,
+      to: (r.to === "/" ? "/{-$locale}/" : `/{-$locale}${r.to}`) as never,
+      params: { ...(r.params ?? {}), locale: localeParam(locale) } as never,
       ...(r.hash ? { hash: r.hash } : {}),
     });
   };
@@ -94,9 +97,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
     ["page", t("search.pages")],
   ];
   kinds.forEach(([kind, title]) => {
-    const items = results
-      .map((r, idx) => ({ r, idx }))
-      .filter(({ r }) => r.kind === kind);
+    const items = results.map((r, idx) => ({ r, idx })).filter(({ r }) => r.kind === kind);
     if (items.length) groups.push({ key: kind, title, items });
   });
 

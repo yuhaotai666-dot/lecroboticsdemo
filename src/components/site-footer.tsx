@@ -1,4 +1,3 @@
-import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   ArrowRight,
@@ -19,9 +18,9 @@ import {
   supportMenu,
 } from "@/lib/nav";
 import { useI18n } from "@/lib/i18n/i18n-context";
+import { LocaleLink } from "@/lib/i18n/locale-link";
 
-const linkClass =
-  "text-sm text-muted-foreground transition-colors duration-200 hover:text-primary";
+const linkClass = "text-sm text-muted-foreground transition-colors duration-200 hover:text-primary";
 
 const socials = [
   { label: "LinkedIn", Icon: Linkedin },
@@ -41,7 +40,10 @@ const groupKey: Record<string, string> = {
 };
 
 const caseKey = (hash: string) =>
-  hash === "featured" || hash === "industrial" || hash === "real-estate" || hash === "public-service"
+  hash === "featured" ||
+  hash === "industrial" ||
+  hash === "real-estate" ||
+  hash === "public-service"
     ? `case.${hash}`
     : `ind.${hash}.name`;
 
@@ -65,15 +67,15 @@ export function SiteFooter() {
         <>
           {productGroups.map((g) => (
             <li key={g.title}>
-              <Link to="/products" className={linkClass}>
+              <LocaleLink to="/products" className={linkClass}>
                 {t(groupKey[g.title] ?? "")}
-              </Link>
+              </LocaleLink>
             </li>
           ))}
           <li>
-            <Link to="/products" className="text-sm font-medium text-primary">
+            <LocaleLink to="/products" className="text-sm font-medium text-primary">
               {t("footer.viewAllProducts")} →
-            </Link>
+            </LocaleLink>
           </li>
         </>
       ),
@@ -85,15 +87,15 @@ export function SiteFooter() {
         <>
           {industryMenu.slice(0, 6).map((ind) => (
             <li key={ind.slug}>
-              <Link to="/industries" hash={ind.slug} className={linkClass}>
+              <LocaleLink to="/industries" hash={ind.slug} className={linkClass}>
                 {t(`ind.${ind.slug}.name`)}
-              </Link>
+              </LocaleLink>
             </li>
           ))}
           <li>
-            <Link to="/industries" className="text-sm font-medium text-primary">
+            <LocaleLink to="/industries" className="text-sm font-medium text-primary">
               {t("footer.viewAllIndustries")} →
-            </Link>
+            </LocaleLink>
           </li>
         </>
       ),
@@ -105,15 +107,15 @@ export function SiteFooter() {
         <>
           {caseMenu.slice(0, 6).map((c) => (
             <li key={c.hash}>
-              <Link to="/case-studies" hash={c.hash} className={linkClass}>
+              <LocaleLink to="/case-studies" hash={c.hash} className={linkClass}>
                 {t(caseKey(c.hash))}
-              </Link>
+              </LocaleLink>
             </li>
           ))}
           <li>
-            <Link to="/case-studies" className="text-sm font-medium text-primary">
+            <LocaleLink to="/case-studies" className="text-sm font-medium text-primary">
               {t("footer.viewAllCases")} →
-            </Link>
+            </LocaleLink>
           </li>
         </>
       ),
@@ -125,15 +127,15 @@ export function SiteFooter() {
         <>
           {resourceMenu.map((r) => (
             <li key={r.hash}>
-              <Link to="/resources" hash={r.hash} className={linkClass}>
+              <LocaleLink to="/resources" hash={r.hash} className={linkClass}>
                 {t(`res.${r.hash}.label`)}
-              </Link>
+              </LocaleLink>
             </li>
           ))}
           <li>
-            <Link to="/resources" hash="downloads" className={linkClass}>
+            <LocaleLink to="/resources" hash="downloads" className={linkClass}>
               {t("footer.productBrochures")}
-            </Link>
+            </LocaleLink>
           </li>
         </>
       ),
@@ -143,9 +145,9 @@ export function SiteFooter() {
       title: t("nav.about"),
       body: aboutMenu.map((a) => (
         <li key={a.hash}>
-          <Link to="/about" hash={a.hash} className={linkClass}>
+          <LocaleLink to="/about" hash={a.hash} className={linkClass}>
             {t(`about.${a.hash}.label`)}
-          </Link>
+          </LocaleLink>
         </li>
       )),
     },
@@ -155,15 +157,15 @@ export function SiteFooter() {
       body: (
         <>
           <li>
-            <Link to="/support" className={linkClass}>
+            <LocaleLink to="/support" className={linkClass}>
               {t("footer.serviceSupport")}
-            </Link>
+            </LocaleLink>
           </li>
           {supportMenu.map((s) => (
             <li key={s.hash}>
-              <Link to="/support" hash={s.hash} className={linkClass}>
+              <LocaleLink to="/support" hash={s.hash} className={linkClass}>
                 {t(`sup.${s.hash}.label`)}
-              </Link>
+              </LocaleLink>
             </li>
           ))}
         </>
@@ -177,9 +179,12 @@ export function SiteFooter() {
       <div className="border-b border-border/60 bg-catalog/40">
         <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5 py-16 md:flex-row md:items-center md:justify-between md:py-20">
           <div className="max-w-md">
-            <Link to="/" className="font-display text-lg font-semibold tracking-tight text-foreground">
+            <LocaleLink
+              to="/"
+              className="font-display text-lg font-semibold tracking-tight text-foreground"
+            >
               LEC<span className="text-primary">.</span>ROBOTICS
-            </Link>
+            </LocaleLink>
             <p className="mt-5 font-display text-xl font-medium tracking-tight text-foreground md:text-2xl">
               {t("footer.newsletter.title")}
             </p>

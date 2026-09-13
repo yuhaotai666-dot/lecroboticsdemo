@@ -1,10 +1,12 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import { ArrowRight, Film, PlayCircle } from "lucide-react";
 import { getProduct, formatPrice, type Product } from "@/lib/products";
 import { getVideos, type Clip } from "@/lib/videos";
 import { useI18n } from "@/lib/i18n/i18n-context";
+import { LocaleLink } from "@/lib/i18n/locale-link";
+import { headLinks, localeFromParams } from "@/lib/i18n/locales";
 
-export const Route = createFileRoute("/videos/$slug")({
+export const Route = createFileRoute("/{-$locale}/videos/$slug")({
   loader: ({ params }) => {
     const product = getProduct(params.slug);
     if (!product) throw notFound();
@@ -12,7 +14,9 @@ export const Route = createFileRoute("/videos/$slug")({
   },
   head: ({ loaderData, params }) => {
     if (!loaderData) {
-      return { meta: [{ title: "Video not found | LEC Robotics" }, { name: "robots", content: "noindex" }] };
+      return {
+        meta: [{ title: "Video not found | LEC Robotics" }, { name: "robots", content: "noindex" }],
+      };
     }
     const p: Product = loaderData.product;
     const title = `${p.name} videos — operation & deployment footage | LEC Robotics`;
@@ -28,7 +32,7 @@ export const Route = createFileRoute("/videos/$slug")({
         { name: "twitter:image", content: p.image },
         { name: "twitter:card", content: "summary_large_image" },
       ],
-      links: [{ rel: "canonical", href: `/videos/${params.slug}` }],
+      links: headLinks(`/videos/${params.slug}`, localeFromParams(params)),
     };
   },
   component: VideoPage,
@@ -53,7 +57,12 @@ function ClipCard({ clip, poster, alt }: { clip: Clip; poster?: string; alt: str
           <div className="px-6 py-10 text-center">
             <Film className="mx-auto size-7 text-muted-foreground" aria-hidden />
             <p className="mt-3 label-mono text-muted-foreground">{t("videos.pending")}</p>
-            <img src={poster} alt={alt} loading="lazy" className="mx-auto mt-4 h-20 w-auto object-contain opacity-40" />
+            <img
+              src={poster}
+              alt={alt}
+              loading="lazy"
+              className="mx-auto mt-4 h-20 w-auto object-contain opacity-40"
+            />
           </div>
         )}
       </div>
@@ -78,34 +87,40 @@ function VideoPage() {
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-14">
           <nav className="label-mono text-muted-foreground">
-            <Link to="/products" className="hover:text-foreground">
+            <LocaleLink to="/products" className="hover:text-foreground">
               {t("nav.products")}
-            </Link>{" "}
+            </LocaleLink>{" "}
             /{" "}
-            <Link to="/products/$slug" params={{ slug: p.slug }} className="hover:text-foreground">
+            <LocaleLink
+              to="/products/$slug"
+              params={{ slug: p.slug }}
+              className="hover:text-foreground"
+            >
               {p.name}
-            </Link>{" "}
+            </LocaleLink>{" "}
             / {t("videos.breadcrumb")}
           </nav>
-          <h1 className="mt-4 text-4xl font-semibold md:text-5xl">{t("videos.title", { name: p.name })}</h1>
+          <h1 className="mt-4 text-4xl font-semibold md:text-5xl">
+            {t("videos.title", { name: p.name })}
+          </h1>
           <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
             {t("videos.intro", { price: formatPrice(p) })}
             {p.finance ? t("videos.introFinance", { finance: p.finance }) : "."}
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Link
+            <LocaleLink
               to="/book-a-demo"
               className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
             >
               {t("videos.bookLive")} <ArrowRight className="size-4" />
-            </Link>
-            <Link
+            </LocaleLink>
+            <LocaleLink
               to="/products/$slug"
               params={{ slug: p.slug }}
               className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-sm font-semibold shadow-sm transition-colors hover:border-primary hover:text-primary"
             >
               {t("videos.specPricing")}
-            </Link>
+            </LocaleLink>
           </div>
         </div>
       </section>
@@ -144,12 +159,12 @@ function VideoPage() {
               </p>
               <h2 className="mt-3 text-2xl font-semibold">{t("videos.showroom")}</h2>
             </div>
-            <Link
+            <LocaleLink
               to="/book-a-demo"
               className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
             >
               {t("nav.bookDemo")} <ArrowRight className="size-4" />
-            </Link>
+            </LocaleLink>
           </div>
         </div>
       </section>

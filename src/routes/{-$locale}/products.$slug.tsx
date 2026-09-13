@@ -1,9 +1,11 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import { ArrowRight, Download, PlayCircle } from "lucide-react";
 import { categories, getProduct, products, formatPrice, type Product } from "@/lib/products";
 import { useI18n } from "@/lib/i18n/i18n-context";
+import { LocaleLink } from "@/lib/i18n/locale-link";
+import { headLinks, localeFromParams, pageUrl } from "@/lib/i18n/locales";
 
-export const Route = createFileRoute("/products/$slug")({
+export const Route = createFileRoute("/{-$locale}/products/$slug")({
   loader: ({ params }) => {
     const product = getProduct(params.slug);
     if (!product) throw notFound();
@@ -11,22 +13,30 @@ export const Route = createFileRoute("/products/$slug")({
   },
   head: ({ loaderData, params }) => {
     if (!loaderData) {
-      return { meta: [{ title: "Robot not found | LEC Robotics" }, { name: "robots", content: "noindex" }] };
+      return {
+        meta: [{ title: "Robot not found | LEC Robotics" }, { name: "robots", content: "noindex" }],
+      };
     }
     const p: Product = loaderData.product;
     const title = `${p.name} — ${p.positioning} | LEC Robotics`;
     return {
       meta: [
         { title },
-        { name: "description", content: `${p.tagline} ${formatPrice(p)} + VAT, UK deployment and support.` },
+        {
+          name: "description",
+          content: `${p.tagline} ${formatPrice(p)} + VAT, UK deployment and support.`,
+        },
         { property: "og:title", content: title },
         { property: "og:description", content: p.tagline },
         { property: "og:type", content: "product" },
-        { property: "og:url", content: `/products/${params.slug}` },
+        {
+          property: "og:url",
+          content: pageUrl(`/products/${params.slug}`, localeFromParams(params)),
+        },
         { property: "og:image", content: p.image },
         { name: "twitter:image", content: p.image },
       ],
-      links: [{ rel: "canonical", href: `/products/${params.slug}` }],
+      links: headLinks(`/products/${params.slug}`, localeFromParams(params)),
       scripts: [
         {
           type: "application/ld+json",
@@ -66,14 +76,18 @@ function ProductPage() {
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-6xl gap-12 px-5 py-14 lg:grid-cols-2">
           <div className="flex items-center justify-center rounded-xl border border-border bg-card p-10 shadow-[var(--shadow-card)]">
-            <img src={p.image} alt={`${p.name} — ${t(`prod.${p.slug}.positioning`)}`} className="max-h-96 w-auto object-contain" />
+            <img
+              src={p.image}
+              alt={`${p.name} — ${t(`prod.${p.slug}.positioning`)}`}
+              className="max-h-96 w-auto object-contain"
+            />
           </div>
 
           <div>
             <nav className="label-mono text-muted-foreground">
-              <Link to="/products" className="hover:text-foreground">
+              <LocaleLink to="/products" className="hover:text-foreground">
                 {t("nav.products")}
-              </Link>{" "}
+              </LocaleLink>{" "}
               / {category ? t(`cat.${category.id}.label`) : ""}
             </nav>
             <h1 className="mt-4 text-4xl font-semibold md:text-5xl">{p.name}</h1>
@@ -88,7 +102,9 @@ function ProductPage() {
               </div>
               <div className="card-surface p-5">
                 <p className="label-mono text-muted-foreground">{t("pdp.finance")}</p>
-                <p className="mt-2 font-display text-3xl font-semibold">{p.finance ?? t("pdp.onRequest")}</p>
+                <p className="mt-2 font-display text-3xl font-semibold">
+                  {p.finance ?? t("pdp.onRequest")}
+                </p>
                 <p className="mt-1 text-xs text-muted-foreground">
                   {p.finance ? t("pdp.financeNote") : t("pdp.termsOnEnquiry")}
                 </p>
@@ -96,19 +112,19 @@ function ProductPage() {
             </div>
 
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link
+              <LocaleLink
                 to="/book-a-demo"
                 className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
               >
                 {t("pdp.bookDemo")} <ArrowRight className="size-4" />
-              </Link>
-              <Link
+              </LocaleLink>
+              <LocaleLink
                 to="/videos/$slug"
                 params={{ slug: p.slug }}
                 className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 text-sm font-semibold shadow-sm transition-colors hover:border-primary hover:text-primary"
               >
                 <PlayCircle className="size-4" /> {t("pdp.watchItWork")}
-              </Link>
+              </LocaleLink>
               {p.brochure && (
                 <a
                   href={p.brochure}
@@ -120,7 +136,6 @@ function ProductPage() {
                 </a>
               )}
             </div>
-
           </div>
         </div>
       </section>
@@ -136,9 +151,7 @@ function ProductPage() {
               </div>
             ))}
           </div>
-          <p className="mt-4 text-xs text-muted-foreground">
-            {t("pdp.specNote")}
-          </p>
+          <p className="mt-4 text-xs text-muted-foreground">{t("pdp.specNote")}</p>
         </div>
       </section>
 
@@ -165,13 +178,13 @@ function ProductPage() {
         <div className="mx-auto max-w-6xl px-5 py-16">
           <div className="flex items-end justify-between gap-4">
             <h2 className="text-3xl font-semibold">{t("pdp.exploreOthers")}</h2>
-            <Link to="/products" className="label-mono text-primary">
+            <LocaleLink to="/products" className="label-mono text-primary">
               {t("pdp.allRobots")} →
-            </Link>
+            </LocaleLink>
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {others.map((o) => (
-              <Link
+              <LocaleLink
                 key={o.slug}
                 to="/products/$slug"
                 params={{ slug: o.slug }}
@@ -187,7 +200,7 @@ function ProductPage() {
                 </div>
                 <h3 className="mt-5 font-bold">{o.name}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{t(`prod.${o.slug}.tagline`)}</p>
-              </Link>
+              </LocaleLink>
             ))}
           </div>
         </div>

@@ -1,10 +1,12 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { products, formatPrice } from "@/lib/products";
 import { useI18n } from "@/lib/i18n/i18n-context";
+import { LocaleLink } from "@/lib/i18n/locale-link";
+import { headLinks, localeFromParams, pageUrl } from "@/lib/i18n/locales";
 
-export const Route = createFileRoute("/roi")({
-  head: () => ({
+export const Route = createFileRoute("/{-$locale}/roi")({
+  head: ({ params }) => ({
     meta: [
       { title: "Robot ROI Calculator — Work Out Your Payback | LEC Robotics" },
       {
@@ -17,9 +19,9 @@ export const Route = createFileRoute("/roi")({
         property: "og:description",
         content: "See the payback period for any machine against your own labour cost.",
       },
-      { property: "og:url", content: "/roi" },
+      { property: "og:url", content: pageUrl("/roi", localeFromParams(params)) },
     ],
-    links: [{ rel: "canonical", href: "/roi" }],
+    links: headLinks("/roi", localeFromParams(params)),
   }),
   component: RoiPage,
 });
@@ -41,12 +43,8 @@ function RoiPage() {
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-16">
           <p className="label-mono text-primary">{t("roi.kicker")}</p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-semibold md:text-6xl">
-            {t("roi.title")}
-          </h1>
-          <p className="mt-5 max-w-2xl text-muted-foreground">
-            {t("roi.sub")}
-          </p>
+          <h1 className="mt-4 max-w-3xl text-4xl font-semibold md:text-6xl">{t("roi.title")}</h1>
+          <p className="mt-5 max-w-2xl text-muted-foreground">{t("roi.sub")}</p>
         </div>
       </section>
 
@@ -105,9 +103,19 @@ function RoiPage() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            <Result label={t("roi.weeklySaved")} value={`£${Math.round(weeklySaving).toLocaleString("en-GB")}`} />
-            <Result label={t("roi.annualSaved")} value={`£${Math.round(annualSaving).toLocaleString("en-GB")}`} />
-            <Result label={t("roi.machineCost")} value={formatPrice(product)} note={t("product.plusVat")} />
+            <Result
+              label={t("roi.weeklySaved")}
+              value={`£${Math.round(weeklySaving).toLocaleString("en-GB")}`}
+            />
+            <Result
+              label={t("roi.annualSaved")}
+              value={`£${Math.round(annualSaving).toLocaleString("en-GB")}`}
+            />
+            <Result
+              label={t("roi.machineCost")}
+              value={formatPrice(product)}
+              note={t("product.plusVat")}
+            />
             <Result
               label={t("roi.payback")}
               value={t("roi.weeks", { n: Math.round(paybackWeeks) })}
@@ -117,14 +125,17 @@ function RoiPage() {
             <div className="card-surface p-6 sm:col-span-2">
               <p className="text-sm text-muted-foreground">
                 {t("roi.spread", { name: product.name })}{" "}
-                <span className="font-semibold text-foreground">{product.finance ?? t("roi.termsOnRequest")}</span>.
+                <span className="font-semibold text-foreground">
+                  {product.finance ?? t("roi.termsOnRequest")}
+                </span>
+                .
               </p>
-              <Link
+              <LocaleLink
                 to="/book-a-demo"
                 className="mt-5 inline-block rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
               >
                 {t("roi.cta")} →
-              </Link>
+              </LocaleLink>
             </div>
           </div>
         </div>
@@ -152,7 +163,11 @@ function Result({
     >
       <p className={`label-mono ${highlight ? "opacity-70" : "text-muted-foreground"}`}>{label}</p>
       <p className="mt-2 font-display text-3xl font-semibold">{value}</p>
-      {note && <p className={`mt-1 text-xs ${highlight ? "opacity-70" : "text-muted-foreground"}`}>{note}</p>}
+      {note && (
+        <p className={`mt-1 text-xs ${highlight ? "opacity-70" : "text-muted-foreground"}`}>
+          {note}
+        </p>
+      )}
     </div>
   );
 }

@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Check, Globe } from "lucide-react";
-import { locales } from "@/lib/i18n/locales";
+import { locales, switchLocaleHref } from "@/lib/i18n/locales";
 import { useI18n } from "@/lib/i18n/i18n-context";
+import { useRouterState } from "@tanstack/react-router";
 
 export function LanguageSwitcher() {
-  const { locale, setLocale, t } = useI18n();
+  const { locale, t } = useI18n();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -39,13 +41,11 @@ export function LanguageSwitcher() {
       {open && (
         <div className="absolute right-0 top-full mt-2 w-44 rounded-xl border border-border bg-background p-1.5 shadow-[0_8px_24px_-16px_rgb(0_0_0/0.15)]">
           {locales.map((l) => (
-            <button
+            <a
               key={l.code}
-              type="button"
-              onClick={() => {
-                setLocale(l.code);
-                setOpen(false);
-              }}
+              href={switchLocaleHref(pathname, l.code)}
+              hrefLang={l.code}
+              onClick={() => setOpen(false)}
               className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors ${
                 l.code === locale
                   ? "font-medium text-primary"
@@ -54,7 +54,7 @@ export function LanguageSwitcher() {
             >
               {l.label}
               {l.code === locale && <Check className="size-3.5" />}
-            </button>
+            </a>
           ))}
         </div>
       )}

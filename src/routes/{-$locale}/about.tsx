@@ -1,9 +1,11 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { useI18n } from "@/lib/i18n/i18n-context";
+import { LocaleLink } from "@/lib/i18n/locale-link";
+import { headLinks, localeFromParams } from "@/lib/i18n/locales";
 
-export const Route = createFileRoute("/about")({
-  head: () => ({
+export const Route = createFileRoute("/{-$locale}/about")({
+  head: ({ params }) => ({
     meta: [
       { title: "About Us — Making Robots Useful at Work | LEC Robotics" },
       {
@@ -14,11 +16,10 @@ export const Route = createFileRoute("/about")({
       { property: "og:title", content: "About LEC Robotics" },
       { property: "og:description", content: "Making robots genuinely useful at work." },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: headLinks("/about", localeFromParams(params)),
   }),
   component: About,
 });
-
 
 function About() {
   const { t } = useI18n();
@@ -32,12 +33,13 @@ function About() {
 
   return (
     <>
-      <section id="overview" className="scroll-mt-24 border-b border-border bg-gradient-to-b from-accent/70 to-background">
+      <section
+        id="overview"
+        className="scroll-mt-24 border-b border-border bg-gradient-to-b from-accent/70 to-background"
+      >
         <div className="mx-auto max-w-6xl px-5 pt-20 pb-20 text-center">
           <p className="label-mono text-primary">{t("about.kicker")}</p>
-          <h1 className="mx-auto mt-4 max-w-3xl text-4xl md:text-6xl">
-            {t("about.title")}
-          </h1>
+          <h1 className="mx-auto mt-4 max-w-3xl text-4xl md:text-6xl">{t("about.title")}</h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
             {t("about.overview.body")}
           </p>
@@ -48,21 +50,26 @@ function About() {
         {localizedBlocks.map((b) => (
           <section key={b.id} id={b.id} className="scroll-mt-24">
             <h2 className="text-2xl font-semibold md:text-3xl">{b.title}</h2>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">{b.body}</p>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
+              {b.body}
+            </p>
           </section>
         ))}
 
-        <section id="contact" className="scroll-mt-24 rounded-xl border border-border bg-card p-8 text-center md:p-10">
+        <section
+          id="contact"
+          className="scroll-mt-24 rounded-xl border border-border bg-card p-8 text-center md:p-10"
+        >
           <h2 className="text-2xl font-semibold">{t("about.contact.label")}</h2>
           <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
             {t("about.contact.body")}
           </p>
-          <Link
+          <LocaleLink
             to="/book-a-demo"
             className="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
           >
             {t("nav.bookDemo")} <ArrowRight className="size-4" />
-          </Link>
+          </LocaleLink>
         </section>
       </div>
     </>

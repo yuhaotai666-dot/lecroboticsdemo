@@ -103,9 +103,22 @@ function Home() {
           data-parallax="10"
           aria-hidden
         />
+        {/* Oversized index, half off the right edge — each section now opens on
+            its own marker instead of the identical kicker+heading stack. */}
+        <span
+          className="section-index pointer-events-none absolute -top-6 -right-6 hidden lg:block"
+          aria-hidden
+        >
+          01
+        </span>
         <div className="relative mx-auto max-w-6xl px-5 pt-12 pb-10 md:pt-16 md:pb-12">
-          <div className="max-w-3xl">
-            <p className="label-mono text-primary">{t("home.kicker")}</p>
+          {/* Heading runs wider than the body copy it sits above — asymmetric
+              measures rather than one column for everything. */}
+          <div className="max-w-4xl">
+            <p className="label-mono flex items-center gap-3 text-primary">
+              <span className="h-px w-8 bg-primary" aria-hidden />
+              {t("home.kicker")}
+            </p>
             <h1
               data-words
               className="mt-6 text-5xl leading-[1.02] font-semibold tracking-tight md:text-6xl"
@@ -114,7 +127,7 @@ function Home() {
               <br />
               <SplitWords text={t("home.heroTitle2")} />
             </h1>
-            <p className="mt-6 max-w-[60ch] text-base leading-relaxed text-muted-foreground">
+            <p className="mt-6 max-w-[52ch] text-base leading-relaxed text-muted-foreground">
               {t("home.heroSub")}
             </p>
 
@@ -137,24 +150,39 @@ function Home() {
       </section>
 
       {/* Categories */}
-      <section className="border-b border-border bg-catalog">
-        <div className="mx-auto max-w-6xl px-5 py-20">
+      <section className="section-wash grain relative overflow-hidden border-b border-border bg-catalog">
+        <span
+          className="section-index pointer-events-none absolute top-10 -left-4 hidden lg:block"
+          aria-hidden
+        >
+          02
+        </span>
+        <div className="relative mx-auto max-w-6xl px-5 py-20">
           <p className="label-mono text-muted-foreground">{t("home.findByJob")}</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
             {t("home.catTitle")}
           </h2>
-          <div data-reveal className="mt-10 grid gap-4 md:grid-cols-3">
-            {categories.map((c) => (
+          {/* Stepped down left-to-right: a diagonal read instead of three
+              cards sitting on one rigid baseline. */}
+          <div data-reveal className="mt-10 grid items-start gap-4 md:grid-cols-3">
+            {categories.map((c, index) => (
               <LocaleLink
                 key={c.id}
                 to="/products"
                 search={{ category: c.id }}
-                className="group card-surface p-8 hover:-translate-y-0.5"
+                className={`group card-surface relative overflow-hidden p-8 hover:-translate-y-0.5 ${
+                  index % 3 === 1 ? "md:mt-8" : index % 3 === 2 ? "md:mt-16" : ""
+                }`}
               >
+                <span
+                  className="absolute inset-y-0 left-0 w-0.5 origin-top scale-y-0 bg-primary transition-transform duration-300 group-hover:scale-y-100"
+                  aria-hidden
+                />
                 <h3 className="text-lg font-bold">{t(`cat.${c.id}.label`)}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{t(`cat.${c.id}.blurb`)}</p>
                 <span className="mt-4 inline-flex items-center gap-2 label-mono text-muted-foreground transition-colors group-hover:text-primary">
-                  {t("home.view")} <ArrowRight className="size-3.5" />
+                  {t("home.view")}
+                  <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
               </LocaleLink>
             ))}
@@ -163,17 +191,33 @@ function Home() {
       </section>
 
       {/* Featured products */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-5 py-20">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
+      <section className="section-wash relative overflow-hidden border-b border-border">
+        <span
+          className="section-index pointer-events-none absolute top-12 -right-5 hidden lg:block"
+          aria-hidden
+        >
+          03
+        </span>
+        <div className="relative mx-auto max-w-6xl px-5 py-20">
+          {/* A rule spans the gap to the link, tying the two ends of the row
+              together instead of leaving them floating apart. */}
+          <div className="flex flex-wrap items-end gap-4">
+            <div className="shrink-0">
               <p className="label-mono text-muted-foreground">{t("home.rangeKicker")}</p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">
                 {t("home.rangeTitle")}
               </h2>
             </div>
-            <LocaleLink to="/products" className="label-mono text-primary">
-              {t("home.compareAll")} →
+            <span
+              className="hidden h-px flex-1 translate-y-[-0.4rem] bg-border md:block"
+              aria-hidden
+            />
+            <LocaleLink
+              to="/products"
+              className="group label-mono inline-flex shrink-0 items-center gap-2 text-primary"
+            >
+              {t("home.compareAll")}
+              <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" />
             </LocaleLink>
           </div>
 
@@ -204,7 +248,7 @@ function Home() {
                 <p className="mt-1 min-h-8 text-xs leading-4 text-catalog-copy">
                   {t(`prod.${p.slug}.positioning`)}
                 </p>
-                <p className="mt-auto border-t border-border pt-3 text-sm font-medium text-catalog-title">
+                <p className="mt-auto border-t border-border pt-3 text-sm font-medium text-catalog-title transition-colors duration-300 group-hover:border-primary">
                   {formatPrice(p)}
                   <span className="ml-2 text-xs font-normal text-catalog-copy">
                     {p.finance
@@ -222,16 +266,28 @@ function Home() {
       <CapabilityStory />
 
       {/* CTA */}
-      <section>
-        <div data-reveal className="mx-auto max-w-6xl px-5 py-24 text-center">
-          <h2 className="text-4xl font-semibold md:text-5xl">{t("home.ctaTitle")}</h2>
-          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">{t("home.ctaSub")}</p>
-          <LocaleLink
-            to="/book-a-demo"
-            className="mt-8 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 py-3.5 text-base font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
-          >
-            {t("home.bookDemo")} <ArrowRight className="size-4" />
-          </LocaleLink>
+      <section className="section-wash grain relative overflow-hidden">
+        {/* Closer is left-weighted with the action pulled to the opposite end —
+            the page ends on a different shape from the centred blocks above. */}
+        <div
+          data-reveal
+          className="relative mx-auto grid max-w-6xl gap-10 px-5 py-24 md:grid-cols-[1.4fr_1fr] md:items-end"
+        >
+          <div>
+            <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">
+              {t("home.ctaTitle")}
+            </h2>
+            <p className="mt-4 max-w-[46ch] text-muted-foreground">{t("home.ctaSub")}</p>
+          </div>
+          <div className="md:justify-self-end">
+            <LocaleLink
+              to="/book-a-demo"
+              className="group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-primary px-6 py-3.5 text-base font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
+            >
+              {t("home.bookDemo")}
+              <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </LocaleLink>
+          </div>
         </div>
       </section>
     </div>

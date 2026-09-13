@@ -118,7 +118,6 @@
   --font-mono: var(--font-mono);
 }
 
-
 .dark {
   --background: oklch(0.129 0.042 264.695);
   --foreground: oklch(0.984 0.003 247.858);
@@ -212,7 +211,9 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   box-shadow: var(--shadow-card);
-  transition: box-shadow 250ms var(--ease-default), transform 250ms var(--ease-default);
+  transition:
+    box-shadow 250ms var(--ease-default),
+    transform 250ms var(--ease-default);
 
   &:hover {
     box-shadow: var(--shadow-card-hover);
@@ -220,9 +221,57 @@
 }
 
 @utility grid-lines {
-  background-image:
-    radial-gradient(circle at 1px 1px, var(--color-border) 1px, transparent 0);
+  background-image: radial-gradient(circle at 1px 1px, var(--color-border) 1px, transparent 0);
   background-size: 28px 28px;
+}
+
+/* Atmosphere for otherwise flat sections. Two off-centre washes rather than a
+   centred glow, so the light reads as coming from somewhere. */
+@utility section-wash {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        52% 44% at 12% 8%,
+        color-mix(in oklch, var(--color-primary) 6%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        44% 40% at 92% 96%,
+        color-mix(in oklch, var(--color-foreground) 5%, transparent),
+        transparent 72%
+      );
+  }
+}
+
+/* Grain. Breaks up the flat fills that large gradient areas otherwise show as
+   banding, and gives the surfaces a little tooth. */
+@utility grain {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* Section index marker — oversized, half off the edge. Gives each block its own
+   anchor instead of every one opening identically. */
+@utility section-index {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 13vw, 11rem);
+  font-weight: 600;
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: color-mix(in oklch, var(--color-foreground) 6%, transparent);
+  user-select: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

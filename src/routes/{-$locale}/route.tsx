@@ -10,8 +10,7 @@ import { SiteFooter } from "@/components/site-footer";
  * matches both `/products` (default locale, no prefix) and `/fr/products`.
  *
  * The site chrome lives here rather than in __root because the header and footer
- * read translations, and the provider is scoped to this subtree. /landing sits
- * outside it and renders bare.
+ * read translations, and the provider is scoped to this subtree.
  */
 export const Route = createFileRoute("/{-$locale}")({
   beforeLoad: ({ params, location }) => {

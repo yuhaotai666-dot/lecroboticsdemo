@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as LandingRouteImport } from './routes/landing'
 import { Route as Char123LocaleChar125RouteRouteImport } from './routes/{-$locale}/route'
 import { Route as Char123LocaleChar125IndexRouteImport } from './routes/{-$locale}/index'
 import { Route as Char123LocaleChar125AboutRouteImport } from './routes/{-$locale}/about'
@@ -24,11 +23,6 @@ import { Route as Char123LocaleChar125ProductsIndexRouteImport } from './routes/
 import { Route as Char123LocaleChar125ProductsSlugRouteImport } from './routes/{-$locale}/products.$slug'
 import { Route as Char123LocaleChar125VideosSlugRouteImport } from './routes/{-$locale}/videos.$slug'
 
-const LandingRoute = LandingRouteImport.update({
-  id: '/landing',
-  path: '/landing',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const Char123LocaleChar125RouteRoute =
   Char123LocaleChar125RouteRouteImport.update({
     id: '/{-$locale}',
@@ -109,7 +103,6 @@ const Char123LocaleChar125VideosSlugRoute =
 
 export interface FileRoutesByFullPath {
   '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
-  '/landing': typeof LandingRoute
   '/{-$locale}/about': typeof Char123LocaleChar125AboutRoute
   '/{-$locale}/book-a-demo': typeof Char123LocaleChar125BookADemoRoute
   '/{-$locale}/case-studies': typeof Char123LocaleChar125CaseStudiesRoute
@@ -124,7 +117,6 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/products/': typeof Char123LocaleChar125ProductsIndexRoute
 }
 export interface FileRoutesByTo {
-  '/landing': typeof LandingRoute
   '/{-$locale}/about': typeof Char123LocaleChar125AboutRoute
   '/{-$locale}/book-a-demo': typeof Char123LocaleChar125BookADemoRoute
   '/{-$locale}/case-studies': typeof Char123LocaleChar125CaseStudiesRoute
@@ -141,7 +133,6 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
-  '/landing': typeof LandingRoute
   '/{-$locale}/about': typeof Char123LocaleChar125AboutRoute
   '/{-$locale}/book-a-demo': typeof Char123LocaleChar125BookADemoRoute
   '/{-$locale}/case-studies': typeof Char123LocaleChar125CaseStudiesRoute
@@ -159,7 +150,6 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/{-$locale}'
-    | '/landing'
     | '/{-$locale}/about'
     | '/{-$locale}/book-a-demo'
     | '/{-$locale}/case-studies'
@@ -174,7 +164,6 @@ export interface FileRouteTypes {
     | '/{-$locale}/products/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/landing'
     | '/{-$locale}/about'
     | '/{-$locale}/book-a-demo'
     | '/{-$locale}/case-studies'
@@ -190,7 +179,6 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/{-$locale}'
-    | '/landing'
     | '/{-$locale}/about'
     | '/{-$locale}/book-a-demo'
     | '/{-$locale}/case-studies'
@@ -207,18 +195,10 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   Char123LocaleChar125RouteRoute: typeof Char123LocaleChar125RouteRouteWithChildren
-  LandingRoute: typeof LandingRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/landing': {
-      id: '/landing'
-      path: '/landing'
-      fullPath: '/landing'
-      preLoaderRoute: typeof LandingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/{-$locale}': {
       id: '/{-$locale}'
       path: '/{-$locale}'
@@ -353,7 +333,6 @@ const Char123LocaleChar125RouteRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   Char123LocaleChar125RouteRoute: Char123LocaleChar125RouteRouteWithChildren,
-  LandingRoute: LandingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

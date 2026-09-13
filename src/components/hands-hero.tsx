@@ -1,7 +1,7 @@
 import { useRef } from "react";
 
-import robotHandAsset from "@/assets/landing/robot-hand.png";
-import humanHandAsset from "@/assets/landing/human-hand.png";
+import robotHandAsset from "@/assets/robot-hand.png";
+import humanHandAsset from "@/assets/human-hand.png";
 import { useI18n } from "@/lib/i18n/i18n-context";
 import { useScrollMotion } from "@/lib/use-scroll-motion";
 

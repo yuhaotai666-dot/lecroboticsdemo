@@ -118,7 +118,7 @@ export function HandsHero() {
 
             <div
               ref={humanRef}
-              className="hands-hero__wrapper hands-hero__wrapper--human relative z-10 -ml-[7%] w-[47%] max-w-[640px] origin-right"
+              className="hands-hero__wrapper hands-hero__wrapper--human relative z-10 -ml-[2%] w-[47%] max-w-[640px] origin-right"
             >
               <img
                 src={humanHandAsset}

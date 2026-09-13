@@ -13,8 +13,10 @@ import {
 import { useI18n } from "@/lib/i18n/i18n-context";
 import { SearchOverlay } from "@/components/search-overlay";
 import { LanguageSwitcher } from "@/components/language-switcher";
-import { locales, switchLocaleHref } from "@/lib/i18n/locales";
+import { locales, stripLocale, switchLocaleHref } from "@/lib/i18n/locales";
 import { LocaleLink, type AppPath } from "@/lib/i18n/locale-link";
+
+const MENU_PANEL_ID = "site-nav-panel";
 
 type MenuKey = "products" | "industries" | "cases" | "resources" | "about" | "support";
 
@@ -41,7 +43,7 @@ export function SiteHeader() {
   const [mobileSection, setMobileSection] = useState<MenuKey | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const overlay = pathname === "/";
+  const overlay = stripLocale(pathname) === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -56,21 +58,57 @@ export function SiteHeader() {
     setSearchOpen(false);
   }, [pathname]);
 
+  // The mobile panel is fixed and full-height; without this the page behind it
+  // keeps scrolling under your finger.
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [mobileOpen]);
+
+  // Esc closes whichever layer is on top, matching the search overlay.
+  useEffect(() => {
+    if (open === null && !mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setOpen(null);
+      setMobileOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open, mobileOpen]);
+
   const solid = !overlay || scrolled || open !== null || searchOpen;
 
+  // The link navigates, the button discloses. Hanging the panel off hover alone
+  // left it unreachable by keyboard and unopenable on touch, where the first tap
+  // just followed the link.
   const trigger = (key: MenuKey, label: string, to: AppPath) => (
-    <div className="relative" onMouseEnter={() => setOpen(key)}>
+    <div className="relative flex items-center" onMouseEnter={() => setOpen(key)}>
       <LocaleLink
         to={to}
-        className="flex items-center gap-1 whitespace-nowrap py-5 text-[13px] font-medium text-foreground/85 transition-colors hover:text-primary xl:text-sm"
+        className="whitespace-nowrap py-5 text-[13px] font-medium text-foreground/85 transition-colors hover:text-primary xl:text-sm"
         activeProps={{ className: "text-primary" }}
       >
         {label}
+      </LocaleLink>
+      <button
+        type="button"
+        aria-expanded={open === key}
+        aria-controls={MENU_PANEL_ID}
+        aria-label={t("nav.toggleMenu", { section: label })}
+        onClick={() => setOpen((cur) => (cur === key ? null : key))}
+        onFocus={() => setOpen(key)}
+        className="ml-1 py-5 text-foreground/85 transition-colors hover:text-primary"
+      >
         <ChevronDown
           className={`size-3.5 transition-transform duration-200 ${open === key ? "rotate-180" : ""}`}
           strokeWidth={2}
         />
-      </LocaleLink>
+      </button>
     </div>
   );
 
@@ -123,7 +161,7 @@ export function SiteHeader() {
           </div>
           <LocaleLink
             to="/book-a-demo"
-            className="hidden shrink-0 whitespace-nowrap rounded-full bg-primary px-4 py-1.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 sm:inline-block"
+            className="shrink-0 whitespace-nowrap rounded-full bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground transition-colors hover:bg-primary/90 sm:px-4 sm:text-sm"
           >
             {t("nav.bookDemo")}
           </LocaleLink>
@@ -142,7 +180,10 @@ export function SiteHeader() {
 
       {/* Mega / dropdown panels */}
       {open && (
-        <div className="absolute inset-x-0 top-full hidden border-t border-border/60 bg-background/95 shadow-[0_8px_24px_-16px_rgb(0_0_0/0.12)] backdrop-blur-xl lg:block">
+        <div
+          id={MENU_PANEL_ID}
+          className="absolute inset-x-0 top-full hidden border-t border-border/60 bg-background/95 shadow-[0_8px_24px_-16px_rgb(0_0_0/0.12)] backdrop-blur-xl lg:block"
+        >
           <div className="mx-auto max-w-6xl px-5 py-9">
             {open === "products" && (
               <>

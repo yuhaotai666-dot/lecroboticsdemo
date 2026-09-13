@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { products, formatPrice } from "@/lib/products";
 import { useI18n } from "@/lib/i18n/i18n-context";
 import { LocaleLink } from "@/lib/i18n/locale-link";
@@ -50,23 +51,29 @@ function RoiPage() {
 
       <section>
         <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 lg:grid-cols-2">
-          <div className="space-y-8 rounded-xl border border-border bg-card p-8 shadow-[var(--shadow-card)]">
+          <div className="space-y-8 self-start rounded-xl border border-border bg-card p-8 shadow-[var(--shadow-card)]">
             <div>
               <label htmlFor="model" className="text-sm font-medium text-foreground">
                 {t("roi.machine")}
               </label>
-              <select
-                id="model"
-                value={slug}
-                onChange={(e) => setSlug(e.target.value)}
-                className="mt-3 w-full rounded-lg border border-input bg-background px-3.5 py-2.5 text-sm transition-shadow focus:border-primary focus:ring-2 focus:ring-ring/20 focus:outline-none"
-              >
-                {priced.map((p) => (
-                  <option key={p.slug} value={p.slug}>
-                    {p.name} — {formatPrice(p)}
-                  </option>
-                ))}
-              </select>
+              <div className="relative mt-3">
+                <select
+                  id="model"
+                  value={slug}
+                  onChange={(e) => setSlug(e.target.value)}
+                  className="w-full appearance-none rounded-lg border border-input bg-background py-2.5 pr-10 pl-3.5 text-sm transition-shadow focus:border-primary focus:ring-2 focus:ring-ring/20 focus:outline-none"
+                >
+                  {priced.map((p) => (
+                    <option key={p.slug} value={p.slug}>
+                      {p.name} — {formatPrice(p)}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown
+                  className="pointer-events-none absolute top-1/2 right-3.5 size-4 -translate-y-1/2 text-muted-foreground"
+                  aria-hidden
+                />
+              </div>
             </div>
 
             <div>

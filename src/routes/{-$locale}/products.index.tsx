@@ -92,12 +92,14 @@ function ProductsIndex() {
                 params={{ slug: p.slug }}
                 className="group flex min-h-[330px] flex-col bg-card px-5 pb-5 pt-4"
               >
-                <div className="flex h-44 items-center justify-center">
+                {/* max-h rather than h-full: forcing height made wide shots
+                    (Kleenbot) render far larger than tall ones (Dinerbot). */}
+                <div className="flex h-44 items-center justify-center p-2">
                   <img
                     src={p.image}
                     alt={`${p.name} — ${t(`prod.${p.slug}.positioning`)}`}
                     loading="lazy"
-                    className="h-full max-w-full object-contain transition-transform duration-200 group-hover:scale-[1.03]"
+                    className="max-h-full max-w-full object-contain transition-transform duration-200 group-hover:scale-[1.03]"
                   />
                 </div>
                 <div className="mt-4 flex items-baseline gap-2">

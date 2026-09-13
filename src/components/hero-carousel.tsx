@@ -45,23 +45,47 @@ export function HeroCarousel() {
       ? w.requestIdleCallback!(warm, { timeout: 2000 })
       : window.setTimeout(warm, 1200);
 
-    const id = setInterval(() => {
-      setIndex((i) => {
-        const next = (i + 1) % slides.length;
-        setMaxLoaded((m) => Math.max(m, Math.min(next + 1, slides.length - 1)));
-        return next;
-      });
-    }, 5000);
+    // Auto-advance is decorative: respect a reduced-motion preference, and stop
+    // burning frames while the tab is in the background.
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let id: number | undefined;
+
+    const stop = () => {
+      if (id !== undefined) window.clearInterval(id);
+      id = undefined;
+    };
+
+    const start = () => {
+      if (id !== undefined || reduceMotion.matches || document.hidden) return;
+      id = window.setInterval(() => {
+        setIndex((i) => {
+          const next = (i + 1) % slides.length;
+          setMaxLoaded((m) => Math.max(m, Math.min(next + 1, slides.length - 1)));
+          return next;
+        });
+      }, 5000);
+    };
+
+    const sync = () => {
+      stop();
+      start();
+    };
+
+    start();
+    document.addEventListener("visibilitychange", sync);
+    reduceMotion.addEventListener?.("change", sync);
 
     return () => {
-      clearInterval(id);
+      stop();
+      document.removeEventListener("visibilitychange", sync);
+      reduceMotion.removeEventListener?.("change", sync);
       if (usedIdle && typeof w.cancelIdleCallback === "function") w.cancelIdleCallback(idle);
       else clearTimeout(idle);
     };
   }, []);
 
   return (
-    <div className="relative aspect-[8/3] w-full overflow-hidden bg-white">
+    <div className="relative aspect-[4/3] w-full overflow-hidden bg-white sm:aspect-[16/9] lg:aspect-[8/3] lg:max-h-[46vh]">
       {slides.map((slide, i) =>
         i <= maxLoaded ? (
           <img
@@ -70,7 +94,7 @@ export function HeroCarousel() {
             alt={slide.alt}
             width={1920}
             height={720}
-            className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-1000 ${
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
               i === index ? "opacity-100" : "opacity-0"
             }`}
             fetchPriority={i === 0 ? "high" : "low"}
@@ -81,7 +105,7 @@ export function HeroCarousel() {
           />
         ) : null,
       )}
-      <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 gap-2">
+      <div className="absolute right-4 bottom-3 z-10 flex gap-2 sm:right-6 sm:bottom-4">
         {slides.map((slide, i) => (
           <button
             key={slide.url}

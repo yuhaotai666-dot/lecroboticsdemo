@@ -6,6 +6,7 @@ export const en: Record<string, string> = {
   "nav.resources": "Resources",
   "nav.about": "About Us",
   "nav.support": "Support",
+  "nav.toggleMenu": "Open {section} menu",
   "nav.bookDemo": "Book a demo",
   "nav.viewAllProducts": "View All Products",
   "nav.exploreAllIndustries": "Explore All Industries",
@@ -18,25 +19,32 @@ export const en: Record<string, string> = {
 
   // Industries (nav + industries page)
   "ind.food-and-beverage.name": "Food & Beverage",
-  "ind.food-and-beverage.blurb": "Restaurant delivery, food serving, coffee, ice cream and cleaning automation.",
+  "ind.food-and-beverage.blurb":
+    "Restaurant delivery, food serving, coffee, ice cream and cleaning automation.",
   "ind.retail.name": "Retail",
-  "ind.retail.blurb": "Customer service, automated refreshments, internal transport and floor cleaning.",
+  "ind.retail.blurb":
+    "Customer service, automated refreshments, internal transport and floor cleaning.",
   "ind.hospitality.name": "Hospitality",
-  "ind.hospitality.blurb": "Hotel room delivery, restaurant service, guest experience and cleaning.",
+  "ind.hospitality.blurb":
+    "Hotel room delivery, restaurant service, guest experience and cleaning.",
   "ind.industrial-logistics.name": "Industrial, Warehouse & Logistics",
-  "ind.industrial-logistics.blurb": "Material transportation, repetitive logistics tasks and large-area cleaning.",
+  "ind.industrial-logistics.blurb":
+    "Material transportation, repetitive logistics tasks and large-area cleaning.",
   "ind.health-care.name": "Health Care",
   "ind.health-care.blurb": "Internal delivery, material transport and automated cleaning.",
   "ind.transportation.name": "Transportation",
-  "ind.transportation.blurb": "Airports, railway stations and large hubs needing cleaning and delivery automation.",
+  "ind.transportation.blurb":
+    "Airports, railway stations and large hubs needing cleaning and delivery automation.",
   "ind.entertainment-sports.name": "Entertainment & Sports",
-  "ind.entertainment-sports.blurb": "Food service, refreshments, mobile delivery and venue cleaning.",
+  "ind.entertainment-sports.blurb":
+    "Food service, refreshments, mobile delivery and venue cleaning.",
   "ind.real-estate.name": "Real Estate & Property Services",
   "ind.real-estate.blurb": "Building delivery, property cleaning and internal logistics.",
   "ind.education.name": "Education",
   "ind.education.blurb": "Campus cleaning, building delivery and food service.",
   "ind.public-service.name": "Public Service",
-  "ind.public-service.blurb": "Smart service automation for exhibition halls, public facilities and large venues.",
+  "ind.public-service.blurb":
+    "Smart service automation for exhibition halls, public facilities and large venues.",
 
   // Case menu
   "case.featured": "Featured Case Studies",
@@ -201,17 +209,23 @@ export const en: Record<string, string> = {
   "home.capKicker": "What we actually do",
   "home.capTitle": "Six capabilities. One outcome.",
   "home.cap1.title": "Robot Selection — Find the right robot",
-  "home.cap1.body": "We assess your site, workflows and operational requirements, then select the robots best suited to the job — based on real-world performance, not a fixed catalogue.",
+  "home.cap1.body":
+    "We assess your site, workflows and operational requirements, then select the robots best suited to the job — based on real-world performance, not a fixed catalogue.",
   "home.cap2.title": "Deployment & Localisation — Deploy it into your operation",
-  "home.cap2.body": "We configure every robot for its environment — from mapping and localisation to navigation, safety settings and building access.",
+  "home.cap2.body":
+    "We configure every robot for its environment — from mapping and localisation to navigation, safety settings and building access.",
   "home.cap3.title": "Systems Integration — Connect robots to your workflow",
-  "home.cap3.body": "We connect robotics with lifts, doors, WMS, POS, APIs and building management systems to create one connected workflow.",
+  "home.cap3.body":
+    "We connect robotics with lifts, doors, WMS, POS, APIs and building management systems to create one connected workflow.",
   "home.cap4.title": "Operational Training — Teach robots how your operation works",
-  "home.cap4.body": "We train robotic systems around your site, workflows and operational data so routes, task logic and execution improve through real-world feedback.",
+  "home.cap4.body":
+    "We train robotic systems around your site, workflows and operational data so routes, task logic and execution improve through real-world feedback.",
   "home.cap5.title": "Fleet Intelligence — Make the fleet intelligent",
-  "home.cap5.body": "AI agents assign tasks, coordinate fleets, manage exceptions and make real-time decisions — so your team manages outcomes, not machines.",
+  "home.cap5.body":
+    "AI agents assign tasks, coordinate fleets, manage exceptions and make real-time decisions — so your team manages outcomes, not machines.",
   "home.cap6.title": "Operational Scale — Scale across your operation",
-  "home.cap6.body": "Start with one robot and one workflow, then expand across teams, sites and fleets with deployment, monitoring, support and commercial-scale manufacturing.",
+  "home.cap6.body":
+    "Start with one robot and one workflow, then expand across teams, sites and fleets with deployment, monitoring, support and commercial-scale manufacturing.",
   "home.ctaTitle": "See one working in your space.",
   "home.ctaSub":
     "Bring your floor plan and shift pattern. We'll run the machine and give you the payback numbers for your own operation.",
@@ -220,10 +234,12 @@ export const en: Record<string, string> = {
   // Products index
   "products.kicker": "The range",
   "products.title": "Eleven machines. Every price published.",
-  "products.sub": "Filter by the job you need doing, then compare the whole range on payload, runtime and cost in one table.",
+  "products.sub":
+    "Filter by the job you need doing, then compare the whole range on payload, runtime and cost in one table.",
   "products.all": "All",
   "products.compareTitle": "Compare the full range",
-  "products.compareNote": "All prices exclude VAT. Finance shown over 12 months at 7% unless noted.",
+  "products.compareNote":
+    "All prices exclude VAT. Finance shown over 12 months at 7% unless noted.",
   "products.th.model": "Model",
   "products.th.category": "Category",
   "products.th.keySpec": "Key spec",
@@ -241,7 +257,8 @@ export const en: Record<string, string> = {
   "pdp.watchItWork": "Watch it work",
   "pdp.specSheet": "Spec sheet",
   "pdp.specification": "Specification",
-  "pdp.specNote": "Figures as published on the current LEC Robotics product pages. Full specification supplied with the quotation.",
+  "pdp.specNote":
+    "Figures as published on the current LEC Robotics product pages. Full specification supplied with the quotation.",
   "pdp.deployTitle": "What deployment looks like",
   "pdp.step1.title": "Site survey",
   "pdp.step1.body": "We map your floors, lifts, docking points and shift pattern.",
@@ -264,7 +281,8 @@ export const en: Record<string, string> = {
   // Case studies
   "cases.kicker": "Case Studies",
   "cases.title": "Robots at work, site by site.",
-  "cases.sub": "Deployment records grouped by industry. Customer names and measured results are added once each reference is signed off.",
+  "cases.sub":
+    "Deployment records grouped by industry. Customer names and measured results are added once each reference is signed off.",
   "cases.filter.all": "All",
   "cases.challenge": "Challenge",
   "cases.solution": "Solution",
@@ -276,11 +294,15 @@ export const en: Record<string, string> = {
   "cases.locationTbc": "Customer to be confirmed · United Kingdom",
   "cases.resultTbc": "Result to be confirmed with the customer.",
   "cases.s1.title": "Improving hotel room delivery efficiency",
-  "cases.s1.challenge": "Night-shift staff spent most of the shift walking amenity and room-service runs between floors.",
-  "cases.s1.solution": "Lift-integrated delivery robot handling room-to-room drops with a lockable compartment.",
+  "cases.s1.challenge":
+    "Night-shift staff spent most of the shift walking amenity and room-service runs between floors.",
+  "cases.s1.solution":
+    "Lift-integrated delivery robot handling room-to-room drops with a lockable compartment.",
   "cases.s2.title": "Food running across a high-volume dining floor",
-  "cases.s2.challenge": "Servers covered long distances between kitchen pass and tables during peak covers.",
-  "cases.s2.solution": "Tray-running robot with digital display used for delivery and in-venue promotion.",
+  "cases.s2.challenge":
+    "Servers covered long distances between kitchen pass and tables during peak covers.",
+  "cases.s2.solution":
+    "Tray-running robot with digital display used for delivery and in-venue promotion.",
   "cases.s3.title": "Overnight floor cleaning in a retail store",
   "cases.s3.challenge": "Cleaning was booked out-of-hours at premium labour rates.",
   "cases.s3.solution": "Scheduled unattended scrubbing and mopping across the sales floor.",
@@ -291,7 +313,8 @@ export const en: Record<string, string> = {
   "cases.s5.challenge": "Clinical staff moved linen and consumables between departments by hand.",
   "cases.s5.solution": "Secure compartment delivery with lift access between floors.",
   "cases.s6.title": "Cleaning shared areas across a managed building",
-  "cases.s6.challenge": "Large lobby and corridor areas needed daily cleaning with a small on-site team.",
+  "cases.s6.challenge":
+    "Large lobby and corridor areas needed daily cleaning with a small on-site team.",
   "cases.s6.solution": "4-in-1 cleaning robot on a scheduled unattended route.",
   "cases.s7.title": "Unattended coffee service in a public venue",
   "cases.s7.challenge": "Extended opening hours could not be staffed for a small beverage offer.",
@@ -300,7 +323,8 @@ export const en: Record<string, string> = {
   // Resources page
   "resources.kicker": "Resources",
   "resources.title": "Everything worth reading before you deploy.",
-  "resources.sub": "News, practical insight, events and product documentation in one place. Dated entries go live as we publish them.",
+  "resources.sub":
+    "News, practical insight, events and product documentation in one place. Dated entries go live as we publish them.",
   "resources.tbc": "To be confirmed",
   "resources.news1": "Announcement slot — content pending",
   "resources.news2": "Product launch slot — content pending",
@@ -313,7 +337,8 @@ export const en: Record<string, string> = {
   "resources.cat.news": "News",
   "resources.cat.insight": "Insight",
   "resources.cat.event": "Event",
-  "resources.downloads.blurb": "Product brochures, datasheets and solution material. Sheets we hold are linked below; the rest follow.",
+  "resources.downloads.blurb":
+    "Product brochures, datasheets and solution material. Sheets we hold are linked below; the rest follow.",
   "resources.specSheet": "{name} spec sheet",
   "resources.download": "Download",
   "resources.request": "Request",
@@ -322,7 +347,8 @@ export const en: Record<string, string> = {
   // About page
   "about.kicker": "About Us",
   "about.title": "Building the working floor of the next decade.",
-  "about.sub": "A robotics company for commercial operators: one supplier for the machines, the deployment and the service that keeps them running.",
+  "about.sub":
+    "A robotics company for commercial operators: one supplier for the machines, the deployment and the service that keeps them running.",
   "about.overview.body":
     "We supply, deploy and support commercial service robots across the UK: front-of-house service, autonomous floor cleaning, secure building delivery, heavy internal transport and unattended food and beverage kiosks. Every machine we sell is one we install, commission and maintain ourselves.",
   "about.mission.body":
@@ -352,34 +378,43 @@ export const en: Record<string, string> = {
   "support.card4.title": "Technical Support",
   "support.card4.body": "Remote diagnostics and on-site escalation when needed.",
   "support.repair.title": "Online service / repair request",
-  "support.repair.sub": "Tell us the model, the site and what the robot is doing. We triage remotely before sending an engineer.",
+  "support.repair.sub":
+    "Tell us the model, the site and what the robot is doing. We triage remotely before sending an engineer.",
   "support.form.model": "Robot model",
   "support.form.site": "Site / company",
   "support.form.sitePlaceholder": "Where the robot is installed",
   "support.form.issue": "What is happening",
   "support.form.issuePlaceholder": "Error messages, when it started, what changed",
   "support.form.submit": "Submit request",
-  "support.form.note": "Requests are not yet routed to a live service desk — connect this form when your support inbox is ready.",
-  "support.documents.sub": "Manuals, quick-start guides, installation documents and troubleshooting guides per model. Published spec sheets are on the resources page.",
+  "support.form.note":
+    "Requests are not yet routed to a live service desk — connect this form when your support inbox is ready.",
+  "support.documents.sub":
+    "Manuals, quick-start guides, installation documents and troubleshooting guides per model. Published spec sheets are on the resources page.",
   "support.documents.go": "Go to downloads",
   "support.plans.li1": "Installation and commissioning, including mapping and staff handover.",
   "support.plans.li2": "Preventive maintenance visits on a scheduled cycle.",
   "support.plans.li3": "After-sales cover and parts. Pricing and terms to be confirmed.",
-  "support.contact.sub": "Direct support phone, email and service hours will be published once confirmed.",
+  "support.contact.sub":
+    "Direct support phone, email and service hours will be published once confirmed.",
   "support.faq.title": "FAQ",
   "support.faq1.q": "How long does deployment take?",
-  "support.faq1.a": "Most single-robot installs are surveyed, mapped and commissioned in one visit. Multi-floor or lift-integrated deployments take longer.",
+  "support.faq1.a":
+    "Most single-robot installs are surveyed, mapped and commissioned in one visit. Multi-floor or lift-integrated deployments take longer.",
   "support.faq2.q": "Do staff need training?",
-  "support.faq2.a": "Yes, but it is short. Handover covers daily start-up, route selection, cleaning of consumable parts and basic fault clearing.",
+  "support.faq2.a":
+    "Yes, but it is short. Handover covers daily start-up, route selection, cleaning of consumable parts and basic fault clearing.",
   "support.faq3.q": "What happens if a robot faults on site?",
-  "support.faq3.a": "Raise a repair request and we triage remotely first. If it needs an engineer, we schedule a visit.",
+  "support.faq3.a":
+    "Raise a repair request and we triage remotely first. If it needs an engineer, we schedule a visit.",
   "support.faq4.q": "What is covered by warranty?",
-  "support.faq4.a": "Warranty terms are being confirmed for publication and are not stated here yet.",
+  "support.faq4.a":
+    "Warranty terms are being confirmed for publication and are not stated here yet.",
 
   // Book a demo
   "demo.kicker": "Book a demo",
   "demo.title": "See it work before you buy it.",
-  "demo.sub": "Our Chelsea showroom runs the full range. Bring a floor plan and a shift pattern and we'll run the machine against your actual conditions, then hand you the payback figures.",
+  "demo.sub":
+    "Our Chelsea showroom runs the full range. Bring a floor plan and a shift pattern and we'll run the machine against your actual conditions, then hand you the payback figures.",
   "demo.b1": "45-minute session, no obligation.",
   "demo.b2": "Every machine priced on the day, VAT and finance included.",
   "demo.b3": "Site survey booked straight afterwards if it fits.",
@@ -392,7 +427,8 @@ export const en: Record<string, string> = {
   "demo.form.notes": "What are you trying to solve?",
   "demo.form.submit": "Request a demo",
   "demo.sent.title": "Request received.",
-  "demo.sent.body": "This is a demonstration form — connect it to your inbox or CRM before going live.",
+  "demo.sent.body":
+    "This is a demonstration form — connect it to your inbox or CRM before going live.",
   "demo.sector.hospitality": "Hospitality",
   "demo.sector.fnb": "Food & beverage",
   "demo.sector.healthcare": "Healthcare",
@@ -403,7 +439,8 @@ export const en: Record<string, string> = {
   // ROI
   "roi.kicker": "ROI calculator",
   "roi.title": "How fast does it pay for itself?",
-  "roi.sub": "A rough guide based on the labour hours a machine takes off your rota. It ignores consumables, electricity and servicing — treat it as a starting point, not a quotation.",
+  "roi.sub":
+    "A rough guide based on the labour hours a machine takes off your rota. It ignores consumables, electricity and servicing — treat it as a starting point, not a quotation.",
   "roi.machine": "Machine",
   "roi.wage": "Fully loaded hourly labour cost — £{wage}",
   "roi.hours": "Hours per week the robot covers — {hours} h",
@@ -419,7 +456,8 @@ export const en: Record<string, string> = {
 
   // Videos
   "videos.title": "{name} on video",
-  "videos.intro": "Filmed operation walkthroughs and real deployments, so you can see the machine working before you book a demo. {price} + VAT",
+  "videos.intro":
+    "Filmed operation walkthroughs and real deployments, so you can see the machine working before you book a demo. {price} + VAT",
   "videos.introFinance": ", or {finance} on finance.",
   "videos.bookLive": "Book a live demo",
   "videos.specPricing": "Specification & pricing",
@@ -437,7 +475,8 @@ export const en: Record<string, string> = {
   // Solutions
   "solutions.kicker": "By industry",
   "solutions.title": "Same machines. Very different shifts.",
-  "solutions.sub": "Start from the problem you're trying to remove, and we'll point you at the machine that removes it.",
+  "solutions.sub":
+    "Start from the problem you're trying to remove, and we'll point you at the machine that removes it.",
   "solutions.s1.name": "Hospitality",
   "solutions.s1.problem": "Room service and amenity runs eat the night shift.",
   "solutions.s2.name": "Food & beverage",

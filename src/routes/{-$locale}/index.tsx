@@ -42,7 +42,7 @@ function Home() {
       <section className="relative overflow-hidden border-b border-border">
         <HeroCarousel />
         <div className="grid-lines pointer-events-none absolute inset-0 opacity-30" aria-hidden />
-        <div className="relative mx-auto max-w-6xl px-5 py-20 md:py-24">
+        <div className="relative mx-auto max-w-6xl px-5 py-12 md:py-16">
           <div className="max-w-3xl">
             <p className="label-mono text-primary">{t("home.kicker")}</p>
             <h1 className="mt-6 text-5xl leading-[1.02] font-semibold tracking-tight md:text-6xl">

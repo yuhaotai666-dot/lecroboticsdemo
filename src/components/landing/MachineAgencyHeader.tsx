@@ -46,11 +46,7 @@ export function MachineAgencyHeader() {
 
       tl.to(robotRef.current, { x: "-42%", ease: "none" }, 0);
       tl.to(humanRef.current, { x: "42%", ease: "none" }, 0);
-      tl.to(
-        textRefs.current,
-        { opacity: 1, scale: 1, y: 0, stagger: 0.06, ease: "none" },
-        0.22
-      );
+      tl.to(textRefs.current, { opacity: 1, scale: 1, y: 0, stagger: 0.06, ease: "none" }, 0.22);
     }, section);
 
     return () => ctx.revert();
@@ -64,7 +60,11 @@ export function MachineAgencyHeader() {
     >
       <div className="mx-auto flex min-h-screen w-full max-w-[1120px] flex-col px-5 pb-7 pt-7 sm:px-8 lg:px-10">
         <header className="grid grid-cols-[1fr_auto] items-center gap-5 md:grid-cols-3">
-          <a href="#lec-robotics-title" className="inline-flex w-fit items-center gap-2.5" aria-label="LEC Robotics home">
+          <a
+            href="#lec-robotics-title"
+            className="inline-flex w-fit items-center gap-2.5"
+            aria-label="LEC Robotics home"
+          >
             <span className="machine-mark" aria-hidden="true">
               <i />
               <i />
@@ -80,10 +80,30 @@ export function MachineAgencyHeader() {
             aria-label="LEC Robotics navigation"
             className="hidden items-center justify-self-center rounded-full bg-[#f2f2f2] p-1 text-[12px] font-medium md:flex"
           >
-            <a className="rounded-full px-4 py-2 transition-colors hover:bg-white" href="#products">Products</a>
-            <a className="rounded-full px-4 py-2 transition-colors hover:bg-white" href="#industries">Industries</a>
-            <a className="rounded-full px-4 py-2 transition-colors hover:bg-white" href="#case-studies">Case Studies</a>
-            <a className="rounded-full px-4 py-2 transition-colors hover:bg-white" href="#contact">Contact</a>
+            <a
+              className="rounded-full px-4 py-2 whitespace-nowrap transition-colors hover:bg-white"
+              href="#products"
+            >
+              Products
+            </a>
+            <a
+              className="rounded-full px-4 py-2 whitespace-nowrap transition-colors hover:bg-white"
+              href="#industries"
+            >
+              Industries
+            </a>
+            <a
+              className="rounded-full px-4 py-2 whitespace-nowrap transition-colors hover:bg-white"
+              href="#case-studies"
+            >
+              Case Studies
+            </a>
+            <a
+              className="rounded-full px-4 py-2 whitespace-nowrap transition-colors hover:bg-white"
+              href="#contact"
+            >
+              Contact
+            </a>
           </nav>
 
           <a
@@ -98,9 +118,14 @@ export function MachineAgencyHeader() {
         </header>
 
         <div className="relative flex flex-1 flex-col justify-center py-14 md:py-8">
-          <h1 id="lec-robotics-title" className="sr-only">LEC Robotics — Let robots power your business to the next level</h1>
+          <h1 id="lec-robotics-title" className="sr-only">
+            LEC Robotics — Let robots power your business to the next level
+          </h1>
 
-          <div className="relative mx-auto flex w-full max-w-[1000px] items-center justify-center" aria-hidden="true">
+          <div
+            className="relative mx-auto flex w-full max-w-[1000px] items-center justify-center"
+            aria-hidden="true"
+          >
             <div
               ref={robotRef}
               className="machine-hand-wrapper machine-hand-wrapper--robot relative z-10 w-[56%]"
@@ -131,19 +156,25 @@ export function MachineAgencyHeader() {
 
             <div className="pointer-events-none absolute inset-0 z-30 flex items-center justify-center">
               <div
-                ref={(el) => { textRefs.current[0] = el; }}
+                ref={(el) => {
+                  textRefs.current[0] = el;
+                }}
                 className="machine-hero-text absolute left-[28%] top-[24%] -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[clamp(1.25rem,4.5vw,4rem)] font-medium leading-none text-[#111111]"
               >
                 Let robots
               </div>
               <div
-                ref={(el) => { textRefs.current[1] = el; }}
+                ref={(el) => {
+                  textRefs.current[1] = el;
+                }}
                 className="machine-hero-text absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[clamp(1.5rem,5.5vw,5.5rem)] font-medium leading-none text-[#111111]"
               >
                 power your business
               </div>
               <div
-                ref={(el) => { textRefs.current[2] = el; }}
+                ref={(el) => {
+                  textRefs.current[2] = el;
+                }}
                 className="machine-hero-text absolute bottom-[24%] right-[28%] translate-x-1/2 translate-y-1/2 whitespace-nowrap text-[clamp(1.25rem,4.5vw,4rem)] font-medium leading-none text-[#111111]"
               >
                 to the next level
@@ -154,7 +185,8 @@ export function MachineAgencyHeader() {
 
         <div className="grid items-end gap-8 md:grid-cols-[1fr_auto_1fr]">
           <p className="max-w-[330px] text-[13px] leading-[1.55] text-[#6a6a6a]">
-            Commercial service robots for cleaning, serving, delivery and interactive experiences — built to work in real operations.
+            Commercial service robots for cleaning, serving, delivery and interactive experiences —
+            built to work in real operations.
           </p>
 
           <a
@@ -166,8 +198,11 @@ export function MachineAgencyHeader() {
           </a>
 
           <div className="flex flex-wrap gap-2 md:justify-end" aria-label="Product categories">
-            {['Cleaning', 'Serve', 'Deliver', 'Create'].map((service) => (
-              <span key={service} className="rounded-full border border-[#e7e7e7] px-3.5 py-2 text-[11px] text-[#555555]">
+            {["Cleaning", "Serve", "Deliver", "Create"].map((service) => (
+              <span
+                key={service}
+                className="rounded-full border border-[#e7e7e7] px-3.5 py-2 text-[11px] text-[#555555]"
+              >
                 {service}
               </span>
             ))}

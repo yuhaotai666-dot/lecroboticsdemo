@@ -44,6 +44,12 @@ export function HandsHero() {
         pin: true,
         scrub: 0.8,
         invalidateOnRefresh: true,
+        // Pinned triggers must refresh in document order: a later one that
+        // measures before this pin's spacer exists computes a start ~1300 px —
+        // this pin's travel — too early, and draws over the section above it.
+        // Registration order is not fixed, because each section loads GSAP from
+        // its own dynamic import. Higher refreshes first.
+        refreshPriority: 2,
       },
     });
 

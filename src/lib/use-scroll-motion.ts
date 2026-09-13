@@ -10,6 +10,26 @@ export type MotionBuilder = (
 ) => void;
 
 /**
+ * A pinned section inserts a spacer that pushes every trigger below it further
+ * down the document. Each caller registers from its own dynamic import, so the
+ * order is not fixed: whichever registers first measures a document that later
+ * pins will change under it. Left uncorrected the capability strip pinned itself
+ * roughly 1300 px early — the height of the hero pin — and drew over the section
+ * above it.
+ *
+ * So every registration schedules the same debounced refresh. Whoever finishes
+ * last wins, and by then every pin exists.
+ */
+let refreshTimer: number | undefined;
+function scheduleRefresh(ScrollTrigger: ScrollTriggerType) {
+  if (refreshTimer !== undefined) window.clearTimeout(refreshTimer);
+  refreshTimer = window.setTimeout(() => {
+    refreshTimer = undefined;
+    ScrollTrigger.refresh();
+  }, 120);
+}
+
+/**
  * Scroll-driven motion, loaded only when it will actually run.
  *
  * GSAP + ScrollTrigger is ~43 kB gzip. Touch devices and anyone who asked for
@@ -59,10 +79,10 @@ export function useScrollMotion(
 
       ctx = gsap.context(() => buildRef.current(gsap, ScrollTrigger, scope), scope);
 
-      // Pin offsets are measured at build time. Webfonts swapping in after that
-      // shift every trigger below them, so re-measure once they land.
+      if (!cancelled) scheduleRefresh(ScrollTrigger);
+      // Webfonts swapping in after that shift everything again.
       void document.fonts?.ready.then(() => {
-        if (!cancelled) ScrollTrigger.refresh();
+        if (!cancelled) scheduleRefresh(ScrollTrigger);
       });
     })();
 

@@ -79,16 +79,32 @@ function Home() {
     });
 
     // Grouped entrances: children of a [data-reveal] rise together, staggered.
+    //
+    // fromTo with a persistent trigger, not gsap.from + once. `from` hides the
+    // element immediately and `once` kills the trigger after one evaluation, so
+    // a start position measured before the pinned sections inserted their
+    // spacers left the products grid permanently at opacity 0 — the content
+    // simply never came back. An explicit end state plus a trigger that
+    // survives refreshes cannot strand content invisible.
     gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((group) => {
       const items = group.children.length ? Array.from(group.children) : [group];
-      gsap.from(items, {
-        opacity: 0,
-        y: 26,
-        stagger: 0.07,
-        duration: 0.6,
-        ease: "power2.out",
-        scrollTrigger: { trigger: group, start: "top 85%", once: true },
-      });
+      gsap.fromTo(
+        items,
+        { opacity: 0, y: 26 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.07,
+          duration: 0.6,
+          ease: "power2.out",
+          overwrite: "auto",
+          scrollTrigger: {
+            trigger: group,
+            start: "top 88%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
     });
   });
 

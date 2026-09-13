@@ -61,6 +61,8 @@ export function CapabilityStory() {
           pin: stage,
           scrub: 0.6,
           invalidateOnRefresh: true,
+          // Below the hero pin in the document, so it refreshes after it.
+          refreshPriority: 1,
           onUpdate: (self) =>
             setActive(
               Math.min(

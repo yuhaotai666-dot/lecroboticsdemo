@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { RestaurantScene } from "@/components/landing/RestaurantScene";
+import { MachineAgencyHeader } from "@/components/landing/MachineAgencyHeader";
 
 export const Route = createFileRoute("/landing")({
   head: () => ({
@@ -19,6 +20,7 @@ function LandingPage() {
   return (
     <main>
       <RestaurantScene />
+      <MachineAgencyHeader />
     </main>
   );
 }

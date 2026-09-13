@@ -126,7 +126,7 @@ export function MachineAgencyHeader() {
               />
             </div>
 
-            <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
+            <div className="pointer-events-none absolute inset-0 z-30 flex items-center justify-center">
             <div
                 ref={(el) => { textRefs.current[0] = el; }}
                 className="machine-hero-text absolute left-[28%] top-[24%] -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[clamp(2rem,5vw,4rem)] font-medium leading-none text-[#111111]"

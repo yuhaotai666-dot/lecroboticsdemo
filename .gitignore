@@ -12,6 +12,9 @@ dist
 dist-ssr
 .output
 .vercel
+
+# Generated at build time by scripts/generate-sitemap.mjs
+public/sitemap.xml
 .vinxi
 .tanstack/**
 .nitro

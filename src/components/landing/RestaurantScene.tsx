@@ -8,11 +8,12 @@ const robots = products.filter((p) =>
   (scene.robots as readonly string[]).includes(p.slug)
 );
 
-const positions = [
-  { size: "w-[30vw] max-w-[420px]", left: "md:left-[10%]", top: "md:top-[22%]", delay: "0s", depth: 0.6 },
-  { size: "w-[22vw] max-w-[300px]", right: "md:right-[8%]", top: "md:top-[16%]", delay: "1.2s", depth: 0.4 },
-  { size: "w-[24vw] max-w-[340px]", left: "md:left-[6%]", bottom: "md:bottom-[12%]", delay: "2.4s", depth: 0.5 },
-  { size: "w-[18vw] max-w-[260px]", right: "md:right-[18%]", bottom: "md:bottom-[18%]", delay: "3.6s", depth: 0.3 },
+// Delivery lanes: each robot travels a route, pauses at the "table", then returns.
+const lanes = [
+  { size: "w-[26vw] max-w-[380px]", top: "md:top-[18%]", anim: "deliverA", dur: "14s", delay: "0s", depth: 0.6 },
+  { size: "w-[19vw] max-w-[280px]", top: "md:top-[10%]", anim: "deliverB", dur: "18s", delay: "3s", depth: 0.4 },
+  { size: "w-[22vw] max-w-[320px]", bottom: "md:bottom-[16%]", anim: "deliverC", dur: "16s", delay: "6s", depth: 0.5 },
+  { size: "w-[15vw] max-w-[220px]", bottom: "md:bottom-[8%]", anim: "deliverD", dur: "20s", delay: "9s", depth: 0.3 },
 ];
 
 export function RestaurantScene() {

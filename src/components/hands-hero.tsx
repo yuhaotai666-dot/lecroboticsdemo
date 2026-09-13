@@ -4,12 +4,17 @@ import robotHandAsset from "@/assets/landing/robot-hand.png";
 import humanHandAsset from "@/assets/landing/human-hand.png";
 import { useI18n } from "@/lib/i18n/i18n-context";
 
+const HAND_TRAVEL = 78; // percent of each hand's own width
+const HAND_SCALE = 1.12;
+
 /**
- * Scroll-driven opener: the two hands part as you scroll and the headline
- * resolves between them. Adapted from the /landing experiment — the standalone
- * page's own nav bar is dropped here because SiteHeader already provides it, and
- * the copy runs through i18n so the localised homepages don't fall back to
- * English.
+ * Scroll-driven opener. The two hands start fingertip to fingertip, then part
+ * toward the edges as you scroll, and the headline resolves in the gap they
+ * leave. The hands frame the text rather than sitting under it.
+ *
+ * Adapted from the /landing experiment — the standalone page's own nav bar is
+ * dropped here because SiteHeader already provides it, and the copy runs through
+ * i18n so the localised homepages don't fall back to English.
  */
 export function HandsHero() {
   const { t } = useI18n();
@@ -56,9 +61,8 @@ export function HandsHero() {
       gsap.registerPlugin(ScrollTrigger);
 
       ctx = gsap.context(() => {
-        gsap.set(robotRef.current, { x: "0%" });
-        gsap.set(humanRef.current, { x: "0%" });
-        gsap.set(textRefs.current, { opacity: 0, scale: 0.92, y: 24 });
+        gsap.set([robotRef.current, humanRef.current], { xPercent: 0, scale: 1 });
+        gsap.set(textRefs.current, { opacity: 0, y: 28 });
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -71,9 +75,10 @@ export function HandsHero() {
           },
         });
 
-        tl.to(robotRef.current, { x: "-42%", ease: "none" }, 0);
-        tl.to(humanRef.current, { x: "42%", ease: "none" }, 0);
-        tl.to(textRefs.current, { opacity: 1, scale: 1, y: 0, stagger: 0.06, ease: "none" }, 0.22);
+        tl.to(robotRef.current, { xPercent: -HAND_TRAVEL, scale: HAND_SCALE, ease: "none" }, 0);
+        tl.to(humanRef.current, { xPercent: HAND_TRAVEL, scale: HAND_SCALE, ease: "none" }, 0);
+        // Held back until the hands have opened a gap wide enough to read in.
+        tl.to(textRefs.current, { opacity: 1, y: 0, stagger: 0.08, ease: "none" }, 0.35);
       }, section);
     })();
 
@@ -90,23 +95,16 @@ export function HandsHero() {
         staticState ? "hands-hero--static" : ""
       }`}
     >
-      <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col justify-center px-5 py-10">
-        <div className="relative flex flex-1 flex-col justify-center py-14 md:py-8">
-          {/* The animated lines sit inside an aria-hidden stage, so the section
-              needs a text equivalent. Not an h1 — the page heading is the
-              proposition block below this one. */}
-          <p className="sr-only">{t("home.hands.summary")}</p>
+      <div className="flex min-h-screen w-full flex-col justify-center py-10">
+        {/* The stage is aria-hidden, so the section needs a text equivalent.
+            Not an h1 — the page heading is the proposition block below. */}
+        <p className="sr-only">{t("home.hands.summary")}</p>
 
-          {/* The three lines are placed at 24/50/76% of this box. Sized to the
-              hands alone (~250 px) they collided, because a single line is
-              58–79 px tall — give the stage room for all three. */}
-          <div
-            className="relative mx-auto flex min-h-[340px] w-full max-w-[1000px] items-center justify-center md:min-h-[460px]"
-            aria-hidden="true"
-          >
+        <div className="relative flex w-full flex-col items-center" aria-hidden="true">
+          <div className="flex w-full items-center justify-center">
             <div
               ref={robotRef}
-              className="hands-hero__wrapper hands-hero__wrapper--robot relative z-10 w-[56%]"
+              className="hands-hero__wrapper hands-hero__wrapper--robot relative z-10 w-[46%] max-w-[620px] origin-left"
             >
               <img
                 src={robotHandAsset}
@@ -120,7 +118,7 @@ export function HandsHero() {
 
             <div
               ref={humanRef}
-              className="hands-hero__wrapper hands-hero__wrapper--human relative z-20 -ml-[12%] w-[57%]"
+              className="hands-hero__wrapper hands-hero__wrapper--human relative z-10 -ml-[7%] w-[47%] max-w-[640px] origin-right"
             >
               <img
                 src={humanHandAsset}
@@ -131,26 +129,24 @@ export function HandsHero() {
                 className="hands-hero__hand hands-hero__hand--human w-full object-contain"
               />
             </div>
+          </div>
 
-            <div className="pointer-events-none absolute inset-0 z-30 flex items-center justify-center">
-              {([0, 1, 2] as const).map((i) => (
-                <div
-                  key={i}
-                  ref={(el) => {
-                    textRefs.current[i] = el;
-                  }}
-                  className={`hands-hero__text absolute whitespace-nowrap font-semibold leading-none tracking-tight text-foreground ${
-                    i === 0
-                      ? "top-[24%] left-[28%] -translate-x-1/2 -translate-y-1/2 text-[clamp(1.25rem,4.5vw,4rem)]"
-                      : i === 1
-                        ? "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(1.5rem,5.5vw,5.5rem)]"
-                        : "right-[28%] bottom-[24%] translate-x-1/2 translate-y-1/2 text-[clamp(1.25rem,4.5vw,4rem)]"
-                  }`}
-                >
-                  {t(`home.hands.line${i + 1}`)}
-                </div>
-              ))}
-            </div>
+          <div className="pointer-events-none z-30 mt-10 flex max-w-[44rem] flex-col items-center justify-center gap-0.5 px-5 text-center md:absolute md:inset-0 md:mx-auto md:mt-0 md:gap-1.5">
+            {([0, 1, 2] as const).map((i) => (
+              <div
+                key={i}
+                ref={(el) => {
+                  textRefs.current[i] = el;
+                }}
+                className={`hands-hero__text leading-[1.05] font-semibold tracking-tight ${
+                  i === 1
+                    ? "text-foreground text-[clamp(1.75rem,4.7vw,4rem)]"
+                    : "text-muted-foreground text-[clamp(1.25rem,3.3vw,2.75rem)]"
+                }`}
+              >
+                {t(`home.hands.line${i + 1}`)}
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -166,8 +162,12 @@ export function HandsHero() {
           .hands-hero__hand--robot, .hands-hero__hand--human { animation: none; }
         }
         .hands-hero--static .hands-hero__text { opacity: 1 !important; transform: none !important; }
-        .hands-hero--static .hands-hero__wrapper--robot { transform: translateX(-42%) !important; }
-        .hands-hero--static .hands-hero__wrapper--human { transform: translateX(42%) !important; }
+        .hands-hero--static .hands-hero__wrapper--robot { transform: translateX(-30%) !important; }
+        .hands-hero--static .hands-hero__wrapper--human { transform: translateX(30%) !important; }
+        @media (min-width: 768px) {
+          .hands-hero--static .hands-hero__wrapper--robot { transform: translateX(-${HAND_TRAVEL}%) scale(${HAND_SCALE}) !important; }
+          .hands-hero--static .hands-hero__wrapper--human { transform: translateX(${HAND_TRAVEL}%) scale(${HAND_SCALE}) !important; }
+        }
       `}</style>
     </section>
   );

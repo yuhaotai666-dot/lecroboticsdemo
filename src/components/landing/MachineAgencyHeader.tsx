@@ -127,20 +127,20 @@ export function MachineAgencyHeader() {
             </div>
 
             <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
-              <div
-                ref={(el) => (textRefs.current[0] = el)}
+            <div
+                ref={(el) => { textRefs.current[0] = el; }}
                 className="machine-hero-text absolute left-[28%] top-[24%] -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[clamp(2rem,5vw,4rem)] font-medium leading-none text-[#111111]"
               >
                 Creative
               </div>
               <div
-                ref={(el) => (textRefs.current[1] = el)}
+                ref={(el) => { textRefs.current[1] = el; }}
                 className="machine-hero-text absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[clamp(2.5rem,7vw,5.5rem)] font-medium leading-none text-[#d4d4d4]"
               >
                 Digital Agency
               </div>
               <div
-                ref={(el) => (textRefs.current[2] = el)}
+                ref={(el) => { textRefs.current[2] = el; }}
                 className="machine-hero-text absolute bottom-[24%] right-[28%] translate-x-1/2 translate-y-1/2 whitespace-nowrap text-[clamp(2rem,5vw,4rem)] font-medium leading-none text-[#111111]"
               >
                 Studio

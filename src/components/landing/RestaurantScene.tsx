@@ -127,10 +127,10 @@ export function RestaurantScene() {
                 transform: `translate3d(0, ${y}px, 0)`,
               }}
             >
-              <img
+            <img
                 src={robot.image}
                 alt={robot.name}
-                className="h-auto w-full object-contain drop-shadow-2xl"
+                className="h-auto w-full object-contain drop-shadow-2xl mix-blend-multiply"
                 loading="lazy"
                 decoding="async"
               />

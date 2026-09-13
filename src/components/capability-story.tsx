@@ -1,19 +1,19 @@
 import { useEffect, useRef, useState } from "react";
-import capability01 from "@/assets/capability-01.webp.asset.json";
-import capability02 from "@/assets/capability-02.webp.asset.json";
-import capability03 from "@/assets/capability-03.webp.asset.json";
-import capability04 from "@/assets/capability-04.webp.asset.json";
-import capability05 from "@/assets/capability-05.webp.asset.json";
-import capability06 from "@/assets/capability-06.webp.asset.json";
+import capability01 from "@/assets/capability-01.webp";
+import capability02 from "@/assets/capability-02.webp";
+import capability03 from "@/assets/capability-03.webp";
+import capability04 from "@/assets/capability-04.webp";
+import capability05 from "@/assets/capability-05.webp";
+import capability06 from "@/assets/capability-06.webp";
 import { useI18n } from "@/lib/i18n/i18n-context";
 
 const capabilities = [
-  { image: capability01.url, title: "Robot Selection", heading: "Find the right robot" },
-  { image: capability02.url, title: "Deployment & Localisation", heading: "Deploy it into your operation" },
-  { image: capability03.url, title: "Systems Integration", heading: "Connect robots to your workflow" },
-  { image: capability04.url, title: "Operational Training", heading: "Teach robots how your operation works" },
-  { image: capability05.url, title: "Fleet Intelligence", heading: "Make the fleet intelligent" },
-  { image: capability06.url, title: "Operational Scale", heading: "Scale across your operation" },
+  { image: capability01, title: "Robot Selection", heading: "Find the right robot" },
+  { image: capability02, title: "Deployment & Localisation", heading: "Deploy it into your operation" },
+  { image: capability03, title: "Systems Integration", heading: "Connect robots to your workflow" },
+  { image: capability04, title: "Operational Training", heading: "Teach robots how your operation works" },
+  { image: capability05, title: "Fleet Intelligence", heading: "Make the fleet intelligent" },
+  { image: capability06, title: "Operational Scale", heading: "Scale across your operation" },
 ] as const;
 
 export function CapabilityStory() {

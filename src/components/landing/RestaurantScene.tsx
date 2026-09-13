@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { products } from "@/lib/products";
 import { industryMenu } from "@/lib/nav";
-import serveSceneAsset from "@/assets/keenon-serve-scene.webp.asset.json";
+import serveSceneAsset from "@/assets/keenon-serve-scene.webp";
 
 const scene = industryMenu.find((i) => i.slug === "food-and-beverage")!;
 const robots = products.filter((p) =>
@@ -65,7 +65,7 @@ export function RestaurantScene() {
       {/* Depth 0 — background scene */}
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
         <img
-          src={serveSceneAsset.url}
+          src={serveSceneAsset}
           alt=""
           className="h-full w-full scale-110 object-cover opacity-20 blur-2xl"
           style={{

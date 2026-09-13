@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import rangeBannerUrl from "@/assets/keenon-range-1920.webp";
-import serveBanner from "@/assets/keenon-serve-scene.webp.asset.json";
-import deliverBanner from "@/assets/keenon-deliver-scene.webp.asset.json";
-import cleaningBanner from "@/assets/keenon-cleaning-scene.webp.asset.json";
-import createBanner from "@/assets/keenon-create-scene.webp.asset.json";
+import serveBanner from "@/assets/keenon-serve-scene.webp";
+import deliverBanner from "@/assets/keenon-deliver-scene.webp";
+import cleaningBanner from "@/assets/keenon-cleaning-scene.webp";
+import createBanner from "@/assets/keenon-create-scene.webp";
 
 const slides = [
   {
@@ -11,19 +11,19 @@ const slides = [
     alt: "The full LEC Robotics range: Kleenbot floor cleaners, Xbot kiosks, Dinerbot service robots, Butlerbot W3 and Courier S100",
   },
   {
-    url: serveBanner.url,
+    url: serveBanner,
     alt: "Dinerbot T10 and Dinerbot T9 smart food service robots",
   },
   {
-    url: deliverBanner.url,
+    url: deliverBanner,
     alt: "Butlerbot W3 and Courier S100 autonomous delivery robots",
   },
   {
-    url: cleaningBanner.url,
+    url: cleaningBanner,
     alt: "Kleenbot C40 and Kleenbot C30 intelligent floor cleaning robots",
   },
   {
-    url: createBanner.url,
+    url: createBanner,
     alt: "Xbot S Pro automated coffee robot and Xbot IC ice cream kiosk",
   },
 ];

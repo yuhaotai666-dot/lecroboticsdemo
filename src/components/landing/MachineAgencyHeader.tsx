@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import robotHandAsset from "@/assets/landing/robot-hand.png.asset.json";
-import humanHandAsset from "@/assets/landing/human-hand.png.asset.json";
+import robotHandAsset from "@/assets/landing/robot-hand.png";
+import humanHandAsset from "@/assets/landing/human-hand.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -106,7 +106,7 @@ export function MachineAgencyHeader() {
               className="machine-hand-wrapper machine-hand-wrapper--robot relative z-10 w-[56%]"
             >
               <img
-                src={robotHandAsset.url}
+                src={robotHandAsset}
                 alt=""
                 width={1065}
                 height={474}
@@ -120,7 +120,7 @@ export function MachineAgencyHeader() {
               className="machine-hand-wrapper machine-hand-wrapper--human relative z-20 -ml-[12%] w-[57%]"
             >
               <img
-                src={humanHandAsset.url}
+                src={humanHandAsset}
                 alt=""
                 width={1094}
                 height={474}

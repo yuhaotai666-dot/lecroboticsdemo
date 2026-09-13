@@ -59,27 +59,30 @@ export function MachineAgencyHeader() {
   return (
     <section
       ref={sectionRef}
-      aria-labelledby="machine-agency-title"
+      aria-labelledby="lec-robotics-title"
       className={`machine-header relative min-h-screen overflow-hidden bg-[#fdfdfd] text-[#111111] ${staticState ? "machine-header--static" : ""}`}
     >
       <div className="mx-auto flex min-h-screen w-full max-w-[1120px] flex-col px-5 pb-7 pt-7 sm:px-8 lg:px-10">
         <header className="grid grid-cols-[1fr_auto] items-center gap-5 md:grid-cols-3">
-          <a href="#machine-agency-title" className="inline-flex w-fit items-center gap-2.5" aria-label="Machine home">
+          <a href="#lec-robotics-title" className="inline-flex w-fit items-center gap-2.5" aria-label="LEC Robotics home">
             <span className="machine-mark" aria-hidden="true">
               <i />
               <i />
               <i />
             </span>
-            <span className="text-[22px] font-semibold leading-none">Machine</span>
+            <span className="inline-flex items-baseline gap-1 text-[22px] font-semibold leading-none">
+              LEC
+              <span className="text-[13px] font-medium text-[#6a6a6a]">Robotics</span>
+            </span>
           </a>
 
           <nav
-            aria-label="Machine navigation"
+            aria-label="LEC Robotics navigation"
             className="hidden items-center justify-self-center rounded-full bg-[#f2f2f2] p-1 text-[12px] font-medium md:flex"
           >
-            <a className="rounded-full px-4 py-2 transition-colors hover:bg-white" href="#services">Services</a>
-            <a className="rounded-full px-4 py-2 transition-colors hover:bg-white" href="#solutions">Solutions</a>
-            <a className="rounded-full px-4 py-2 transition-colors hover:bg-white" href="#portfolio">Portfolio</a>
+            <a className="rounded-full px-4 py-2 transition-colors hover:bg-white" href="#products">Products</a>
+            <a className="rounded-full px-4 py-2 transition-colors hover:bg-white" href="#industries">Industries</a>
+            <a className="rounded-full px-4 py-2 transition-colors hover:bg-white" href="#case-studies">Case Studies</a>
             <a className="rounded-full px-4 py-2 transition-colors hover:bg-white" href="#contact">Contact</a>
           </nav>
 
@@ -90,12 +93,12 @@ export function MachineAgencyHeader() {
             <span className="grid size-6 place-items-center rounded-full bg-[#111111] text-white">
               <ArrowUpRight className="size-3.5" aria-hidden="true" />
             </span>
-            Start Project
+            Book a demo
           </a>
         </header>
 
         <div className="relative flex flex-1 flex-col justify-center py-14 md:py-8">
-          <h1 id="machine-agency-title" className="sr-only">Creative Digital Agency Studio</h1>
+          <h1 id="lec-robotics-title" className="sr-only">LEC Robotics — Let robots power your business to the next level</h1>
 
           <div className="relative mx-auto flex w-full max-w-[1000px] items-center justify-center" aria-hidden="true">
             <div
@@ -127,23 +130,23 @@ export function MachineAgencyHeader() {
             </div>
 
             <div className="pointer-events-none absolute inset-0 z-30 flex items-center justify-center">
-            <div
+              <div
                 ref={(el) => { textRefs.current[0] = el; }}
-                className="machine-hero-text absolute left-[28%] top-[24%] -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[clamp(2rem,5vw,4rem)] font-medium leading-none text-[#111111]"
+                className="machine-hero-text absolute left-[28%] top-[24%] -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[clamp(1.25rem,4.5vw,4rem)] font-medium leading-none text-[#111111]"
               >
-                Creative
+                Let robots
               </div>
               <div
                 ref={(el) => { textRefs.current[1] = el; }}
-                className="machine-hero-text absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[clamp(2.5rem,7vw,5.5rem)] font-medium leading-none text-[#d4d4d4]"
+                className="machine-hero-text absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[clamp(1.5rem,5.5vw,5.5rem)] font-medium leading-none text-[#111111]"
               >
-                Digital Agency
+                power your business
               </div>
               <div
                 ref={(el) => { textRefs.current[2] = el; }}
-                className="machine-hero-text absolute bottom-[24%] right-[28%] translate-x-1/2 translate-y-1/2 whitespace-nowrap text-[clamp(2rem,5vw,4rem)] font-medium leading-none text-[#111111]"
+                className="machine-hero-text absolute bottom-[24%] right-[28%] translate-x-1/2 translate-y-1/2 whitespace-nowrap text-[clamp(1.25rem,4.5vw,4rem)] font-medium leading-none text-[#111111]"
               >
-                Studio
+                to the next level
               </div>
             </div>
           </div>
@@ -151,20 +154,19 @@ export function MachineAgencyHeader() {
 
         <div className="grid items-end gap-8 md:grid-cols-[1fr_auto_1fr]">
           <p className="max-w-[330px] text-[13px] leading-[1.55] text-[#6a6a6a]">
-            We are a world-class digital agency crafting exquisite brands, cutting-edge websites, and tactile
-            experiences for modern companies.
+            Commercial service robots for cleaning, serving, delivery and interactive experiences — built to work in real operations.
           </p>
 
           <a
-            href="#services"
+            href="#products"
             className="hidden flex-col items-center gap-2 text-[8px] font-semibold uppercase tracking-[0.24em] text-[#c6c6c6] md:flex"
           >
             Scroll down
             <ArrowDown className="size-4" strokeWidth={1.25} aria-hidden="true" />
           </a>
 
-          <div className="flex flex-wrap gap-2 md:justify-end" aria-label="Services">
-            {['Web Design', 'Development', 'Branding'].map((service) => (
+          <div className="flex flex-wrap gap-2 md:justify-end" aria-label="Product categories">
+            {['Cleaning', 'Serve', 'Deliver', 'Create'].map((service) => (
               <span key={service} className="rounded-full border border-[#e7e7e7] px-3.5 py-2 text-[11px] text-[#555555]">
                 {service}
               </span>

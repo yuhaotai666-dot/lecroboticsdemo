@@ -1,27 +1,51 @@
-# AI Website Tune-Up
+# LEC Robotics — website rebuild
 
-https://www.lecrobotics.ai/
-请查看一下这个网站有哪些值得优化的地方
+A rebuild of https://www.lecrobotics.ai/ as a React 19 / TanStack Start / Tailwind 4 app.
+Eleven products, six industry categories, five languages (EN / FR / DE / IT / ES), an ROI calculator, and a scroll-driven "six capabilities" section.
 
-This project was built with [Lovable](https://lovable.dev).
+This project started life in Lovable. It no longer depends on the Lovable platform: the Vite config is explicit, the build runs on plain `npm`, and the output is a standard nitro node-server bundle.
 
-**Live app**: https://lecroboticsdemo.lovable.app
+## Requirements
 
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/3e87439c-f957-451b-b2dd-85f74b58c6bd).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+- Node.js 22+ (tested on 26)
+- npm 11+
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+```sh
+npm install
+npm run dev        # http://localhost:8080
+```
+
+## Type check and lint
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+npm run typecheck
+npm run lint
 ```
+
+## Production build
+
+```sh
+npm run build      # emits .output/ (nitro, node-server preset)
+npm run preview    # serves the build: node .output/server/index.mjs
+```
+
+`npm run preview` runs the nitro output directly rather than `vite preview`, because TanStack Start's built-in preview server looks for `dist/server/server.js` and nitro writes to `.output/` instead.
+
+## Layout
+
+```
+src/
+  routes/        TanStack file-based routes (index, products.$slug, roi, case-studies, …)
+  components/    UI
+  lib/           i18n, error capture, helpers
+  assets/        images
+  server.ts      SSR entry wrapper (error page on catastrophic SSR failure)
+public/          static assets
+.lovable/plan/   design notes from the earlier Lovable iterations (kept as documentation)
+```
+
+## Not wired up yet
+
+The site is presentation-only. There is no CRM, no email delivery, no real booking, no analytics, no payment. The demo and subscription forms show a preview-only confirmation and send nothing.
